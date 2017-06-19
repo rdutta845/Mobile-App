@@ -1,0 +1,718 @@
+/* Empty. Add your own CSS if you like */
+body{
+	font-family: 'Ubuntu', sans-serif;
+	background: url(../img/bg.jpg) repeat;
+	background-size: cover;
+}
+.clearafter:after{
+    content:"";
+    display:block;
+    visibility:hidden;
+    clear:both;
+    height:0;
+}
+img {
+    max-width:100%;
+    display:block;
+}
+a, input[type='submit'], input[type='button'], input[type='image'], a:hover{
+    transition:all 300ms ease-in-out;
+    -moz-transition:all 300ms ease-in-out;
+    -webkit-transition:all 300ms ease-in-out;
+    -ms-transition:all 300ms ease-in-out;
+    -o-transition:all 300ms ease-in-out;
+    text-decoration:none;
+}
+a{
+    cursor: pointer;
+}
+.nopadding{
+    padding: 0 !important;
+}
+.custom_header{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc3d3d+4,530909+71 */
+background: #dc3d3d; /* Old browsers */
+background: -moz-linear-gradient(left, #dc3d3d 4%, #530909 71%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #dc3d3d 4%,#530909 71%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #dc3d3d 4%,#530909 71%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3d3d', endColorstr='#530909',GradientType=1 ); /* IE6-9 */
+}
+.custom_header .title{
+    color:#fff;
+}
+.custom_header .button{
+    color:#fff;
+}
+.contnet_bg{
+    background: url(../img/bg.jpg) repeat;
+    background-size: cover;
+}
+h2{
+	font-size: 13px;
+    line-height: 25px;
+    padding: 0;
+    color: #292929;
+    font-weight: 700;
+}
+.volunteer_profile_creation{
+	padding: 0 35px;
+}
+.volunteer_profile_creation .item{
+	background: #fff;
+    border: 1px solid #505050;
+    margin-bottom: 18px;
+    padding: 4px 4px 7px;
+    height: 45px;
+    position: relative;
+}
+.volunteer_profile_creation .item input[type="text"]{
+	font-size: 14px;
+    font-weight: bold;
+    color: #ababab;
+    height: initial;
+    position: absolute;
+    bottom: 6px;
+    left: 10px;
+}
+.volunteer_profile_creation .item .user_sec input[type="text"], .volunteer_profile_creation .item .user_sec input[type="password"]{
+    left: 50px;
+    bottom: 10px;
+    width: 80%;
+}
+.paswd_sec{
+    margin-left: 40px;
+}
+.volunteer_profile_creation .item.item-floating-label .input-label{
+	color: #2b2b2b;
+	font-weight: 500;
+    font-size: 11px;
+    top: -7px;
+    left: 6px;
+}
+.volunteer_profile_creation .item input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+  color: #000;
+}
+.volunteer_profile_creation .item input[type="text"]::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+  color: #000;
+}
+.volunteer_profile_creation .item input[type="text"]::-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+  color: #000;
+}
+.volunteer_profile_creation .item input[type="text"]::-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
+  color: #000;
+}
+.volunteer_profile_creation .item-input-wrapper{
+	background: transparent;
+}
+.volunteer_profile_creation .item-input-wrapper i{
+	font-size: 25px;
+    color: #000;
+    font-weight: bold;
+    width: 43px;
+    margin-right: 4px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.chckbx_lang .item-checkbox .item-content span{
+	font-size: 13px;
+}
+.chckbx_lang .item-checkbox {
+    padding-left: 46px;
+}
+.volunteer_profile{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.volunteer_profile a.upld_prftxt{
+    position: absolute;
+    top: 70px;
+    right: 29px;
+    width: 19%;
+    color: #000;
+    font-size: 10px;
+    line-height: 13px;
+    font-weight: 600;
+}
+.vol_prof_pic {
+    width: 140px;
+    height: 140px;
+    background: #ddd;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: 20px auto;
+    overflow: hidden;
+    border:5px solid #dcdcdc;
+}
+.wrkshop p {
+    font-size: 11px;
+    color: #333333;
+    font-weight: 700;
+    line-height: 15px;
+}
+.wrkshop .subj_1, .wrkshop .subj_2{
+	margin-bottom: 15px;
+}
+.nobtm_margn{
+	margin-bottom: 0 !important;
+}
+.chckbx_lang > .item{
+	padding: 0;
+}
+.chckbx_lang .item .item-checkbox{
+	border: none;
+	background: transparent;
+	margin-bottom: 0;
+}
+.nxt_btn{
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+background: #d23939; /* Old browsers */
+background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #d23939 0%,#972323 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d23939', endColorstr='#972323',GradientType=1 ); /* IE6-9 */
+color: #fff;
+font-weight: normal;
+margin-bottom: 20px;
+min-height: 42px;
+line-height: 42px;
+}
+.nxt_btn .icon-right:before{
+	font-size: 12px;
+}
+.nxt_btn.button-large.icon:before, .nxt_btn.button-large.icon-left:before, .nxt_btn.button-large.icon-right:before{
+	font-size: 23px;
+    line-height: 42px;
+}
+.contnt_padding{
+	padding: 0 10px;
+}
+.wrkshp_schedule .card {
+    box-shadow: none;
+    background: transparent;
+}
+.wrkshp_schedule .card .item{
+	padding: 0;
+	border: 1px solid #2b2b2b;
+	border-radius: 6px;
+}
+.term_program_status.row{
+	padding: 0;
+ }
+.term_program_status.row .col{
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding-left: 12px;
+	padding-bottom: 15px;
+}
+.wrkshp_schedule h2{
+	font-size: 14px;
+	color: #292929;
+}
+.dat_schdle span {
+    margin-right: 7px;
+    color: #999999;
+    font-size: 12px;
+}
+.acto_schdle strong{
+	font-size: 10px;
+	font-weight: 700;
+	color: #080808;
+}
+.gry_txt{
+	font-size: 14px;
+	color: #cccccc !important;
+	font-weight: 600;
+}
+.layout_schedule .item .row.date_tym_sec{
+    padding: 0 10px 8px;
+}
+.layout_schedule .item .row.date_tym_sec .col{
+    padding: 0;
+}
+.layout_schedule span{
+	font-size: 9px;
+    font-weight: 600;
+    color: #999999;
+}
+.term_program_status h3{
+	font-size: 11px;
+	font-weight: 700;
+	color: #080808;
+}
+.layout_schedule .term_program_status span{
+	font-size: 14px;
+	font-weight: 600;
+	color: #080808;
+}
+.adrss_sec i{
+	float: left;
+	font-size: 30px;
+	color: #1b1b1b;
+}
+.adrss_sec .addrss {
+   	float: left;
+    width: 88%;
+    margin-left: 14px;
+}
+.adrss_sec{
+	padding-top: 8px !important;
+}
+.addrss h4{
+	font-size: 10px;
+    font-weight: 700;
+    color: #252525;
+    line-height: 4px;
+    padding-top: 5px;
+}
+.addrss span{
+	font-size: 13px;
+    color: #252525;
+    line-height: 18px;
+}
+.wrkshop .item{
+    height: auto;
+    padding:15px 15px 0px;
+}
+.subj_1 span, .subj_2 span{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+.chckbx_lang .item{
+    height: auto;
+}
+h2.teacher_schedule_hdng{
+    text-align: center;
+    padding:20px 80px 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #2b2b2b;
+    font-weight: 700;
+}
+.teacher_schedule_hdng span{
+    font-size: 21px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.teacher_listing_sec .item{
+    padding: 0;
+    border:2px solid #2b2b2b;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.hdnge_listing_sec{
+    border-bottom: 1px solid #cccccc;
+    display: flex;
+    justify-content: space-around;
+}
+/*.hdnge_listing_sec div{
+    padding: 3px 7px 6px 7px;
+}*/
+.session_num{
+    font-size: 10px;
+    color: #292929;
+    font-weight: 700;
+    line-height: 23px;
+}
+.date_nd_tym span{
+    font-size: 10px;
+    color: #292929;
+    font-weight: 700;
+}
+.edit_action{
+    font-size: 10px;
+    color: #292929;
+    font-weight: 700;
+    line-height: 23px;
+}
+.edit_action i{
+    margin-left: 3px;
+}
+.arrw_up {
+    color: #1b1b1b;
+    font-weight: 700;
+    margin-left: 4px;
+    margin-top: 5px;
+}
+.schedule_mini h3{
+    font-size: 13px;
+    line-height: 18px;
+    color: #333333;
+    font-weight: 700;
+}
+.schedule_mini .item{
+    border:none;
+}
+.schedule_mini i.phone_icn{
+    font-size: 28px;
+    margin: 4px 0 0;
+    float: left;
+}
+.right_cont {
+    width: 94%;
+    float: right;
+}
+.right_cont strong{
+    font-size: 12px;
+    font-weight: 600;
+    color: #666666;
+    font-style: italic;
+}
+.right_cont .row, .right_cont .row .col{
+    padding: 0;
+}
+.right_cont .row .col:first-child{
+    margin-right: 63px;
+}
+.right_cont .row .col span{
+    font-size: 11px;
+}
+.right_cont .row .col span i{
+    margin-right: 5px;
+}
+.main_schedule .button {
+    border-color: #000;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0 0px;
+    min-width: 100%;
+    min-height: 35px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 6px;
+    vertical-align: top;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    line-height: 35px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.main_schedule .button i{
+    margin-left: 15px;
+}
+.session_details_sec .hdnge_listing_sec{
+    justify-content: space-between;
+}
+.session_details_sec .session_num{
+    padding-left: 6px;
+}
+.session_details_sec .arrw_up {
+    padding-right: 7px;
+}
+.content_nummargn{
+    margin-right: 56%;
+}
+.add_studnt .button{
+    font-size: 12px;
+    min-width: auto;
+    padding: 0 9px;
+    min-height: auto;
+    line-height: 20px;
+    border-radius: 37px;
+}
+.add_studnt .button.icon-left:before{
+    font-size: 15px;
+    line-height: 20px;
+    margin-right: 4px;
+}
+.attnce_list_hdng strong{
+    font-size: 12px;
+    line-height: 18px;
+    display: block;
+    overflow: hidden;
+    white-space: normal;
+}
+.attnce_list_hdng strong em{
+    font-style: normal;
+    display: block;
+}
+.attnce_list_hdng span{
+    font-size: 16px;
+    line-height: 18px;
+    display: block;
+    font-weight: 600;
+    padding: 5px;
+}
+.attnce_list_hdng em{
+    font-size: 11px;
+    line-height: 18px;
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    color: #2b2b2b;
+    overflow: hidden;
+    white-space: normal;
+}
+.end_record{
+    border:1px solid #000;
+    margin: 0 13px 0 0;
+    padding: 5px;
+}
+span.no_namepad{
+    padding-left: 0; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.button_sec{
+    display: flex;
+    justify-content: space-between;
+}
+.button_sec .button{
+    background: #d23939; /* Old browsers */
+background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #d23939 0%,#972323 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d23939', endColorstr='#972323',GradientType=1 ); /* IE6-9 */
+color: #fff;
+font-weight: normal;
+-webkit-border-radius: 6px;
+border-radius: 6px;
+width: 156px;
+}
+.schdule_bx{
+    margin-bottom: 10px;
+}
+.schdule_bx h3{
+    font-size: 12px !important;
+}
+.schdule_bx span {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.session_schedulebx .right_cont .row .col span{
+    font-size: 9px;
+}
+.cont_wrap_bx{
+    border:1px solid #dedede;
+    padding: 5px;
+}
+.cont_wrap_bx i, .cont_wrap_bx a{
+    color: #ec3e40;
+    font-size: 13px;
+}
+.cont_wrap_bx a{
+    float: right;
+    margin-top: 3px;
+}
+.cont_wrap_bx span{
+    font-size: 10px;
+    font-weight: 600;
+}
+.checkin_btn .button{
+    width: 80% !important;
+    margin: 0 auto;
+}
+.homework-sec span{
+    color: #333;
+}
+.main_clrbx{
+    width: 20px;
+    height: 20px;
+    border:1px solid #000;
+    display: inline-block;
+}
+.blue{
+    background: #0099ff;
+}
+.blue_txt{
+    color: #0099ff;
+    vertical-align: top;
+}
+.green{
+    background: #66cc00;
+}
+.green_txt{
+    color: #66cc00;
+    vertical-align: top;
+}
+.orange{
+    background: #ff6600;
+}
+.orange_txt{
+    color: #ff6600;
+    vertical-align: top;
+}
+.purple{
+    background: #993365;
+}
+.purple_txt{
+    color: #993365;
+    vertical-align: top;
+}
+.red{
+    background: #fe0034;
+}
+.red_txt{
+    color: #fe0034;
+    vertical-align: top;
+}
+.bdr_btm{
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 20px;
+}
+.color_select{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.color_select select{
+    width: 29%;
+    height: 32px;
+}
+.color_select .button{
+display: inline-block;
+    width: 31%;
+    background: #d23939; /* Old browsers */
+background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #d23939 0%,#972323 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d23939', endColorstr='#972323',GradientType=1 ); /* IE6-9 */
+color: #fff;
+font-weight: normal;
+    min-height: auto;
+    line-height: 30px;
+}
+.session_attndnce_list .item{
+    border:none;
+    text-indent: -48px;
+}
+.session_attndnce_list strong{
+    font-size: 9px;
+}
+.save_attncebtn{
+    margin: 10px 0;
+}
+.save_attncebtn .button{
+    width: 80% !important;
+    margin: 0 auto;
+}
+/*----media_query---*/
+@media screen and (min-width: 320px) and (max-width: 359px) {
+.acto_schdle strong {
+    font-size: 9px;
+}
+.layout_schedule span {
+    font-size: 11px;
+}
+.gry_txt {
+    font-size: 13px;
+}
+.term_program_status h3 {
+    font-size: 11px;
+}
+.layout_schedule .term_program_status span {
+    font-size: 14px;
+}
+.adrss_sec .addrss {
+    float: left;
+    width: 86%;
+    margin-left: 14px;
+}
+.vol_prof_pic {
+    width: 120px;
+    height: 120px;
+}
+.volunteer_profile a.upld_prftxt {
+    width: 21%;
+    top: 67px;
+    right: 22px;
+}
+.volunteer_profile_creation .item input[type="text"] {
+    font-size: 15px;
+}
+h2 {
+    font-size: 15px;
+}
+.chckbx_lang .item-checkbox .item-content span {
+    font-size: 12px;
+}
+.chckbx_lang .item-checkbox .item-content span {
+    font-size: 8px;
+}
+.arrw_up {
+    margin-top: 0px;
+}
+.button_sec .button{
+    width: 136px;
+}
+.cont_wrap_bx span {
+    font-size: 8px;
+}
+}
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+.layout_schedule span {
+    font-size: 13px;
+}
+.acto_schdle strong {
+    font-size: 12px;
+}
+.gry_txt {
+    font-size: 16px;
+}
+.term_program_status h3 {
+    font-size: 14px;
+}
+.layout_schedule .term_program_status span {
+    font-size: 15px;
+}
+.chckbx_lang .item-checkbox .item-content span {
+    font-size: 14px;
+}
+.arrw_up {
+    margin-top: 0;
+}
+.button_sec .button{
+    width: 163px;
+}
+.session_schedulebx .right_cont .row .col span {
+    font-size: 10px;
+}
+}
+@media screen and (min-width: 412px) and (max-width: 1024px) {
+.volunteer_profile a.upld_prftxt{
+    right:  43px;
+}
+h2.teacher_schedule_hdng {
+    padding: 20px 81px 0;
+    font-size: 18px;
+    line-height: 21px;
+}
+.arrw_up {
+    margin-top: 0;
+}
+.session_num{
+    font-size: 11px;
+}
+.date_nd_tym span{
+    font-size: 11px;
+}
+.edit_action{
+    font-size: 11px;
+}
+.button_sec .button {
+    width: 184px;
+}
+.session_schedulebx .right_cont .row .col span {
+    font-size: 11px;
+}
+.cont_wrap_bx span {
+    font-size: 12px;
+    font-weight: 600;
+}
+}

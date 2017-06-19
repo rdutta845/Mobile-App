@@ -1,0 +1,84 @@
+<ion-view>
+  <ion-header-bar align-title="center" class="custom_header">
+	<div class="buttons">
+	  <button class="button button-icon button-clear ion-navicon button-clear"></button>
+	</div>    
+	<h1 class="title">Volunteer Registration</h1>  
+   </ion-header-bar>
+   <ion-content class="contnet_bg">
+     <div class="volunteer_profile">
+     	<div class="vol_prof_pic">
+            <img src="img/placeholder_upld_pic.jpg">
+     	</div>
+        <a href="#" class="upld_prftxt">
+            Upload
+            Profile Photo
+            (Optional)
+        </a>
+     </div>
+     <div class="volunteer_profile_creation">
+     	<ion-list>
+     		<h2>Profile Creation</h2>
+     		<ion-item class="item-input item-floating-label">
+     			<span class="input-label">First Name</span>
+    			<input type="text" placeholder="First Name"/>
+     		</ion-item>
+     		<ion-item class="item-input item-floating-label">
+     			<span class="input-label">Last Name</span>
+    			<input type="text" placeholder="Last Name"/>
+     		</ion-item>
+     		<ion-item class="item-input item-floating-label">
+     			<span class="input-label">Type Of Volunteer</span>
+    			<input type="text" placeholder="Coach"/>
+     		</ion-item>
+     		<ion-item class="item-input item-floating-label">
+     			<span class="input-label">Organisation</span>
+    			<input type="text" placeholder="Step Up For India"/>
+     		</ion-item>
+     		<ion-item>
+     			<label class="item-input-wrapper user_sec">
+				    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+				    <input type="text" placeholder="Email Address*">
+				  </label>
+     		</ion-item>
+     		<ion-item  class="nobtm_margn">
+     			<label class="item-input-wrapper user_sec paswd_sec">
+				    <i class="fa fa-lock" aria-hidden="true"></i>
+				    <input type="password" placeholder="******">
+				  </label>
+     		</ion-item>
+     	</ion-list>
+     	<ion-list class="wrkshop">
+     		<h2>Which workshop have you already Attended</h2>
+     		<ion-item class="nobtm_margn">
+     			<div class="subj_1">
+     				<p>Maths</p>
+     				<span>Term 1, Term 2</span>
+     			</div>
+     			<div class="subj_2">
+     				<p>English</p>
+     				<span>Term 1, Term 2</span>
+     			</div>
+     		</ion-item>
+     	</ion-list>
+     	<ion-list class="chckbx_lang">
+     		<h2>Tick language that you can speak</h2>
+     		<ion-item>
+     			<div class="row">
+     				<div class="col col-50">
+		     			 <ion-checkbox>Kannada</ion-checkbox>
+						  <ion-checkbox>Telegu</ion-checkbox>
+						  <ion-checkbox>Urdu</ion-checkbox>
+				  	</div>
+				  	<div class="col col-50">
+		     			 <ion-checkbox>Tamil</ion-checkbox>
+						  <ion-checkbox>Hindi</ion-checkbox>
+						  <ion-checkbox>English</ion-checkbox>
+				  	</div>
+				</div>
+     		</ion-item>
+     	</ion-list>
+     	<button class="button button-large icon-right ion-arrow-right-c nxt_btn">Next</button>
+     </div>
+   </ion-content>
+</ion-view>
