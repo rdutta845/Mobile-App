@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 .controller('VolunteerRegistrationController', function($scope, $stateParams, $ionicPopup, $http, $location) {
 
   console.log("running successfully")
