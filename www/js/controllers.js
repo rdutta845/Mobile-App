@@ -156,7 +156,7 @@ angular.module('starter.controllers', [])
       $scope.newRecord.password = $scope.pass.value;
       $scope.organization = $scope.org.value;
       $scope.newRecord.organization = $scope.org.value;
-      
+
       console.log("$scope.newRecord", $scope.newRecord)
 
        $http({
@@ -192,7 +192,19 @@ angular.module('starter.controllers', [])
       }
 
  })
-.controller('WorkshopController', function($scope, $stateParams, $location) {
+.controller('WorkshopController', function($scope, $stateParams, $location, $http) {
+
+    $http({
+      method:"GET",
+      url:'http://localhost:3000/api/v1'+"/getallworkshopsinfo",
+    }).then(function mySucces(response) {
+        console.log("success");
+        if(response.data.result != null){
+            console.log("RESPONSE Workshop", response.data.result);
+            $scope.userWorkshop = response.data.result;
+          
+          }
+        })
 
     $scope.register = function(){
       console.log("move on");

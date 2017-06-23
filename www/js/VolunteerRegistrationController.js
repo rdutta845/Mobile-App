@@ -88,7 +88,6 @@ angular.module('starter.controllers', [])
       }
     }
     $scope.save = function(){
-      console.log("gurrrrrrrrrrrrrrrrrgulllllllllllllaaaaaaaa")
       $scope.newRecord.name.firstName = $scope.first.value;
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
