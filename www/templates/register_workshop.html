@@ -1,0 +1,51 @@
+<ion-view>
+  <ion-header-bar align-title="center" class="custom_header">
+	<div class="buttons">
+	  <button class="button button-icon ion-navicon button-clear"></button>
+	</div>    
+	<h1 class="title">Register for Workshop</h1>  
+   </ion-header-bar>
+   <ion-content class="contnet_bg">
+   		<div class="contnt_padding">
+   			<div class="padding">
+	   			<ion-list class="register_wrkshop_sec">
+	   				<h3>
+	   					Consult your organization lead to choose the 
+						correct Term you are going to be teaching
+	   				</h3>
+	   				<ion-item>
+	   					<select>
+	   						<option>Program</option>
+	   						<option>Program 1</option>
+	   						<option>Program 2</option>
+	   					</select>
+	   				</ion-item>
+	   				<ion-item>
+	   					<select>
+	   						<option>Term</option>
+	   						<option>Term 1</option>
+	   						<option>Term 2</option>
+	   					</select>
+	   				</ion-item>
+	   				<strong>Select from option</strong>
+	   				<div class="select_option-sec">
+	   					<ion-list>
+						  <ion-radio ng-model="choice" ng-value="'A'">
+						  	June, 1, 2017 at 1 pm – XYZ School, BTM Logout
+						  </ion-radio>
+						  <ion-radio ng-model="choice" ng-value="'B'">
+						  	June, 11, 2017 at 10 pm – XYZ School BTM Logout
+						  </ion-radio>
+						  <ion-radio ng-model="choice" ng-value="'c'">
+						  	June, 21, 2017 at 4pm – XYZ School, BTM Logout
+						  </ion-radio>
+						</ion-list>
+	   				</div>
+	   			</ion-list>
+	   			<div class="button_sec checkin_btn regst_btn">
+				  <button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="register()">Register</button>
+				</div>
+   			</div>
+		</div>
+   </ion-content>
+</ion-view>

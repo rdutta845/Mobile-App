@@ -4,8 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+var ngApp = angular.module('starter', ['ionic', 'starter.controllers']);
+// var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies', 
+// 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment', 
+// "angucomplete-alt", 'masonry', 'ui.calendar']);
 
+
+ngApp.constant("CONFIG", {
+  "apiEndpoint": 'http://localhost:3000'  // Note: No trailing slashes!
+})
+
+ngApp
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,6 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+ngApp
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -45,15 +55,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/volunteer_registration',
     views: {
       'menuContent': {
-        templateUrl: 'templates/volunteer_registration.html'
+        templateUrl: 'templates/volunteer_registration.html',
+        controller:'VolunteerRegistrationController'
+
       }
-    }
+    },
   })
   .state('app.workshop', {
     url: '/workshop',
     views: {
       'menuContent': {
-        templateUrl: 'templates/workshop.html'
+        templateUrl: 'templates/workshop.html',
+        controller:'WorkshopController'
+
       }
     }
   })
@@ -89,6 +103,80 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.steuplogin', {
+    url: '/steuplogin',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/steuplogin.html'
+      }
+    }
+  })
+  .state('app.register_workshop', {
+    url: '/register_workshop',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register_workshop.html',
+        controller:'WorkshopRegisterController'
+
+      }
+    }
+  })
+  .state('app.login_number_validation', {
+    url: '/login_number_validation',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login_number_validation.html'
+      }
+    }
+  })
+  .state('app.enter_otp', {
+    url: '/enter_otp',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/enter_otp.html'
+      }
+    }
+  })
+  .state('app.forgot_password', {
+    url: '/forgot_password',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/forgot_password.html'
+      }
+    }
+  })
+  .state('app.my_classes', {
+    url: '/my_classes',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/my_classes.html'
+      }
+    }
+  })
+  .state('app.session_history', {
+    url: '/session_history',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/session_history.html'
+      }
+    }
+  })
+  .state('app.student_report', {
+    url: '/student_report',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/student_report.html'
+      }
+    }
+  })
+  .state('app.horonium_history', {
+    url: '/horonium_history',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/horonium_history.html'
+      }
+    }
+  })
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -117,5 +205,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/volunteer_registration');
+  $urlRouterProvider.otherwise('/app/playlists');
 });

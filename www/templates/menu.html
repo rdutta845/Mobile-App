@@ -9,35 +9,57 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar> -->
-    <ion-nav-bar align-title="center" class="custom_header">
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+  <ion-side-menu side="left" class="menubg main_menu">
+    <ion-header-bar class="menu_hdr">
+      <div class="profile_sec padding">
+      <div class="prf_upper_sec">
+          <div class="pic-avatar">
+            <img src="img/profile_pic.jpg">
+          </div>
+          <div class="prf_txt">
+            <h2>Welcome</h2>
+            <strong>Mr/Ms ABC</strong>
+          </div>
+        </div>
+        <span>You joined in 2014 & have completed 50 sessions</span>
+      </div>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="menu_list">
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item menu-close href="#/app/volunteer_registration">
-          Volunteer Registration
-        </ion-item>
         <ion-item menu-close href="#/app/workshop">
-          workshop
+          <i class="fa fa-wrench" aria-hidden="true"></i>
+          My Workshops
         </ion-item>
         <ion-item menu-close href="#/app/teacher_schedule">
-          teacher_schedule
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          My Teaching Schedule
         </ion-item>
         <ion-item menu-close href="#/app/session_details">
-          session_details
+          <i class="fa fa-bullhorn" aria-hidden="true"></i>
+          My Next Session
+        </ion-item>
+        <ion-item menu-close href="#/app/browse">
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          My Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/playlists">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          My Classes
+        </ion-item>
+        <ion-item menu-close href="#/app/horonium_history">
+          <i class="fa fa-university" aria-hidden="true"></i>
+          My Honorarium History
+        </ion-item>
+        <ion-item menu-close href="#/app/playlists">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+          FAQ
+        </ion-item>
+        <ion-item menu-close href="#/app/playlists">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+          Logout
         </ion-item>
         <ion-item menu-close href="#/app/session_details2">
           session_details2
@@ -48,13 +70,44 @@
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item menu-close href="#/app/volunteer_registration">
+          Volunteer Registration
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="#/app/steuplogin">
+          steuplogin
+        </ion-item>
+        <ion-item menu-close href="#/app/register_workshop">
+          register_workshop
+        </ion-item>
+        <ion-item menu-close href="#/app/login_number_validation">
+          login_number_validation
+        </ion-item>
+        <ion-item menu-close href="#/app/enter_otp">
+          enter_otp
+        </ion-item>
+        <ion-item menu-close href="#/app/forgot_password">
+          forgot_password
+        </ion-item>
+        <ion-item menu-close href="#/app/my_classes">
+          my_classes
+        </ion-item>
+        <ion-item menu-close href="#/app/session_history">
+          session_history
+        </ion-item>
+        <ion-item menu-close href="#/app/student_report">
+          student_report
         </ion-item>
       </ion-list>
     </ion-content>
+      <div class="row menufooter padding">
+        <div class="col col-50">
+          <em>Powered By</em>
+          <img src="img/logistic_logo.png">
+        </div>
+        <div class="col col-50">
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          <strong>Rate this App</strong>
+        </div>
+      </div>
   </ion-side-menu>
 </ion-side-menus>
