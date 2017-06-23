@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerRegistrationController', function($scope, $stateParams, $ionicPopup, $http, $location) {
+.controller('VolunteerRegistrationController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -37,7 +37,7 @@ angular.module('starter.controllers')
 
     $http({
         method : "GET",
-        url : 'http://localhost:3000/api/v1'+"/getsettingsinfo/",
+        url : CONFIG.apiEndpoint+"/getsettingsinfo/",
     }).then(function mySucces(response) {
         console.log("success");
         console.log("RESPONSE", response.data.settings);
@@ -54,7 +54,7 @@ angular.module('starter.controllers')
     // /checkisregister/:mobile
     $http({
         method : "GET",
-        url : 'http://localhost:3000/api/v1'+"/checkisregister/8293113033",
+        url : CONFIG.apiEndpoint+"/checkisregister/8754523652",
         //////contact no. hard coded fetched from otp
     }).then(function mySucces(response) {
         console.log("success");
@@ -99,7 +99,7 @@ angular.module('starter.controllers')
 
        $http({
           method : "PUT",
-          url : 'http://localhost:3000/api/v1'+"/edituser",
+          url : CONFIG.apiEndpoint+"/edituser",
           // url : CONFIG.apiEndpoint+"/adduser",
           data:$scope.newRecord
           })

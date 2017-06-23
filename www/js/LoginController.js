@@ -1,79 +1,59 @@
-ngApp.controller('LoginController',['CONFIG', '$scope', '$auth', '$location', '$window', '$http','$rootScope', function(CONFIG, $scope, $auth, $location, $window, $http, $rootScope) {
+angular.module('starter.controllers')
+.controller('LoginController', function(CONFIG, $scope, $location, $window, $http, $rootScope, $auth, $ionicPopup) {
 	//added to initiate select-dropdown
 	 $rootScope.loginClassCSS = true;
 	 var token = '';
 	 $scope.isAdmin = false;
-
-	angular.element(document).ready(function () {
-		$(".user-name .input-field input").focus(function(){
-			$(".user-name").addClass("on-focus");
-		});
-
-		$(".user-name .input-field input").focusout(function(){
-			$(".user-name").removeClass("on-focus");
-		});
-
-		$(".password .input-field input").focus(function(){
-			$(".password").addClass("on-focus");
-		});
-
-		$(".password .input-field input").focusout(function(){
-			$(".password").removeClass("on-focus");
-		});
-	});
-
+	 $scope.userName = {
+	 	value:''
+	 }
+	 $scope.password = {
+	 	value:''
+	 }
 	//alert("In Login Controller");
 	$scope.submit = function(){
 		// alert("username is : "+$scope.userName);
 		//  alert("password is : "+$scope.password);
-		if($scope.userName === undefined){
-			swal('User Name is Empty.')
+		if($scope.userName.value === ''){
+			var alertPopup = $ionicPopup.alert({
+        title: 'Error',
+        template: 'User email address is empty'
+      });
+      alertPopup.then(function(res) {
+        console.log('no email id');
+      });
 			return;
 		}
-		if($scope.password === undefined){
-			swal('Password is Empty.')
+		if($scope.password.value === ""){
+			var alertPopup = $ionicPopup.alert({
+	      title: 'Error',
+	      template: 'User password is empty'
+	    });
+	    alertPopup.then(function(res) {
+	      console.log('no password');
+	    });
 			return;
 		}
 		
-		$auth.login({'email': $scope.userName, 'password': $scope.password})
+		$auth.login({'loginEmailOrMobile': $scope.userName.value, 'loginPassword': $scope.password.value})
 		.then(function(response) {
 			//console.log(response);
+			console.log("inside login route", response)
 			if (response.data.error==false){
 				$scope.myToken = $auth.getPayload(response.data.token);
 				console.log($scope.myToken)
 				// alert($scope.myToken);
 			}
 			if($scope.myToken!=undefined && $scope.myToken.isActive == false){
-				swal("error","employee is not active");
+				// swal("error","employee is not active");
 				return;
 			}
 			if (response.data.error==true){
 				// console.log(response.data.result);
-				swal(response.data.result)
-				$location.path('/login');
+				// swal(response.data.result)
+				$location.path('/app/steuplogin');
 				// alert(response.data.result);
-			}else if($scope.myToken.isAdmin == true && $scope.myToken.firstLogin == false){
-				$rootScope.loginClassCSS = false;
-				//console.log(response.data.token);
-				$scope.myToken = $auth.getPayload(response.data.token);
-				token = $scope.myToken;
-				// console.log($scope.myToken.id);
-				swal('Admin Login')
-				console.log('You have successfully signed in!');
-				$window.sessionStorage.token = response.data.token;
-				$location.path('/adminSettingsEdit/');
-			}else if($scope.myToken.isAdmin == true && $scope.myToken.firstLogin == true){
-				$rootScope.loginClassCSS = false;
-				//console.log(response.data.token);
-				$scope.myToken = $auth.getPayload(response.data.token);
-				token = $scope.myToken;
-				// console.log($scope.myToken.id);
-				swal('Admin First Login')
-				console.log('You have successfully signed in!');
-				$window.sessionStorage.token = response.data.token;
-				$location.path('/adminSettings/');
-			}
-			else{
+			}else{
 				//console.log(response);
 				$rootScope.loginClassCSS = false;
 				//console.log(response.data.token);
@@ -82,7 +62,7 @@ ngApp.controller('LoginController',['CONFIG', '$scope', '$auth', '$location', '$
 				// console.log($scope.myToken.id);
 				console.log('You have successfully signed in!');
 				$window.sessionStorage.token = response.data.token;
-				$location.path('/dashboard/');
+				$location.path('/app/workshop');
 			}
 		})
 		.catch(function(error) {
@@ -106,8 +86,6 @@ ngApp.controller('LoginController',['CONFIG', '$scope', '$auth', '$location', '$
 		// });
 	}
 
-	$scope.registerPage = function(){
-		$location.path('/companyDetails');
-	}
+	
 
-}]);
+});

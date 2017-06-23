@@ -14,22 +14,26 @@
 						correct Term you are going to be teaching
 	   				</h3>
 	   				<ion-item>
-	   					<select>
-	   						<option>Program</option>
-	   						<option>Program 1</option>
-	   						<option>Program 2</option>
+	   					<select ng-model="selectProgram.value" ng-change="chngProg()">
+	   						<option value="" disabled selected>Program</option>
+	   						<option ng-repeat="prog in programs" value="{{prog._id}}">{{prog.name}}</option>
 	   					</select>
 	   				</ion-item>
 	   				<ion-item>
-	   					<select>
-	   						<option>Term</option>
-	   						<option>Term 1</option>
-	   						<option>Term 2</option>
+	   					<select ng-model="selectTerm.value" ng-change="chngTerm()">
+	   						<option value="" disabled selected>Term</option>
+	   						<option value="1">1</option>
+	   						<option value="2">2</option>
+	   						<option value="3">3</option>
+	   						<option value="4">4</option>
 	   					</select>
 	   				</ion-item>
 	   				<strong>Select from option</strong>
 	   				<div class="select_option-sec">
 	   					<ion-list>
+	   					<ion-item class="item-thumbnail-left">
+	   						<center>Select First</center>
+	   					</ion-item>
 						  <ion-radio ng-model="choice" ng-value="'A'">
 						  	June, 1, 2017 at 1 pm – XYZ School, BTM Logout
 						  </ion-radio>

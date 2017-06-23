@@ -4,15 +4,20 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var ngApp = angular.module('starter', ['ionic', 'starter.controllers']);
+var ngApp = angular.module('starter', ['ionic', 'satellizer', 'starter.controllers']);
 // var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies', 
 // 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment', 
 // "angucomplete-alt", 'masonry', 'ui.calendar']);
 
 
 ngApp.constant("CONFIG", {
-  "apiEndpoint": 'http://localhost:3000'  // Note: No trailing slashes!
+  "apiEndpoint": 'http://localhost:3000/api/v1'  // Note: No trailing slashes!
 })
+
+ngApp.config(function(CONFIG, $authProvider){
+  $authProvider.baseUrl = CONFIG.apiEndpoint;
+  $authProvider.loginUrl = '/login';
+});
 
 ngApp
 .run(function($ionicPlatform) {
@@ -104,10 +109,11 @@ ngApp
     }
   })
   .state('app.steuplogin', {
-    url: '/steuplogin',
+    url: '/stepuplogin',
     views: {
       'menuContent': {
-        templateUrl: 'templates/steuplogin.html'
+        templateUrl: 'templates/steuplogin.html',
+        controller:'LoginController'
       }
     }
   })

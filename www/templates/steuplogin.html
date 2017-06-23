@@ -10,15 +10,15 @@
       <ion-list class="login_form">
           <label class="item-input-wrapper user_sec">
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-            <input type="text" placeholder="Email Address*">
+            <input type="text" placeholder="Email Address*" ng-model="userName.value">
           </label>
           <label class="item-input-wrapper user_sec">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" placeholder="******">
+            <input type="password" placeholder="******" ng-model="password.value">
           </label>
           <a href="#" class="frgt_pswd"> Forgot Password?</a>
           <div class="btn_box">
-            <button class="button button-large icon-left ion-log-in">Login</button>
+            <button class="button button-large icon-left ion-log-in" ng-click="submit()">Login</button>
             <button class="button button-large">New User? Sign up now!</button>
           </div>
       </ion-list>
