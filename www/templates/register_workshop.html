@@ -29,20 +29,21 @@
 	   					</select>
 	   				</ion-item>
 	   				<strong>Select from option</strong>
-	   				<div class="select_option-sec">
+	   				<div class="select_option-sec" ng-hide="selectedWorkshops.length == 0">
 	   					<ion-list>
-	   					<ion-item class="item-thumbnail-left">
-	   						<center>Select First</center>
-	   					</ion-item>
-						  <ion-radio ng-model="choice" ng-value="'A'">
-						  	June, 1, 2017 at 1 pm – XYZ School, BTM Logout
+	   					<!-- <ion-item class="item-thumbnail-left" ng-show="selectedWorkshops.length == 0">
+	   						<center>Select Program And Term</center>
+	   					</ion-item> -->
+						  <ion-radio ng-model="choice" ng-value="'A'" ng-repeat="item in selectedWorkshops" ng-click="clickedFun($index)">
+						  	<!-- June, 1, 2017 at 1 pm – XYZ School, BTM Logout -->
+						  	{{item.date | date:"MMM, d, yyyy"}} at {{item.time}} - {{item.location}}
 						  </ion-radio>
-						  <ion-radio ng-model="choice" ng-value="'B'">
+						  <!-- <ion-radio ng-model="choice" ng-value="'B'">
 						  	June, 11, 2017 at 10 pm – XYZ School BTM Logout
 						  </ion-radio>
 						  <ion-radio ng-model="choice" ng-value="'c'">
 						  	June, 21, 2017 at 4pm – XYZ School, BTM Logout
-						  </ion-radio>
+						  </ion-radio> -->
 						</ion-list>
 	   				</div>
 	   			</ion-list>

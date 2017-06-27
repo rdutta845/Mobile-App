@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerRegistrationController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location) {
+.controller('VolunteerRegistrationController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -34,12 +34,13 @@ angular.module('starter.controllers')
         value : ''
       }
 
+     $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
 
     $http({
         method : "GET",
         url : CONFIG.apiEndpoint+"/getsettingsinfo/",
     }).then(function mySucces(response) {
-        console.log("success");
+        console.log("success", $scope.tokenInfo);
         console.log("RESPONSE", response.data.settings);
         $scope.settings = response.data.settings;
         $scope.languages = $scope.settings.languages;
@@ -54,7 +55,7 @@ angular.module('starter.controllers')
     // /checkisregister/:mobile
     $http({
         method : "GET",
-        url : CONFIG.apiEndpoint+"/checkisregister/8754523652",
+        url : CONFIG.apiEndpoint+"/checkisregister/"+$scope.tokenInfo.mobile,
         //////contact no. hard coded fetched from otp
     }).then(function mySucces(response) {
         console.log("success");
@@ -95,7 +96,7 @@ angular.module('starter.controllers')
       $scope.organization = $scope.org.value;
       $scope.newRecord.organization = $scope.org.value;
       
-      console.log("$scope.newRecord", $scope.newRecord)
+      console.log("save route $scope.newRecord", $scope.newRecord)
 
        $http({
           method : "PUT",
@@ -123,9 +124,10 @@ angular.module('starter.controllers')
               alertPopup.then(function(res) {
                 console.log('Thank you for registration');
               });
+              $location.path('/app/workshop');
             }
           });
-        $location.path('/app/workshop');
+        
 
       }
 
