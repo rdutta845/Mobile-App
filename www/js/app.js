@@ -44,7 +44,7 @@ ngApp
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'MenuController'
   })
 
   .state('app.search', {
@@ -66,6 +66,16 @@ ngApp
       }
     },
   })
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller:'ProfileController'
+
+      }
+    },
+  })
   .state('app.workshop', {
     url: '/workshop',
     views: {
@@ -80,7 +90,8 @@ ngApp
     url: '/teacher_schedule',
     views: {
       'menuContent': {
-        templateUrl: 'templates/teacher_schedule.html'
+        templateUrl: 'templates/teacher_schedule.html',
+        controller:'TeacherScheduleController'
       }
     }
   })
@@ -88,7 +99,8 @@ ngApp
     url: '/session_details',
     views: {
       'menuContent': {
-        templateUrl: 'templates/session_details.html'
+        templateUrl: 'templates/session_details.html',
+        controller:'SessionDetailsController'
       }
     }
   })
@@ -96,7 +108,9 @@ ngApp
     url: '/session_details2',
     views: {
       'menuContent': {
-        templateUrl: 'templates/session_details2.html'
+        templateUrl: 'templates/session_details2.html',
+        controller:'SessionDetails2Controller'
+
       }
     }
   })
@@ -211,5 +225,5 @@ ngApp
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/volunteer_registration');
+  $urlRouterProvider.otherwise('/app/stepuplogin');
 });

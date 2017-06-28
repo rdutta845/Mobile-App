@@ -13,15 +13,15 @@
 	   				<ion-item>
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num">
-	   							<span>Session 01</span>
+	   							<span>Schedule</span>
 	   						</div>
 	   						<div class="date_nd_tym">
 	   							<span>Mon 07 May 17</span>
 				    			<span><i class="icon ion-clock"></i> 10.30am</span>
 	   						</div>
-	   						<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+	   						<a class="arrw_up" ng-click="toggle('schedule')"><i class="icon" ng-class="scheduleShow ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>
-	   					<div class="session_details_schedule">
+	   					<div class="session_details_schedule" ng-show="scheduleShow">
 	   						<div class="row term_program_status">
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
@@ -84,9 +84,9 @@
 	   						<div class="session_num content_nummargn">
 	   							<span>Content</span>
 	   						</div>
-	   						<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+	   						<a class="arrw_up" ng-click="toggle('content')"><i class="icon" ng-class="contentShow ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>
-	   					<div class="content_session">
+	   					<div class="content_session" ng-show="contentShow">
 	   						<div class="row">
 	   							<div class="col col-50">
 	   								<div class="cont_wrap_bx">
