@@ -14,7 +14,7 @@ angular.module('starter.controllers')
 
   $window.localStorage.removeItem('satellizer_token');
   ///logout///
-   
+
 	$scope.submit = function(){
 		// alert("username is : "+$scope.userName);
 		//  alert("password is : "+$scope.password);
@@ -38,7 +38,7 @@ angular.module('starter.controllers')
 	    });
 			return;
 		}
-		
+
 		$auth.login({'loginEmailOrMobile': $scope.userName.value, 'loginPassword': $scope.password.value})
 		.then(function(response) {
 			//console.log(response);
