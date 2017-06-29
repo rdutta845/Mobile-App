@@ -4,7 +4,6 @@ angular.module('starter.controllers')
 	$scope.mobNumber = {
 		value:''
 	}
-<<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
 
     $scope.verify = function(){
         CONFIG.contactNo = $scope.mobNumber.value;
@@ -26,18 +25,4 @@ angular.module('starter.controllers')
         })
     	console.log("verify");
     }
-=======
-	http({
-      method:"GET",
-      url:CONFIG.apiEndpoint+"/checkisregister/"+$scope.mobNumber.value,
-    }).then(function mySucces(response) {
-
-    	console.log("RESPONSE Workshop", response.data.result);
-        $scope.allClasses = response.data.result;
-        $scope.allClasses.forEach(function(data, id){
-        	$scope.classesShow.push(false);
-        })
-
-    })
->>>>>>> sign up page
 })
