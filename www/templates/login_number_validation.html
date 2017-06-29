@@ -12,10 +12,10 @@
    				  <span>Number Validation</span>
 		          <label class="item-input-wrapper user_sec">
 		            <i class="fa fa-mobile" aria-hidden="true"></i>
-		            <input type="text" placeholder="Please Enter Mobile Number">
+		            <input type="text" placeholder="Please Enter Mobile Number" ng-model="mobNumber.value">
 		          </label>
 		          <div class="btn_box">
-		            <button class="button button-large icon-right ion-arrow-right-c nxt_btn">Verify</button>
+		            <button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="verify()">Verify</button>
 		          </div>
 		      </ion-list>
 			</div>

@@ -50,7 +50,13 @@ angular.module('starter.controllers')
 			}
 			if (response.data.error==true){
 				// console.log(response.data.result);
-				// swal(response.data.result)
+				var alertPopup = $ionicPopup.alert({
+          title: 'Error!!',
+          template: response.data.message
+        });
+        alertPopup.then(function(res) {
+          console.log('Login Error');
+        });
 				$location.path('/app/steuplogin');
 				// alert(response.data.result);
 			}else{
@@ -84,6 +90,16 @@ angular.module('starter.controllers')
 		// }, function myError(response) {
 		// 	console.warn(response);
 		// });
+	}
+	$scope.signUp = function(){
+		var alertPopup = $ionicPopup.alert({
+      title: 'Error!!',
+      template: "Welcome to Step Up !! You need Registration"
+    });
+    alertPopup.then(function(res) {
+      console.log('Registration');
+    });
+		$location.path('/app/volunteer_sign_up');
 	}
 
 	

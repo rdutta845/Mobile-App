@@ -9,7 +9,7 @@
    		<div class="contnt_padding">
    			<div class="padding">
 	   			<ion-list class="teacher_listing_sec session_details_sec my_classes_sec">
-	   				<ion-item>
+	   				<!-- <ion-item>
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num content_nummargn">
 	   							<span>Class</span>
@@ -17,21 +17,21 @@
 	   						</div>
 	   						<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
 	   					</div>
-	   				</ion-item>
-	   				<ion-item>
+	   				</ion-item> -->
+	   				<ion-item ng-repeat="class in allClasses">
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num content_nummargn">
 	   							<span>Class</span>
-	   							<strong class="class_num">CD2121</strong>
+	   							<strong class="class_num">{{class.classID}}</strong>
 	   						</div>
-	   						<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+	   						<a class="arrw_up" ng-click="toggle($index)"><i class="icon" ng-class="classesShow[$index] ?  'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>
-	   					<div class="session_details_schedule my_class_schedule">
+	   					<div class="session_details_schedule my_class_schedule" ng-show='classesShow[$index]'>
 	   						<div class="row term_program_status">
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
 							    		<h3>School Name</h3>
-							    		<span>St.Jame's School(Sector II)</span>
+							    		<span>{{class._school.name}}</span>
 						    		</div>
 						    	</div>
 						    	<div class="col col-50">
@@ -46,14 +46,13 @@
 						    		<div class="schdule_bx">
 							    		<h3>Location</h3>
 							    		<span>
-							    		Sector II, Salt Lake 
-										City, Kolkata, West Bengal</span>
+							    		{{class.location}}</span>
 						    		</div>
 						    	</div>
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
 							    		<h3>Sessions Completed</h3>
-							    		<span>19</span>
+							    		<span>{{class._sessions.length}}</span>
 						    		</div>
 						    	</div>
 						    </div>
@@ -70,7 +69,7 @@
 						    			<i class="fa fa-mobile" aria-hidden="true"></i>
 						    			<div class="hdng_classteacher">
 								    		<h3>Head Master /Principal</h3>
-											<span>Kamleshwar Narzary</span>
+											<span>{{class._school.headmaster.name}}</span>
 										</div>
 						    		</div>
 						    	</div>
@@ -80,7 +79,7 @@
 						    		<div class="schdule_bx">
 							    		<h3>Current Term</h3>
 							    		<span>
-							    		05</span>
+							    		{{class.term}}</span>
 						    		</div>
 						    	</div>
 						    	<div class="col col-50">
@@ -88,7 +87,7 @@
 						    			<i class="fa fa-mobile" aria-hidden="true"></i>
 						    			<div class="hdng_classteacher">
 								    		<h3>Alternate Teacher</h3>
-											<span>Prodip Kr. Sarma</span>
+											<span>{{class._opl.name.full}}</span>
 										</div>
 						    		</div>
 						    	</div>
@@ -103,17 +102,21 @@
 						    			<i class="fa fa-mobile" aria-hidden="true"></i>
 						    			<div class="hdng_classteacher">
 							    		<h3>CTL</h3>
-										<span>Prodip Kr. Sarma</span>
+										<span>{{class._ctl.name.full}}</span>
 										</div>
 						    		</div>
 						    	</div>
 						    </div>
 	   					</div>
-	   					<div class="my_classteam_mem padding">
+	   					<div class="my_classteam_mem padding" ng-show='classesShow[$index]'>
 	   						<span>Team Members</span>
 	   						<div class="row">
-	   							<div class="col col-50">
-		   							<div class="clas_member">
+	   							<div class="col col-50" >
+		   							<div class="clas_member" ng-repeat='vol in getFirstSubArray($index)'>
+		   								<i class="fa fa-mobile" aria-hidden="true"></i>
+		   								<em>{{vol.name.full}}</em>
+		   							</div>
+		   							<!-- <div class="clas_member">
 		   								<i class="fa fa-mobile" aria-hidden="true"></i>
 		   								<em>Ashutosh Mishra</em>
 		   							</div>
@@ -124,14 +127,14 @@
 		   							<div class="clas_member">
 		   								<i class="fa fa-mobile" aria-hidden="true"></i>
 		   								<em>Ashutosh Mishra</em>
-		   							</div>
-		   							<div class="clas_member">
-		   								<i class="fa fa-mobile" aria-hidden="true"></i>
-		   								<em>Ashutosh Mishra</em>
-		   							</div>
+		   							</div> -->
 	   							</div>
 	   							<div class="col col-50">
-	   								<div class="clas_member">
+	   								<div class="clas_member" ng-repeat='vol in getSecondSubArray($index)'>
+		   								<i class="fa fa-mobile" aria-hidden="true"></i>
+		   								<em>{{vol.name.full}}</em>
+		   							</div>
+		   							<!-- <div class="clas_member">
 		   								<i class="fa fa-mobile" aria-hidden="true"></i>
 		   								<em>Ashutosh Mishra</em>
 		   							</div>
@@ -142,17 +145,13 @@
 		   							<div class="clas_member">
 		   								<i class="fa fa-mobile" aria-hidden="true"></i>
 		   								<em>Ashutosh Mishra</em>
-		   							</div>
-		   							<div class="clas_member">
-		   								<i class="fa fa-mobile" aria-hidden="true"></i>
-		   								<em>Ashutosh Mishra</em>
-		   							</div>
+		   							</div> -->
 	   							</div>
 	   						</div>
 	   					</div>
 	   					<div class="button_sec padding">
-						  <button class="button">Session History</button>
-						  <button class="button">Student Reports</button>
+						  <button class="button" ng-show="classesShow[$index]">Session History</button>
+						  <button class="button" ng-show="classesShow[$index]">Student Reports</button>
 						</div>
 	   				</ion-item>
 	   			</ion-list>

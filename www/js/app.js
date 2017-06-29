@@ -66,6 +66,16 @@ ngApp
       }
     },
   })
+  .state('app.volunteer_sign_up', {
+    url: '/volunteer_sign_up',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/volunteer_sign_up.html',
+        controller:'VolunteerSignUp'
+
+      }
+    },
+  })
   .state('app.profile', {
     url: '/profile',
     views: {
@@ -169,7 +179,9 @@ ngApp
     url: '/my_classes',
     views: {
       'menuContent': {
-        templateUrl: 'templates/my_classes.html'
+        templateUrl: 'templates/my_classes.html',
+        controller:'MyClassesController'
+
       }
     }
   })
