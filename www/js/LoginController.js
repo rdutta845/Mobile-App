@@ -98,8 +98,8 @@ angular.module('starter.controllers')
 	}
 	$scope.signUp = function(){
 		var alertPopup = $ionicPopup.alert({
-      title: 'Error!!',
-      template: "Welcome to Step Up !! You need Registration"
+      title: 'Sign Up',
+      template: "Welcome to Step Up !!  Registration Page"
     });
     alertPopup.then(function(res) {
       console.log('Registration');
