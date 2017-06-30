@@ -11,6 +11,10 @@ angular.module('starter.controllers')
 	 	value:''
 	 }
 	//alert("In Login Controller");
+
+  $window.localStorage.removeItem('satellizer_token');
+  ///logout///
+   
 	$scope.submit = function(){
 		// alert("username is : "+$scope.userName);
 		//  alert("password is : "+$scope.password);
@@ -69,6 +73,7 @@ angular.module('starter.controllers')
 				console.log('You have successfully signed in!');
 				$window.sessionStorage.token = response.data.token;
 				$location.path('/app/workshop');
+				$window.location.reload();
 			}
 		})
 		.catch(function(error) {

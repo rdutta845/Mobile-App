@@ -11,7 +11,8 @@ var ngApp = angular.module('starter', ['ionic', 'satellizer', 'starter.controlle
 
 
 ngApp.constant("CONFIG", {
-  "apiEndpoint": 'http://localhost:3000/api/v1'  // Note: No trailing slashes!
+  "apiEndpoint": 'http://localhost:3000/api/v1',  // Note: No trailing slashes!
+  "contactNo" : ""
 })
 
 ngApp.config(function(CONFIG, $authProvider){
@@ -155,7 +156,9 @@ ngApp
     url: '/login_number_validation',
     views: {
       'menuContent': {
-        templateUrl: 'templates/login_number_validation.html'
+        templateUrl: 'templates/login_number_validation.html',
+        controller:'LoginNumberController'
+
       }
     }
   })

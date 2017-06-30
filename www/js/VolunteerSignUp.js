@@ -72,7 +72,7 @@ angular.module('starter.controllers')
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
       $scope.newRecord.password = $scope.pass.value;
-     
+      $scope.newRecord.contactNo = CONFIG.contactNo;
       
       console.log("save route $scope.newRecord", $scope.newRecord)
 

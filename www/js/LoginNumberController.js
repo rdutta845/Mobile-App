@@ -4,19 +4,25 @@ angular.module('starter.controllers')
 	$scope.mobNumber = {
 		value:''
 	}
-	http({
-      method:"GET",
-      url:CONFIG.apiEndpoint+"/checkisregister/"+$scope.mobNumber.value,
-    }).then(function mySucces(response) {
 
-    	console.log("RESPONSE Workshop", response.data.result);
-        $scope.allClasses = response.data.result;
-        $scope.allClasses.forEach(function(data, id){
-        	$scope.classesShow.push(false);
-        })
-
-    })
     $scope.verify = function(){
+        CONFIG.contactNo = $scope.mobNumber.value;
+        $http({
+          method:"GET",
+          url:CONFIG.apiEndpoint+"/checkisregister/"+CONFIG.contactNo,
+        }).then(function mySucces(response) {
+
+            console.log("RESPONSE Workshop", response.data);
+            if(response.data.error == true && response.data.isRegistered == false){
+                console.log("New User");
+                $location.path('/app/volunteer_sign_up');
+            }else if(response.data.error == false && response.data.isRegistered == false){
+                console.log("Pre registered");
+                $location.path('/app/volunteer_registration');
+
+            }
+
+        })
     	console.log("verify");
     }
 })

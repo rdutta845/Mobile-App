@@ -26,7 +26,7 @@ angular.module('starter.controllers')
  			console.log("RESULT", response.data.result);
  			$scope.allSession = response.data.result;
  			$scope.allSession.forEach(function(data, id){
- 				$scope.showSession.push(true);
+ 				$scope.showSession.push(false);
  			})
  		})
  		$scope.toggleGroup = function($index){

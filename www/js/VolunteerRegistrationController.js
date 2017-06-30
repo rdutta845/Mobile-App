@@ -55,7 +55,7 @@ angular.module('starter.controllers')
     // /checkisregister/:mobile
     $http({
         method : "GET",
-        url : CONFIG.apiEndpoint+"/checkisregister/"+$scope.tokenInfo.mobile,
+        url : CONFIG.apiEndpoint+"/checkisregister/"+CONFIG.contactNo,
         //////contact no. hard coded fetched from otp
     }).then(function mySucces(response) {
         console.log("success");
