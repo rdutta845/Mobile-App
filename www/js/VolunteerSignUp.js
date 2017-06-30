@@ -83,6 +83,7 @@ angular.module('starter.controllers')
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
       $scope.newRecord.password = $scope.pass.value;
+<<<<<<< a1ba412c4261436fddd25f1bc0a9b60323fe57fa
 <<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
       $scope.newRecord.phone = CONFIG.contactNo;
 
@@ -91,6 +92,10 @@ angular.module('starter.controllers')
 =======
 
 
+=======
+      $scope.newRecord.contactNo = CONFIG.contactNo;
+      
+>>>>>>> Prtial workdone
       console.log("save route $scope.newRecord", $scope.newRecord)
 >>>>>>> sign up page
 

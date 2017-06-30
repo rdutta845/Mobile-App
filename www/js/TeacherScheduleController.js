@@ -44,8 +44,11 @@ angular.module('starter.controllers')
       $scope.myBackup = angular.copy($scope.allSession);
  			$scope.allSession.forEach(function(data, id){
  				$scope.showSession.push(false);
+<<<<<<< a1ba412c4261436fddd25f1bc0a9b60323fe57fa
         $scope.editSes.push(false);
         $scope.editSes[id] = $scope.editable(id);
+=======
+>>>>>>> Prtial workdone
  			})
  		})
  		$scope.toggleGroup = function($index){
