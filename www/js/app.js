@@ -229,7 +229,16 @@ ngApp
         }
       }
     })
+    .state('app.popup5', {
+      url: '/popup5',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/popup5.html',
+          controller:'SessionDetailsController'
 
+        }
+      }
+    })
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {

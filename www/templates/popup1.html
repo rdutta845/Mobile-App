@@ -1,0 +1,31 @@
+<ion-modal-view class="popupmodal">
+	<ion-content class="contnet_bg">
+		<div class="popedit_hdr">
+			<a href="#" class="edit_btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+			<span class="title">Edit Session</span>
+			<a class="close" ng-click="closePopup(1)"><i class="fa fa-times" aria-hidden="true"></i></a>
+		</div>
+		<div class="padding main_popupcont">
+			<ion-list class="teacher_listing_sec popuptechting_edit">
+				<ion-item>
+					<div class="row hdnge_listing_sec">
+						<div class="session_num">
+							<span>Session 01</span>
+						</div>
+						<div class="date_nd_tym">
+							<span>Mon 07 May 17</span>
+		    			<span><i class="icon ion-clock"></i> 10.30am</span>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+			<h3>Reassign to other Volunteer</h3>
+			<select>
+				<option>Volunteer</option>
+				<option>Volunteer 1</option>
+				<option>Volunteer 2</option>
+			</select>
+			<button class="button button-large nxt_btn popup_btn">Save</button>
+		</div>
+	</ion-content>
+</ion-modal-view>

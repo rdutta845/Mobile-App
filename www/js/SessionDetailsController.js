@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SessionDetailsController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('SessionDetailsController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
 
 		$scope.sessionShow = true;
 		$scope.contentShow = false;
@@ -18,46 +18,48 @@ angular.module('starter.controllers')
 			}
  		}
 
+ 		$ionicModal.fromTemplateUrl('templates/popup4.html', {
+      scope: $scope,
+      animation: 'scale'
+    }).then(function(modal) {
+      $scope.modal4 = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/popup5.html', {
+      scope: $scope,
+      animation: 'scale'
+    }).then(function(modal) {
+      $scope.modal5 = modal;
+    });
+
+  // $scope.showConfirm = function(mymod){
+  //   if(mymod==1) $scope.modal1.show();
+  //   else if(mymod==2) $scope.modal2.show();
+  //   else if(mymod==3) $scope.modal3.show();
+  //   else if(mymod==4) $scope.modal4.show();
+  //   else if(mymod==5) $scope.modal5.show();
+  // }
+  $scope.closePopup = function(mymod){
+    if(mymod==1) $scope.modal1.hide();
+    else if(mymod==2) $scope.modal2.hide();
+    else if(mymod==3) $scope.modal3.hide();
+    else if(mymod==4) $scope.modal4.hide();
+    else if(mymod==5) $scope.modal5.hide();
+  }
  		$scope.checkOut = function(){
- 			var alertPopup = $ionicPopup.alert({
-        title: 'Error!',
-        template: 'checkOut'
-      });
-      alertPopup.then(function(res) {
-        console.log('Check Out');
-      });
+ 			$scope.modal4.show();
  		}
 
  		$scope.redo = function(){
- 			var alertPopup = $ionicPopup.show({
-        title: 'Are you want to mark the session as redo ?',
-        template: "<ion-view><ion-header-bar align-title='center' class='custom_header'></div><h1 class='title'>Mark Redo</h1></ion-header-bar><ion-content class='contnet_bg'><center>Are you want to mark the session as redo ?<br><label class='item item-input'><textarea placeholder='Enter Remark'></textarea></label></center></ion-content>",
-        buttons:[{
-	        text: '<b>Save</b>',
-	        type: 'button-positive',
-	        onTap: function(e) {
-          
-        	}
-        }]
-      });
-      alertPopup.then(function(res) {
-        console.log('Redo');
-      })
-
-	    // var customTemplate =
-	    //   "<ion-header-bar align-title='center' class='custom_header'><h1 class='title'>Mark Redo</h1></ion-header-bar><ion-content class='contnet_bg'><center><br><center>Are you want to mark the session as redo ?<br><label class='item item-input'><textarea placeholder='Enter Remark'></textarea></label></center>";
-
-	    // $ionicPopup.show({
-	    //   title: 'Are you want to mark the session as redo ?',
-	    //   template: customTemplate,
-	      // buttons: [{
-	      //   text: '<b>Save</b>',
-	      //   type: 'button-positive',
-	      //   onTap: function(e) {
-	          
-	      //   }
-	      // }]
-	    // });
+			$scope.modal5.show();	    
+ 		}
+ 		$scope.confirmCheckOut= function(){
+ 			console.log("confirm checkOut");
+ 			$scope.modal4.hide();
+ 		}
+ 		$scope.confirmRedo = function(){
+ 			console.log("confirm redo");
+ 			$scope.modal5.hide();		
  		}
 
 	})

@@ -1,0 +1,21 @@
+<ion-modal-view class="popupmodal">
+	<ion-content class="contnet_bg">
+		<div class="popedit_hdr">
+			<a href="#" class="edit_btn"><i class="fa fa-share" aria-hidden="true"></i></a>
+			<span class="title">Mark as Redo</span>
+			<a ng-click="closePopup(5)" class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+		</div>
+		<div class="padding main_popupcont add_checkout_mainpopup">
+			<h3>Are you sure you want to mark the session as REDO ?</h3>
+			<ion-list class="teacher_listing_sec popuptechting_edit add_new_stdnt_inputs">
+				<ion-item>
+					<label class="item item-input">
+					    <textarea placeholder="Enter Remark">
+					    </textarea>
+					 </label>
+				</ion-item>
+			</ion-list>
+			<button class="button button-large nxt_btn popup_btn" ng-click="confirmRedo()">Confirm</button>
+		</div>
+	</ion-content>
+</ion-modal-view>

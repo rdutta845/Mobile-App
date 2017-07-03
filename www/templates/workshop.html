@@ -3,7 +3,7 @@
 	<div class="buttons">
 	  <button class="button button-icon ion-navicon button-clear"></button>
 	</div>    
-	<h1 class="title">My Worshop</h1>  
+	<h1 class="title">My Workshop</h1>  
 	<button class="button button-icon ion-plus-round button-clear" ng-click="register()"></button>
    </ion-header-bar>
    <ion-content class="contnet_bg">
@@ -16,7 +16,7 @@
 			    		<span>{{item.date | date:'dd MMM, y' }}</span>
 			    		<span><i class="icon ion-clock"></i> {{item.time}}</span>
 			    	</div>
-			    	<div class="col col-33 acto_schdle">
+			    	<div class="col col-33 acto_schdle" ng-hide="item.isActive">
 			    		<strong>Action</strong>
 			    		<em class="gry_txt">Cancel</em>
 			    	</div>

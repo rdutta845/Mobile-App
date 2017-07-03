@@ -1,0 +1,21 @@
+<ion-modal-view class="popupmodal">
+	<ion-content class="contnet_bg">
+		<div class="popedit_hdr">
+			<a href="#" class="edit_btn"><i class="fa fa-reply" aria-hidden="true"></i></a>
+			<span class="title">CheckOUT</span>
+			<a class="close" ng-click="closePopup(4)"><i class="fa fa-times" aria-hidden="true"></i></a>
+		</div>
+		<div class="padding main_popupcont add_checkout_mainpopup">
+			<h3>Enter your closing comments, if any</h3>
+			<ion-list class="teacher_listing_sec popuptechting_edit add_new_stdnt_inputs">
+				<ion-item>
+					<label class="item item-input">
+					    <textarea placeholder="Enter Remark">
+					    </textarea>
+					 </label>
+				</ion-item>
+			</ion-list>
+			<button class="button button-large nxt_btn popup_btn" ng-click='confirmCheckOut()'>Confirm</button>
+		</div>
+	</ion-content>
+</ion-modal-view>

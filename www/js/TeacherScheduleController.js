@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('TeacherScheduleController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('TeacherScheduleController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
 
 	$scope.showSession = [];
 
@@ -33,5 +33,21 @@ angular.module('starter.controllers')
  			console.log("inside the accordion", $index, $scope.showSession[$index]);
  			$scope.showSession[$index] =  !$scope.showSession[$index];
  		}
+ 		$scope.editSession = function(){
+			$scope.modal1.show();	    
 
+ 		}
+ 		$ionicModal.fromTemplateUrl('templates/popup1.html', {
+      scope: $scope,
+      animation: 'scale'
+    }).then(function(modal) {
+      $scope.modal1 = modal;
+    });
+ 		$scope.closePopup = function(mymod){
+    if(mymod==1) $scope.modal1.hide();
+    else if(mymod==2) $scope.modal2.hide();
+    else if(mymod==3) $scope.modal3.hide();
+    else if(mymod==4) $scope.modal4.hide();
+    else if(mymod==5) $scope.modal5.hide();
+  }
 })
