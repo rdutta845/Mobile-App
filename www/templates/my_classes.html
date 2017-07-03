@@ -150,8 +150,8 @@
 	   						</div>
 	   					</div>
 	   					<div class="button_sec padding">
-						  <button class="button" ng-show="classesShow[$index]">Session History</button>
-						  <button class="button" ng-show="classesShow[$index]">Student Reports</button>
+						  <button class="button" ng-show="classesShow[$index]" ng-click="session('{{class._id}}')">Session History</button>
+						  <button class="button" ng-show="classesShow[$index]" ng-click="student('{{class._id}}')">Student Reports</button>
 						</div>
 	   				</ion-item>
 	   			</ion-list>

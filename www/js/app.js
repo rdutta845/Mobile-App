@@ -5,8 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 'starter.controllers']);
-// var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies', 
-// 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment', 
+// var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies',
+// 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment',
 // "angucomplete-alt", 'masonry', 'ui.calendar']);
 
 
@@ -53,7 +53,7 @@ ngApp.service("UploadService", function(CONFIG, $http) {
         })
         .success(function (data, status, headers, config) {
           if (!data.error) {
-            return cb(null, data.files) 
+            return cb(null, data.files)
           } else {
             return cb("Error Uploading Files!!", null)
           }
@@ -217,18 +217,20 @@ ngApp
     }
   })
   .state('app.session_history', {
-    url: '/session_history',
+    url: '/session_history/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/session_history.html'
+        templateUrl: 'templates/session_history.html',
+        controller:'SessionHistory'
       }
     }
   })
   .state('app.student_report', {
-    url: '/student_report',
+    url: '/student_report/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/student_report.html'
+        templateUrl: 'templates/student_report.html',
+        controller:'StudentReport'
       }
     }
   })

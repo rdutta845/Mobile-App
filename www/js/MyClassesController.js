@@ -29,10 +29,22 @@ angular.module('starter.controllers')
   	 return $scope.allClasses[$index]._volunteers.slice(start, end);
 		}
 		$scope.getSecondSubArray = function ($index) {
-  	 var start =Math.ceil($scope.allClasses[$index]._volunteers.length/2);
- 		var end = ($scope.allClasses[$index]._volunteers.length);
+  	 var start = Math.ceil($scope.allClasses[$index]._volunteers.length/2);
+ 		 var end = ($scope.allClasses[$index]._volunteers.length);
  			// console.log("start end",start,end);
 
   	 return $scope.allClasses[$index]._volunteers.slice(start, end);
+		}
+		$scope.session = function (id) {
+
+			// The data was not populated so doing this, remove this line once
+			// the data is populated. No other change is required.
+			// id = '594ba85aeffe8048280b5c4e';
+
+			$location.path('/app/session_history/' + id);
+
+		}
+		$scope.student = function (id) {
+			$location.path('/app/student_report/' + id)
 		}
 	})
