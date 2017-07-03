@@ -20,7 +20,7 @@ angular.module('starter.controllers')
 		$scope.toggle = function($index){
 			console.log("$index", $index);
 			$scope.classesShow[$index] = !$scope.classesShow[$index];
-			
+
  		}
  		$scope.getFirstSubArray = function ($index) {
  			var start = 0;
