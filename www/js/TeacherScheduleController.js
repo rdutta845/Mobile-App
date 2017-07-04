@@ -7,8 +7,12 @@ angular.module('starter.controllers')
     filterTerm:null,
     filterClass:null
   }
-  $scope.swapVolId;
+  $scope.swapVolId={
+   value:""
+  };
   $scope.newVolId;
+  $scope.editSes = [];
+  $scope.users = [];
 	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
 	$http({
  			method:'GET',
@@ -17,6 +21,13 @@ angular.module('starter.controllers')
  			console.log("RESULT", response.data.result);
  			$scope.programs = response.data.result;
  		})
+    $http({
+      method:'GET',
+      url:CONFIG.apiEndpoint+'/getalluserinfo'
+    }).then(function mySuccess(response){
+      console.log("RESULT", response.data.result);
+      $scope.users = response.data.result;
+    })
  		$http({
  			method:'GET',
  			url:CONFIG.apiEndpoint+'/getallstudentclasss'
@@ -33,6 +44,8 @@ angular.module('starter.controllers')
       $scope.myBackup = angular.copy($scope.allSession);
  			$scope.allSession.forEach(function(data, id){
  				$scope.showSession.push(false);
+        $scope.editSes.push(false);
+        $scope.editSes[id] = $scope.editable(id);
  			})
  		})
  		$scope.toggleGroup = function($index){
@@ -77,6 +90,7 @@ angular.module('starter.controllers')
    if($scope.allSession[$index]._volunteers.length >= 3){
       $scope.allSession[$index]._volunteers.forEach(function(data, id){
         if(data._id == $scope.tokenInfo.id){
+          console.log("volunteer fon")
           return true;
         }
       })
@@ -148,13 +162,28 @@ angular.module('starter.controllers')
       }
     }
   $scope.popup1 = function(session){
-    if($scope.swapVolId){
+    console.log("popup1 $scope.swapVolId.value", $scope.swapVolId.value)
+    if($scope.swapVolId.value){
       $http({
         method:'PUT',
         url:CONFIG.apiEndpoint+'/swapsessionvolunteer/'+session._id,
-        data: {volId: $scope.swapVolId}
+        data: {volId: $scope.swapVolId.value}
         }).then(function mySuccess(response){
         console.log("RESULT", response.data.result);
+        $http({
+          method:'GET',
+          url:CONFIG.apiEndpoint+'/getallsessionsinfo'
+        }).then(function mySuccess(response){
+          console.log("RESULT", response.data.result);
+          $scope.allSession = response.data.result;
+          $scope.myBackup = angular.copy($scope.allSession);
+          $scope.allSession.forEach(function(data, id){
+            $scope.showSession.push(false);
+            $scope.editSes.push(false);
+            $scope.editSes[id] = $scope.editable(id);
+          })
+        })
+        $scope.modal1.hide()
       })
     }
   }
@@ -168,6 +197,20 @@ angular.module('starter.controllers')
         data: {volId: $scope.newVolId}
         }).then(function mySuccess(response){
         console.log("RESULT", response.data);
+        $http({
+          method:'GET',
+          url:CONFIG.apiEndpoint+'/getallsessionsinfo'
+        }).then(function mySuccess(response){
+          console.log("RESULT", response.data.result);
+          $scope.allSession = response.data.result;
+          $scope.myBackup = angular.copy($scope.allSession);
+          $scope.allSession.forEach(function(data, id){
+            $scope.showSession.push(false);
+            $scope.editSes.push(false);
+            $scope.editSes[id] = $scope.editable(id);
+          })
+        })
+        $scope.modal2.hide()
       })
     }
   }

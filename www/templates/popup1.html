@@ -20,9 +20,9 @@
 				</ion-item>
 			</ion-list>
 			<h3>Reassign to other Volunteer</h3>
-			<select ng-model="swapVolId">
+			<select ng-model="swapVolId.value">
 				<option value="" disabled selected>Volunteer</option>
-				<option ng-repeat="vol in session._volunteers" value='{{vol._id}}'>{{vol.name.full}}</option>
+				<option ng-repeat="vol in users" value='{{vol._id}}'>{{vol.name.full}}</option>
 			</select>
 			<button class="button button-large nxt_btn popup_btn" ng-click="popup1(session)">Save</button>
 		</div>

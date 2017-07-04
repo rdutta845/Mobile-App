@@ -52,8 +52,8 @@
 				    			<span><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
 	   						</div>
 	   						<div class="edit_action">
-	   							<span ng-show="editable($index)"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
-	   							<span ng-hide="editable($index)">Session Closed</span>
+	   							<span ng-show="editSes[$index]"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
+	   							<span ng-hide="editSes[$index]">Session Closed</span>
 	   						</div>
 	   						<a class="arrw_up" ng-click="toggleGroup($index)"><i class="icon" ng-class="showSession[$index] ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>
