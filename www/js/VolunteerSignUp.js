@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerSignUp', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('VolunteerSignUp', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, UploadService) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -10,7 +10,8 @@ angular.module('starter.controllers')
         "email":"",
         "password":"",
         "organization":"",
-        "languageSpoken" : []
+        "languages" : [],
+        "picUrl" : "img/placeholder_upld_pic.jpg"
 
        };
       $scope.lan1 = [];
@@ -57,14 +58,14 @@ angular.module('starter.controllers')
     $scope.language = function(str, $index){
       console.log("str", str, "$index", $index);
       var isPresent = false;
-      $scope.newRecord.languageSpoken.forEach(function(data, index){
+      $scope.newRecord.languages.forEach(function(data, index){
         if(data == str){
-          $scope.newRecord.languageSpoken.splice(index, 1);
+          $scope.newRecord.languages.splice(index, 1);
           isPresent = true;
         }
       })
       if(isPresent == false){
-        $scope.newRecord.languageSpoken.push(str);
+        $scope.newRecord.languages.push(str);
       }
     }
     $scope.save = function(){
@@ -72,9 +73,10 @@ angular.module('starter.controllers')
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
       $scope.newRecord.password = $scope.pass.value;
-      $scope.newRecord.contactNo = CONFIG.contactNo;
+      $scope.newRecord.phone = CONFIG.contactNo;
       
-      console.log("save route $scope.newRecord", $scope.newRecord)
+      console.log("save route $scope.newRecord", $scope.newRecord);
+      console.log(", CONFIG.contactNo", CONFIG.contactNo)
 
        $http({
           method : "POST",
@@ -108,5 +110,36 @@ angular.module('starter.controllers')
         
 
       }
+      // $scope.previewPhoto = function(event) {
+      //   var files = event.target.files;
+      //   var file = files[files.length-1]
+      //   var reader = new FileReader();
+      //   reader.onload = function(e){
+      //     $scope.$apply(function(){
+      //       $scope.newRecord.picUrl = e.target.result;
+      //     })
+      //   }
+      //      reader.readAsDataURL(file)
+      //  }
+      $scope.uploadPic = function(){
+        if ($scope.newRecord.picUrl) {
+        // First, upload the attachment files:
+        console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
+        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
 
+          if (!err) {
+            console.log("PIC Uploading files okay!!",files)
+            // save the task
+            $scope.newRecord.picUrl = files[0].URL
+            console.log("file[0]", files[0].URL)
+            console.log('pic',  $scope.newRecord.picUrl)
+
+          } else {
+            console.log(err)
+          }
+        })
+      } else {
+        $scope.newRecord.picUrl = "img/placeholder_upld_pic.jpg"
+      }
+    }
  });

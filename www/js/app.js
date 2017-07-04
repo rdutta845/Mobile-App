@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var ngApp = angular.module('starter', ['ionic', 'satellizer', 'starter.controllers']);
+var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 'starter.controllers']);
 // var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies', 
 // 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment', 
 // "angucomplete-alt", 'masonry', 'ui.calendar']);
@@ -36,6 +36,33 @@ ngApp
     }
   });
 })
+
+// An injectable service useful for Uploading Files to AWS, proxied through our backend
+ngApp.service("UploadService", function(CONFIG, $http) {
+    this.uploadFiles = function(filesToUpload, cb) {
+        var fd = new FormData()
+        filesToUpload.forEach(function(file, idx) {
+          fd.append('file-'+idx, file)
+        })
+        $http({
+          method : "POST",
+          headers: { 'Content-Type': undefined },
+          transformRequest: angular.identity,
+          url : CONFIG.apiEndpoint+'/uploadFile/addFiles',
+          data: fd
+        })
+        .success(function (data, status, headers, config) {
+          if (!data.error) {
+            return cb(null, data.files) 
+          } else {
+            return cb("Error Uploading Files!!", null)
+          }
+        })
+        .error(function (data, status, headers, config) {
+          return cb("Network Error!!", null);
+        })
+    }
+});
 
 ngApp
 .config(function($stateProvider, $urlRouterProvider) {

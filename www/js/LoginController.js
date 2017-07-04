@@ -85,6 +85,8 @@ angular.module('starter.controllers')
 
 	$scope.forgotPage = function(){
 		 // alert("Hellooo");
+		 console.log("forgot password");
+		 
 		 $rootScope.loginClassCSS = false;
 		 $location.path('/forgot');
 		// $http({
@@ -104,7 +106,7 @@ angular.module('starter.controllers')
     alertPopup.then(function(res) {
       console.log('Registration');
     });
-		$location.path('/app/volunteer_sign_up');
+		$location.path('/app/login_number_validation');
 	}
 
 	

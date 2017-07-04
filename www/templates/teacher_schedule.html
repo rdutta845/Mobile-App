@@ -15,7 +15,7 @@
    			</h2>
    			<div class="row main_schedule">
    				<div class="col col-33">
-   					<select class="button">
+   					<select class="button" ng-model="filterParams.filterProg" ng-change="applyFilters()">
 					  Program <i class="fa fa-angle-double-down" aria-hidden="true"></i>
 					  	<option value="" disabled selected>Program</option>
 	   					<option ng-repeat="prog in programs" value="{{prog._id}}">{{prog.name}}</option>
@@ -23,7 +23,7 @@
 					</select>
    				</div>
    				<div class="col col-33">
-   					<select class="button">
+   					<select class="button" ng-model="filterParams.filterTerm" ng-change="applyFilters()">
 					  
 					  <option value="" disabled selected>Term <i class="fa fa-angle-double-down" aria-hidden="true"></i></option>
  						<option value="1">1</option>
@@ -33,10 +33,10 @@
 					</select>
    				</div>
    				<div class="col col-33">
-   					<select class="button">
+   					<select class="button" ng-model="filterParams.filterClass" ng-change="applyFilters()">
 					  Class <i class="fa fa-angle-double-down" aria-hidden="true"></i>
 					  <option value="" disabled selected>Class</option>
-	   				<option ng-repeat="class in classes" value="{{prog._id}}">{{class.classID}}</option>
+	   				<option ng-repeat="class in classes" value="{{class.classID}}">{{class.classID}}</option>
 					</select>
    				</div>
    			</div>
@@ -49,10 +49,11 @@
 	   						</div>
 	   						<div class="date_nd_tym">
 	   							<span>{{ses.date | date:'EEE dd MMM yy'}}</span>
-				    			<span><i class="icon ion-clock"></i> {{ses.time}}</span>
+				    			<span><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
 	   						</div>
 	   						<div class="edit_action">
-	   							<span><a class="arrw_up" ng-click="editSession()">Edit<i class="icon ion-edit"></i></a></span>
+	   							<span ng-show="editable($index)"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
+	   							<span ng-hide="editable($index)">Session Closed</span>
 	   						</div>
 	   						<a class="arrw_up" ng-click="toggleGroup($index)"><i class="icon" ng-class="showSession[$index] ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>

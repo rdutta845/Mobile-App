@@ -10,17 +10,17 @@
 				<ion-item>
 					<div class="row hdnge_listing_sec">
 						<div class="session_num">
-							<span>Session 01</span>
+							<span>Session {{session.sessionNo}}</span>
 						</div>
 						<div class="date_nd_tym">
-							<span>Mon 07 May 17</span>
-		    			<span><i class="icon ion-clock"></i> 10.30am</span>
+							<span>{{session.date | date:'EEE dd MMM yy'}}</span>
+		    			<span><i class="icon ion-clock"></i> {{session.date | date:'h:mm a'}}</span>
 						</div>
 					</div>
 				</ion-item>
 			</ion-list>
 			<h3 class="mrgbtm">Signup to teach this session</h3>
-			<button class="button button-large nxt_btn popup_btn">Confirm</button>
+			<button class="button button-large nxt_btn popup_btn" ng-click="popup2(session)">Confirm</button>
 		</div>
 	</ion-content>
 </ion-modal-view>

@@ -32,13 +32,13 @@ angular.module('starter.controllers')
       $scope.modal5 = modal;
     });
 
-  // $scope.showConfirm = function(mymod){
-  //   if(mymod==1) $scope.modal1.show();
-  //   else if(mymod==2) $scope.modal2.show();
-  //   else if(mymod==3) $scope.modal3.show();
-  //   else if(mymod==4) $scope.modal4.show();
-  //   else if(mymod==5) $scope.modal5.show();
-  // }
+    $ionicModal.fromTemplateUrl('templates/popup3.html', {
+      scope: $scope,
+      animation: 'scale'
+    }).then(function(modal) {
+      $scope.modal3 = modal;
+    });
+ 
   $scope.closePopup = function(mymod){
     if(mymod==1) $scope.modal1.hide();
     else if(mymod==2) $scope.modal2.hide();
@@ -61,5 +61,13 @@ angular.module('starter.controllers')
  			console.log("confirm redo");
  			$scope.modal5.hide();		
  		}
+    $scope.addStudent = function(){
+      console.log("ADD Student");
+      $scope.modal3.show();
+    }
+    $scope.saveStudent = function(){
+      console.log("save student");
+      $scope.modal3.hide();   
 
+    }
 	})

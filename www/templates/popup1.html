@@ -10,22 +10,21 @@
 				<ion-item>
 					<div class="row hdnge_listing_sec">
 						<div class="session_num">
-							<span>Session 01</span>
+							<span>Session {{session.sessionNo}}</span>
 						</div>
 						<div class="date_nd_tym">
-							<span>Mon 07 May 17</span>
-		    			<span><i class="icon ion-clock"></i> 10.30am</span>
+							<span>{{session.date | date:'EEE dd MMM yy'}}</span>
+		    			<span><i class="icon ion-clock"></i> {{session.date | date:'h:mm a'}}</span>
 						</div>
 					</div>
 				</ion-item>
 			</ion-list>
 			<h3>Reassign to other Volunteer</h3>
-			<select>
-				<option>Volunteer</option>
-				<option>Volunteer 1</option>
-				<option>Volunteer 2</option>
+			<select ng-model="swapVolId">
+				<option value="" disabled selected>Volunteer</option>
+				<option ng-repeat="vol in session._volunteers" value='{{vol._id}}'>{{vol.name.full}}</option>
 			</select>
-			<button class="button button-large nxt_btn popup_btn">Save</button>
+			<button class="button button-large nxt_btn popup_btn" ng-click="popup1(session)">Save</button>
 		</div>
 	</ion-content>
 </ion-modal-view>
