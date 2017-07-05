@@ -61,8 +61,7 @@ angular.module('starter.controllers')
         alertPopup.then(function(res) {
           console.log('Login Error');
         });
-				$
-				n.path('/app/steuplogin');
+				$location.path('/app/steuplogin');
 				// alert(response.data.result);
 			}else{
 				//console.log(response);

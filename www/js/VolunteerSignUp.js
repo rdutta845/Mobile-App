@@ -58,24 +58,14 @@ angular.module('starter.controllers')
     $scope.language = function(str, $index){
       console.log("str", str, "$index", $index);
       var isPresent = false;
-<<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
       $scope.newRecord.languages.forEach(function(data, index){
         if(data == str){
           $scope.newRecord.languages.splice(index, 1);
-=======
-      $scope.newRecord.languageSpoken.forEach(function(data, index){
-        if(data == str){
-          $scope.newRecord.languageSpoken.splice(index, 1);
->>>>>>> sign up page
           isPresent = true;
         }
       })
       if(isPresent == false){
-<<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
         $scope.newRecord.languages.push(str);
-=======
-        $scope.newRecord.languageSpoken.push(str);
->>>>>>> sign up page
       }
     }
     $scope.save = function(){
@@ -83,21 +73,12 @@ angular.module('starter.controllers')
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
       $scope.newRecord.password = $scope.pass.value;
-<<<<<<< a1ba412c4261436fddd25f1bc0a9b60323fe57fa
-<<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
       $scope.newRecord.phone = CONFIG.contactNo;
 
       console.log("save route $scope.newRecord", $scope.newRecord);
       console.log(", CONFIG.contactNo", CONFIG.contactNo)
-=======
-
-
-=======
       $scope.newRecord.contactNo = CONFIG.contactNo;
-      
->>>>>>> Prtial workdone
       console.log("save route $scope.newRecord", $scope.newRecord)
->>>>>>> sign up page
 
        $http({
           method : "POST",
@@ -131,7 +112,6 @@ angular.module('starter.controllers')
 
 
       }
-<<<<<<< 3e877750547dda5538731fd19e33ba21477dced9
       // $scope.previewPhoto = function(event) {
       //   var files = event.target.files;
       //   var file = files[files.length-1]
@@ -164,7 +144,4 @@ angular.module('starter.controllers')
         $scope.newRecord.picUrl = "img/placeholder_upld_pic.jpg"
       }
     }
-=======
-
->>>>>>> sign up page
  });

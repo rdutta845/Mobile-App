@@ -31,21 +31,21 @@
 		   			<div class="row hdnge_listing_sec student_report_hdng">
 						<div class="session_num">
 							<strong>{{student.name.firstName}} {{student.name.lastName}}</strong>
-							<em class="joindts">Join Date:{{student.joiningDate | date}}</em>
+							<em class="joindts">Join Date:{{student.addedOn | date}}</em>
 						</div>
 						<div class="date_nd_tym">
 							<strong>18</strong>
 						</div>
 						<div class="aser_sec">
-							<strong>{{student.baselineASERScore.score}}</strong>
+							<strong>{{student.ASERScores[0]}}</strong>
 						</div>
 						<div class="aser_sec">
-							<strong>{{student.midlineASERScore.score}}</strong>
+							<strong>{{student.ASERScores[1]}}</strong>
 						</div>
 					</div>
 					<div class="text_scoresec">
 						<strong>Text scores</strong>
-						<span>45,46,45,67</span>
+						<span>{{student.ASERScores[0]}}, {{student.ASERScores[1]}}, {{student.ASERScores[2]}}</span>
 					</div>
 				</ion-item>
 			</ion-list>

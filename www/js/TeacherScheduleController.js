@@ -13,7 +13,7 @@ angular.module('starter.controllers')
   $scope.newVolId;
   $scope.editSes = [];
   $scope.users = [];
-	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
+	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 	$http({
  			method:'GET',
  			url:CONFIG.apiEndpoint+'/getallprogramsinfo'
@@ -44,11 +44,8 @@ angular.module('starter.controllers')
       $scope.myBackup = angular.copy($scope.allSession);
  			$scope.allSession.forEach(function(data, id){
  				$scope.showSession.push(false);
-<<<<<<< a1ba412c4261436fddd25f1bc0a9b60323fe57fa
         $scope.editSes.push(false);
         $scope.editSes[id] = $scope.editable(id);
-=======
->>>>>>> Prtial workdone
  			})
  		})
  		$scope.toggleGroup = function($index){
@@ -67,7 +64,7 @@ angular.module('starter.controllers')
 			   $scope.modal1.show();
        }else if(modalNo == 2){
         $scope.modal2.show();
-       }	    
+       }
 
  		}
  		$ionicModal.fromTemplateUrl('templates/popup1.html', {
@@ -119,23 +116,23 @@ angular.module('starter.controllers')
   }
 
   $scope.applyFilters =  function () {
-     
+
       $scope.allSession = angular.copy($scope.myBackup); // reset to unfiltered list first
-     
+
       if ($scope.filterParams.filterProg) {
         var filteredData = [];
         console.log("filtering prog",$scope.filterParams.filterProg);
         for(var i = 0; i < $scope.allSession.length; i++){
           if($scope.allSession[i]._studentClass !=undefined && $scope.allSession[i]._studentClass._program !=undefined && $scope.allSession[i]._studentClass._program === $scope.filterParams.filterProg){
             filteredData[i] = $scope.allSession[i];
-            
+
           }
-        } 
+        }
         console.log(filteredData);
         $scope.allSession = filteredData.filter (function(item, pos, self) {
             return self.indexOf(item) == pos;
         })
-        
+
       }
       if ($scope.filterParams.filterTerm) {
         var filteredData = [];
@@ -143,7 +140,7 @@ angular.module('starter.controllers')
         for(var i = 0; i < $scope.allSession.length; i++){
           if($scope.allSession[i]._studentClass !=undefined && $scope.allSession[i]._studentClass.currentTerm !=undefined && $scope.allSession[i]._studentClass.currentTerm === $scope.filterParams.filterTerm){
             filteredData[i] = $scope.allSession[i];
-            
+
           }
         }
         $scope.allSession = filteredData.filter(function(item, pos, self) {
@@ -156,7 +153,7 @@ angular.module('starter.controllers')
         for(var i = 0; i < $scope.allSession.length; i++){
           if($scope.allSession[i]._studentClass !=undefined && $scope.allSession[i]._studentClass.classID !=undefined && $scope.allSession[i]._studentClass.classID === $scope.filterParams.filterClass){
             filteredData[i] = $scope.allSession[i];
-            
+
           }
         }
         $scope.allSession = filteredData.filter(function(item, pos, self) {
