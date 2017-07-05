@@ -88,13 +88,14 @@ angular.module('starter.controllers')
   }
   $scope.editable = function($index){
    if($scope.allSession[$index]._volunteers.length >= 3){
+    var flag = false;
       $scope.allSession[$index]._volunteers.forEach(function(data, id){
         if(data._id == $scope.tokenInfo.id){
           console.log("volunteer fon")
-          return true;
+          flag = true;
         }
       })
-      return false;
+      return flag;
    } else if($scope.allSession[$index]._volunteers.length >= 2){
       var noOfCoach = 0;
       $scope.allSession[$index]._volunteers.forEach(function(data, id){

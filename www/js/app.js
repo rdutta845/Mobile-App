@@ -248,6 +248,14 @@ ngApp
         }
       }
     })
+  .state('app.faq', {
+    url: '/faq',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/faq.html'
+      }
+    }
+  })
   .state('app.my_nxtsession', {
       url: '/my_nxtsession',
       views: {
