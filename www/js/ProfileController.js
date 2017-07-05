@@ -10,14 +10,15 @@ angular.module('starter.controllers')
         "email":"",
         "password":"",
         "organization":"",
-        "languageSpoken" : [],
-        "volunteerType" : ""
-
+        "languages" : [],
+        "volunteerType" : "",
+        "picUrl":"img/placeholder_upld_pic.jpg"
        };
        $scope.lan1 = [];
        $scope.lan2 = [];
        $scope.lanEven = [];
        $scope.lanOdd = [];
+
      $http({
         method : "GET",
         url : CONFIG.apiEndpoint+"/getsettingsinfo/",
@@ -43,7 +44,7 @@ angular.module('starter.controllers')
               console.log("RESPONSE", response.data.result);
               $scope.dataRecord = response.data.result;
               $scope.newRecord = $scope.dataRecord;
-              $scope.newRecord.languageSpoken.forEach(function(data, id){
+              $scope.newRecord.languages.forEach(function(data, id){
                   for(var i=0 ; i<$scope.lan1.length; i++){
                     if($scope.lan1[i] == data){
                       $scope.lanEven[i] = true;
@@ -60,6 +61,69 @@ angular.module('starter.controllers')
         })
     });
 
+    $scope.save = function(){
+       $http({
+          method : "PUT",
+          url : CONFIG.apiEndpoint+"/edituser",
+          data:$scope.newRecord
+          })
+          .then(function (response) {
+            console.log("response object",response.data);
+            if(response.data.error){
+              console.log("error")
+              var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: 'Please insert proper data'
+              });
+              alertPopup.then(function(res) {
+                console.log('Please insert proper data');
+              });
+            }else{
+              console.log("success")
+              var alertPopup = $ionicPopup.alert({
+                title: 'Success',
+                template: '<b>Your data successfully saved<b>'
+              });
+              alertPopup.then(function(res) {
+                console.log('Your data successfully saved');
+              });
+            }
+            
+          });
+      }
+      $scope.language = function(str, $index){
+        console.log("str", str, "$index", $index);
+        var isPresent = false;
+        $scope.newRecord.languages.forEach(function(data, index){
+          if(data == str){
+            $scope.newRecord.languages.splice(index, 1);
+            isPresent = true;
+          }
+        })
+        if(isPresent == false){
+          $scope.newRecord.languages.push(str);
+        }
+      }
+      $scope.uploadPic = function(){
+        if ($scope.newRecord.picUrl) {
+        // First, upload the attachment files:
+        console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
+        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
 
+          if (!err) {
+            console.log("PIC Uploading files okay!!",files)
+            // save the task
+            $scope.newRecord.picUrl = files[0].URL
+            console.log("file[0]", files[0].URL)
+            console.log('pic',  $scope.newRecord.picUrl)
+
+          } else {
+            console.log(err)
+          }
+        })
+      } else {
+        $scope.newRecord.picUrl = "img/placeholder_upld_pic.jpg"
+      }
+    }
   
 })
