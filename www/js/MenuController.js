@@ -5,6 +5,8 @@ angular.module('starter.controllers')
 	console.log($scope.tokenInfo); 
 	$scope.logout = function(){
 		// $location.path('/app/steuplogin');
+		$window.localStorage.removeItem('satellizer_token');
+  ///logout///
 		$window.location.reload();
 	}
 

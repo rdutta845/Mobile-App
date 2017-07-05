@@ -12,8 +12,7 @@ angular.module('starter.controllers')
 	 }
 	//alert("In Login Controller");
 
-  $window.localStorage.removeItem('satellizer_token');
-  ///logout///
+  
 
 	$scope.submit = function(){
 		// alert("username is : "+$scope.userName);
