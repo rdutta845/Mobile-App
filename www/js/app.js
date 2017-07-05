@@ -248,6 +248,14 @@ ngApp
         }
       }
     })
+  .state('app.my_nxtsession', {
+      url: '/my_nxtsession',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/my_nxtsession.html'
+        }
+      }
+    })
     .state('app.playlists', {
       url: '/playlists',
       views: {
