@@ -234,11 +234,12 @@ ngApp
       }
     }
   })
-  .state('app.horonium_history', {
-    url: '/horonium_history',
+  .state('app.honorarium', {
+    url: '/honorarium',
     views: {
       'menuContent': {
-        templateUrl: 'templates/horonium_history.html'
+        templateUrl: 'templates/honorarium.html',
+        controller:'honararium'
       }
     }
   })
@@ -254,7 +255,8 @@ ngApp
       url: '/my_nxtsession',
       views: {
         'menuContent': {
-          templateUrl: 'templates/my_nxtsession.html'
+          templateUrl: 'templates/my_nxtsession.html',
+          controller: 'nextSession'
         }
       }
     })
