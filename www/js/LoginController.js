@@ -86,17 +86,7 @@ angular.module('starter.controllers')
 	$scope.forgotPage = function(){
 		 // alert("Hellooo");
 		 console.log("forgot password");
-		 
-		 $rootScope.loginClassCSS = false;
-		 $location.path('/forgot');
-		// $http({
-		// 	method : "GET",
-		// 	url : CONFIG.apiEndpoint+'/changepass/'
-		// }).then(function mySucces(response) {
-		// 	console.log(response);
-		// }, function myError(response) {
-		// 	console.warn(response);
-		// });
+ 		 $location.path('app/forgot_password');
 	}
 	$scope.signUp = function(){
 		var alertPopup = $ionicPopup.alert({
@@ -108,7 +98,5 @@ angular.module('starter.controllers')
     });
 		$location.path('/app/login_number_validation');
 	}
-
-	
 
 });
