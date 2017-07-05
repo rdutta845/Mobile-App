@@ -8,9 +8,9 @@
    <ion-content class="contnet_bg">
      <div class="volunteer_profile">
      	<div class="vol_prof_pic">
-            <img src="img/placeholder_upld_pic.jpg">
+            <img src="{{newRecord.picUrl}}">
      	</div>
-        <a href="#" class="upld_prftxt">
+        <a ngf-select ng-model="newRecord.picUrl" ng-change = 'uploadPic()' class="upld_prftxt">
             Upload
             Profile Photo
             (Optional)
@@ -21,32 +21,32 @@
      		<h2>You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} & have completed 50 sessions</h2>
      		<ion-item class="item-input item-floating-label">
      			<span class="input-label">First Name</span>
-    			<input type="text" placeholder="First Name" ng-model="newRecord.name.firstName" ng-disabled="true"/>
+    			<input type="text" placeholder="First Name" ng-model="newRecord.name.firstName"/>
      		</ion-item>
      		<ion-item class="item-input item-floating-label">
      			<span class="input-label">Last Name</span>
-    			<input type="text" placeholder="Last Name" ng-model="newRecord.name.lastName" ng-disabled="true"/>
+    			<input type="text" placeholder="Last Name" ng-model="newRecord.name.lastName"/>
      		</ion-item>
      		<ion-item class="item-input item-floating-label">
      			<span class="input-label">Type Of Volunteer</span>
-    			<input type="text" placeholder="Coach" ng-model="newRecord.volunteerType" ng-disabled="true"/>
+    			<input type="text" placeholder="Coach" ng-model="newRecord.volunteerType"/>
      		</ion-item>
      		<ion-item class="item-input item-floating-label">
      			<span class="input-label">Organisation</span>
-    			<input type="text" placeholder="Step Up For India" ng-model="newRecord.organization" ng-disabled="true"/>
+    			<input type="text" placeholder="Step Up For India" ng-model="newRecord.organization"/>
      		</ion-item>
      		<ion-item>
      			<label class="item-input-wrapper user_sec">
 				    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-				    <input type="text" placeholder="Email Address*" ng-model="newRecord.email" ng-disabled="true">
+				    <input type="text" placeholder="Email Address*" ng-model="newRecord.email">
 				  </label>
      		</ion-item>
-     		<!-- <ion-item  class="nobtm_margn">
+     		<ion-item  class="nobtm_margn">
      			<label class="item-input-wrapper user_sec paswd_sec">
 				    <i class="fa fa-lock" aria-hidden="true"></i>
-				    <input type="password" placeholder="******" ng-model="pass.value">
+				    <input type="password" placeholder="******" ng-model="newRecord.password">
 				  </label>
-     		</ion-item> -->
+     		</ion-item>
      	</ion-list>
      	<ion-list class="wrkshop">
      		<h2>Which workshop have you already Attended</h2>
@@ -66,12 +66,12 @@
      		<ion-item>
      			<div class="row">
      				<div class="col col-50">
-		     			 <ion-checkbox ng-repeat="item in lan1" ng-model='lanEven[$index]' ng-disabled="true">{{item}}</ion-checkbox>
+		     			 <ion-checkbox ng-repeat="item in lan1" ng-model='lanEven[$index]' ng-change="language(item, $index)">{{item}}</ion-checkbox>
 						  <!-- <ion-checkbox ng-model='lan[1].value' ng-change="language('Telegu')">Telegu</ion-checkbox>
 						  <ion-checkbox ng-model='lan[2].value' ng-change="language('Urdu')">Urdu</ion-checkbox> -->
 				  	</div>
 				  	<div class="col col-50">
-                        <ion-checkbox ng-repeat="item in lan2" ng-model='lanOdd[$index]' ng-disabled="true">{{item}}</ion-checkbox>
+                        <ion-checkbox ng-repeat="item in lan2" ng-model='lanOdd[$index]' ng-change="language(item, $index)">{{item}}</ion-checkbox>
 		     			 <!-- <ion-checkbox ng-model='lan[3].value' ng-change="language('Tamil')">Tamil</ion-checkbox>
 						  <ion-checkbox ng-model='lan[4].value' ng-change="language('Hindi')">Hindi</ion-checkbox>
 						  <ion-checkbox ng-model='lan[5].value' ng-change="language('English')">English</ion-checkbox> -->
@@ -79,7 +79,7 @@
 				</div>
      		</ion-item>
      	</ion-list>
-     	<!-- <button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="nextPage()">Next</button> -->
+     	<button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="save()">Save</button>
      </div>
    </ion-content>
 </ion-view>
