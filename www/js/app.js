@@ -217,7 +217,7 @@ ngApp
     }
   })
   .state('app.session_history', {
-    url: '/session_history/:id',
+    url: '/session_history/:id/:term',
     views: {
       'menuContent': {
         templateUrl: 'templates/session_history.html',
@@ -226,7 +226,7 @@ ngApp
     }
   })
   .state('app.student_report', {
-    url: '/student_report/:id',
+    url: '/student_report/:id/:term',
     views: {
       'menuContent': {
         templateUrl: 'templates/student_report.html',

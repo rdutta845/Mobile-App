@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MyClassesController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('MyClassesController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $filter) {
 
 		$scope.classesShow = [];
 		$scope.allClasses = [];
@@ -10,10 +10,13 @@ angular.module('starter.controllers')
       url:CONFIG.apiEndpoint+"/getallstudentclasssinfo",
     }).then(function mySucces(response) {
 
-    	console.log("RESPONSE Workshop", response.data.result);
+    	console.log("RESPONSE Workshop", response.data);
         $scope.allClasses = response.data.result;
         $scope.allClasses.forEach(function(data, id){
         	$scope.classesShow.push(false);
+        })
+				$scope.allClasses.forEach(function(data, id){
+        	data.sessionsComp = $filter("filter")(data._sessions, { status : "Completed"}).length;
         })
 
     })
@@ -35,16 +38,16 @@ angular.module('starter.controllers')
 
   	 return $scope.allClasses[$index]._volunteers.slice(start, end);
 		}
-		$scope.session = function (id) {
+		$scope.session = function (id, term) {
 
 			// The data was not populated so doing this, remove this line once
 			// the data is populated. No other change is required.
 			// id = '594ba85aeffe8048280b5c4e';
-
-			$location.path('/app/session_history/' + id);
+			console.log(id,term);
+			$location.path('/app/session_history/' + id + "/" + term);
 
 		}
-		$scope.student = function (id) {
-			$location.path('/app/student_report/' + id)
+		$scope.student = function (id, term) {
+			$location.path('/app/student_report/' + id + "/" + term);
 		}
 	})

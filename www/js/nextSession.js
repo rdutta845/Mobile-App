@@ -17,7 +17,7 @@ angular.module('starter.controllers')
         // To get the number of sessions completed by the volunteer.
         $http({
           method:"GET",
-          url:CONFIG.apiEndpoint+"/numberofsessioncomplete/"+volunteer.id,
+          url:CONFIG.apiEndpoint+"/numberofsessioncomplete/"+volunteer.id + "/" + session._studentClass.id + "/" + session.currentTerm
         }).then(function success(response) {
           volunteer.sessionsComp = response.data.numberofsessioncompleted;
         })

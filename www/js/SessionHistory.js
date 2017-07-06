@@ -4,7 +4,7 @@ angular.module('starter.controllers')
 
   $http({
     method:"GET",
-    url:CONFIG.apiEndpoint+"/getclasssessionsinfo/"+$stateParams.id,
+    url:CONFIG.apiEndpoint+"/getclasssessionsinfo/"+$stateParams.id + "/" + $stateParams.term,
   }).then(function mySucces(response) {
     console.log(response);
     $scope.sessions = response.data.result;
@@ -13,7 +13,8 @@ angular.module('starter.controllers')
         // To get the number of sessions completed by the volunteer.
         $http({
           method:"GET",
-          url:CONFIG.apiEndpoint+"/numberofsessioncomplete/"+volunteer.id,
+          url:CONFIG.apiEndpoint+"/numberofsessioncomplete/"+volunteer.id + "/"
+            + $stateParams.id + "/" + $stateParams.term,
         }).then(function success(response) {
           volunteer.sessionsComp = response.data.numberofsessioncompleted;
         })

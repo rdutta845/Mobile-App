@@ -23,7 +23,7 @@
       <div class="profile_sec padding">
       <div class="prf_upper_sec">
           <div class="pic-avatar">
-            <img src="img/profile_pic.jpg">
+            <img src="{{tokenInfo.picUrl}}">
           </div>
           <div class="prf_txt">
             <h2>Welcome</h2>
@@ -55,7 +55,7 @@
           <i class="fa fa-book" aria-hidden="true"></i>
           My Classes
         </ion-item>
-        <ion-item menu-close href="#/app/honorarium">
+        <ion-item menu-close href="#/app/honorarium" ng-show="tokenInfo.volunteerType == 'Coach'">
           <i class="fa fa-university" aria-hidden="true"></i>
           My Honorarium History
         </ion-item>
