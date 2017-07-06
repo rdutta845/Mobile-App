@@ -21,13 +21,13 @@ angular.module('starter.controllers')
  			console.log("RESULT", response.data.result);
  			$scope.programs = response.data.result;
  		})
- 	$http({
- 			method:'GET',
- 			url:CONFIG.apiEndpoint+'/getallworkshopsinfo'
- 		}).then(function mySuccess(response){
- 			$scope.workshops = response.data.result;
-            console.log("workshops", $scope.workshops);
- 		})
+ 	// $http({
+ 	// 		method:'GET',
+ 	// 		url:CONFIG.apiEndpoint+'/getallworkshopsinfo'
+ 	// 	}).then(function mySuccess(response){
+ 	// 		$scope.workshops = response.data.result;
+  //           console.log("workshops", $scope.workshops);
+ 	// 	})
  		
     $scope.register = function () {
         $scope.newRecord._enrolled.push($scope.tokenInfo.id);
@@ -47,11 +47,19 @@ angular.module('starter.controllers')
         $scope.selectedWorkshops = [];
     	console.log("$scope.selectProgram.value", $scope.selectProgram.value);
         if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined){
-            $scope.workshops.forEach(function(data, id){
-                if(data._program!=null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
-                    console.log("data  print", data);
-                    $scope.selectedWorkshops.push(data);
-                }
+            // $scope.workshops.forEach(function(data, id){
+            //     if(data._program!=null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
+            //         console.log("data  print", data);
+            //         $scope.selectedWorkshops.push(data);
+            //     }
+            // })
+            $http({
+                method:'POST',
+                url:CONFIG.apiEndpoint+'/getAllMyCityWorkshope',
+                data : {term : $scope.selectTerm.value, program : $scope.selectProgram.value}
+            }).then(function mySuccess(response){
+                $scope.workshops = response.data.result;
+                console.log("workshops", $scope.workshops);
             })
         }
     }
@@ -60,10 +68,18 @@ angular.module('starter.controllers')
         $scope.selectedWorkshops = [];
     	console.log("$scope.selectTerm.value", $scope.selectTerm.value);
         if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined){
-            $scope.workshops.forEach(function(data, id){
-                if(data._program!= null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
-                    $scope.selectedWorkshops.push(data);
-                }
+            // $scope.workshops.forEach(function(data, id){
+            //     if(data._program!= null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
+            //         $scope.selectedWorkshops.push(data);
+            //     }
+            // })
+            $http({
+                method:'GET',
+                url:CONFIG.apiEndpoint+'/getAllMyCityWorkshope',
+                data : {term : $scope.selectTerm.value, program : $scope.selectProgram.value}
+            }).then(function mySuccess(response){
+                $scope.workshops = response.data.result;
+                console.log("workshops", $scope.workshops);
             })
         }
     }
