@@ -1,7 +1,8 @@
 angular.module('starter.controllers')
 .controller('SessionHistory', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
-  console.log($stateParams.id);
-
+  $scope.goBack = function() {
+    $location.path("/app/my_classes");
+  };
   $http({
     method:"GET",
     url:CONFIG.apiEndpoint+"/getclasssessionsinfo/"+$stateParams.id + "/" + $stateParams.term,

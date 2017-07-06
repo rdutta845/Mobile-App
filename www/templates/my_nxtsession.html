@@ -9,7 +9,7 @@
    		<div class="contnt_padding">
    			<div class="padding">
 	   			<ion-list class="teacher_listing_sec session_details_sec my_classes_sec">
-	   				<ion-item ng-repeat="session in sessions">
+	   				<ion-item ng-repeat="session in sessions | orderBy: 'session.date'">
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num">
 	   							<span>Program</span>

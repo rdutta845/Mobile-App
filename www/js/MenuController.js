@@ -12,5 +12,12 @@ angular.module('starter.controllers')
   ///logout///
 		$window.location.reload();
 	}
+	$http({
+    method:"GET",
+    url:CONFIG.apiEndpoint+"/allmysessionsinfo",
+  }).then(function mySucces(response) {
+		console.log("here");
+		$scope.sessionsComp = response.data.totalCompletedNumber;
+	})
 
 })

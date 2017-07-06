@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('StudentReport', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $filter) {
-  console.log($stateParams.id);
+  $scope.goBack = function() {
+    $location.path("/app/my_classes");
+  };
 
   $http({
     method:"GET",
