@@ -36,7 +36,7 @@
 	   					</ion-item> -->
 						  <ion-radio ng-model="choice" ng-value="'A'" ng-repeat="item in selectedWorkshops" ng-click="clickedFun($index)">
 						  	<!-- June, 1, 2017 at 1 pm – XYZ School, BTM Logout -->
-						  	{{item.date | date:"MMM, d, yyyy"}} at {{item.time}} - {{item.location}}
+						  	{{item.startDate | date:"MMM, d, yyyy"}} at {{item.startDate | date:'h:mm a'}} - {{item.venue}}
 						  </ion-radio>
 						  <!-- <ion-radio ng-model="choice" ng-value="'B'">
 						  	June, 11, 2017 at 10 pm – XYZ School BTM Logout

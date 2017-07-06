@@ -9,10 +9,10 @@ angular.module('starter.controllers')
         },
         "email":"",
         "password":"",
-        "organization":"",
+        "organization":"Step Up For India",
         "languages" : [],
         "volunteerType" : "",
-        "picUrl":"img/placeholder_upld_pic.jpg"
+        "picUrl":"img/user.png"
        };
        $scope.lan1 = [];
        $scope.lan2 = [];
@@ -44,6 +44,12 @@ angular.module('starter.controllers')
               console.log("RESPONSE", response.data.result);
               $scope.dataRecord = response.data.result;
               $scope.newRecord = $scope.dataRecord;
+              if($scope.newRecord.picUrl == undefined){
+                $scope.newRecord.picUrl = "img/user.png";
+              }
+              if($scope.newRecord.organization == undefined){
+                $scope.newRecord.organization = "Step Up For India";
+              }
               $scope.newRecord.languages.forEach(function(data, id){
                   for(var i=0 ; i<$scope.lan1.length; i++){
                     if($scope.lan1[i] == data){
@@ -122,7 +128,7 @@ angular.module('starter.controllers')
           }
         })
       } else {
-        $scope.newRecord.picUrl = "img/placeholder_upld_pic.jpg"
+        $scope.newRecord.picUrl = "img/user.png"
       }
     }
   

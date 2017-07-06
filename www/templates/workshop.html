@@ -9,14 +9,14 @@
    <ion-content class="contnet_bg">
    		<div class="contnt_padding wrkshp_schedule">
 	   		<div class="card layout_schedule" ng-repeat="item in scheduleWorkshop">
-	   		  <h2>Scheduled</h2>
+	   		  <h2 ng-show='$index == 0'>Scheduled</h2>
 			  <div class="item item-text-wrap">
 			    <div class="row date_tym_sec">
 			    	<div class="col col-66 dat_schdle">
-			    		<span>{{item.date | date:'dd MMM, y' }}</span>
-			    		<span><i class="icon ion-clock"></i> {{item.time}}</span>
+			    		<span>{{item.startDate | date:'dd MMM, y' }}</span>
+			    		<span><i class="icon ion-clock"></i> {{item.startDate | date:'h:mm a'}}</span>
 			    	</div>
-			    	<div class="col col-33 acto_schdle" ng-hide="item.isActive">
+			    	<div class="col col-33 acto_schdle" ng-show="item.isCancelled">
 			    		<strong>Action</strong>
 			    		<em class="gry_txt">Cancel</em>
 			    	</div>
@@ -40,19 +40,19 @@
 			    		<i class="icon ion-ios-location"></i>
 			    		<div class="addrss">
 			    			<h4>Address</h4>
-			    			<span>{{item.location}}</span>
+			    			<span>{{item.venue}}</span>
 			    		</div>
 			    	</div>
 			    </div>
 			  </div>
 			</div>
 			<div class="card layout_schedule" ng-repeat="item in pastWorkshop">
-	   		  <h2>Past</h2>
+	   		  <h2 ng-show='$index == 0'>Past</h2>
 			  <div class="item item-text-wrap">
 			    <div class="row date_tym_sec">
 			    	<div class="col col-66 dat_schdle">
-			    		<span>{{item.date | date:'dd MMM, y' }}</span>
-			    		<span><i class="icon ion-clock"></i> {{item.time}}</span>
+			    		<span>{{item.startDate | date:'dd MMM, y' }}</span>
+			    		<span><i class="icon ion-clock"></i> {{item.startDate | date:'h:mm a'}}</span>
 			    	</div>
 			    	<div class="col col-33 acto_schdle">
 			    		<!-- <strong>Action</strong>
@@ -78,7 +78,7 @@
 			    		<i class="icon ion-ios-location"></i>
 			    		<div class="addrss">
 			    			<h4>Address</h4>
-			    			<span>{{item.location}}</span>
+			    			<span>{{item.venue}}</span>
 			    		</div>
 			    	</div>
 			    </div>
