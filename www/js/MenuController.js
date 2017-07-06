@@ -3,6 +3,9 @@ angular.module('starter.controllers')
 
 	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 	console.log($scope.tokenInfo); 
+	if($scope.tokenInfo.picUrl == undefined){
+		$scope.tokenInfo.picUrl = "img/placeholder_upld_pic.jpg";
+	}
 	$scope.logout = function(){
 		// $location.path('/app/steuplogin');
 		$window.localStorage.removeItem('satellizer_token');
