@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 .controller('WorkshopController', function(CONFIG, $scope, $stateParams, $location, $http) {
 
-
+    $scope.userWorkshop=[];
     $scope.scheduleWorkshop = [];
     $scope.pastWorkshop = [];
     var curDate = new Date();
@@ -10,6 +10,7 @@ angular.module('starter.controllers')
       url:CONFIG.apiEndpoint+"/getallworkshopsinfo",
     }).then(function mySucces(response) {
         console.log("success");
+        console.log("response", response);
         if(response.data.result != null){
             console.log("RESPONSE Workshop", response.data.result);
             $scope.userWorkshop = response.data.result;
