@@ -394,7 +394,7 @@ h2.teacher_schedule_hdng{
 .right_cont strong{
     font-size: 12px;
     font-weight: 600;
-    color: #666666;
+    color: #333333; /*chng made by rahul*/
     font-style: italic;
 }
 .right_cont .row, .right_cont .row .col{
