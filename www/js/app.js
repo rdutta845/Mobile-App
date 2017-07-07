@@ -11,7 +11,7 @@ var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 's
 
 
 ngApp.constant("CONFIG", {
-  "apiEndpoint": 'http://localhost:3000/api/v1',  // Note: No trailing slashes!
+  "apiEndpoint": 'http://139.59.77.254:3000/api/v1',  // Note: No trailing slashes!
   "contactNo" : ""
 })
 

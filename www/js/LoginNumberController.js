@@ -6,6 +6,16 @@ angular.module('starter.controllers')
 	}
 
     $scope.verify = function(){
+        if($scope.mobNumber == undefined || $scope.mobNumber.value == ''){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: "Please Enter Your mobile number"
+              });
+              alertPopup.then(function(res) {
+                console.log("Please Enter Your mobile number");
+              });
+            $location.path('/app/login_number_validation');  
+        }
         CONFIG.contactNo = $scope.mobNumber.value;
         $http({
           method:"GET",
@@ -28,7 +38,8 @@ angular.module('starter.controllers')
                   alertPopup.then(function(res) {
                     console.log('Already Registered');
                   });
-                }
+                $location.path('/app/stepuplogin');
+             }
 
         })
     	console.log("verify");
