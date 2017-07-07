@@ -21,13 +21,7 @@ angular.module('starter.controllers')
  			console.log("RESULT", response.data.result);
  			$scope.programs = response.data.result;
  		})
-    $http({
-      method:'GET',
-      url:CONFIG.apiEndpoint+'/getalluserinfo'
-    }).then(function mySuccess(response){
-      console.log("RESULT", response.data.result);
-      $scope.users = response.data.result;
-    })
+    
  		$http({
  			method:'GET',
  			url:CONFIG.apiEndpoint+'/getallstudentclasss'
@@ -54,7 +48,15 @@ angular.module('starter.controllers')
  		}
  		$scope.editSession = function($index){
       var modalNo = 2;
+      $scope.users = [];
       $scope.session = $scope.allSession[$index];
+      $http({
+        method:'GET',
+        url:CONFIG.apiEndpoint+'/classvolunteers/'+$scope.session._id
+      }).then(function mySuccess(response){
+        console.log("RESULT", response);
+        $scope.users = response.data.result;
+      })
       $scope.allSession[$index]._volunteers.forEach(function(data, id){
         if($scope.tokenInfo.id == data._id){
           modalNo = 1;

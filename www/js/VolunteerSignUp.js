@@ -70,6 +70,17 @@ angular.module('starter.controllers')
       }
     }
     $scope.save = function(){
+      const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!emailRegExp.test($scope.email.value)) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: 'Invalid Email Id'
+        });
+        alertPopup.then(function(res) {
+          console.log('Invalid Email Id');
+        });
+      return
+      }
       $scope.newRecord.name.firstName = $scope.first.value;
       $scope.newRecord.name.lastName = $scope.last.value;
       $scope.newRecord.email = $scope.email.value;
