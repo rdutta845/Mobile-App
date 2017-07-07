@@ -9,7 +9,7 @@ angular.module('starter.controllers')
         },
         "email":"",
         "password":"",
-        "organization":"Step Up For India",
+        "corporate":"Step Up For India",
         "languages" : [],
         "volunteerType" : "",
         "picUrl":"img/user.png"
@@ -47,8 +47,8 @@ angular.module('starter.controllers')
               if($scope.newRecord.picUrl == undefined){
                 $scope.newRecord.picUrl = "img/user.png";
               }
-              if($scope.newRecord.organization == undefined){
-                $scope.newRecord.organization = "Step Up For India";
+              if($scope.newRecord.corporate == undefined){
+                $scope.newRecord.corporate = "Step Up For India";
               }
               $scope.newRecord.languages.forEach(function(data, id){
                   for(var i=0 ; i<$scope.lan1.length; i++){

@@ -20,7 +20,15 @@ angular.module('starter.controllers')
                 console.log("Pre registered");
                 $location.path('/app/volunteer_registration');
 
-            }
+            }else if(response.data.error == true && response.data.isRegistered == true){
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Error',
+                    template: response.data.message
+                  });
+                  alertPopup.then(function(res) {
+                    console.log('Already Registered');
+                  });
+                }
 
         })
     	console.log("verify");

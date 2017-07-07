@@ -9,9 +9,10 @@ angular.module('starter.controllers')
         },
         "email":"",
         "password":"",
-        "organization":"",
+        "corporate":"Step Up For India",
+        "volunteerType":"Coach",
         "languages" : [],
-        "picUrl" : "img/placeholder_upld_pic.jpg"
+        "picUrl" : "img/user.png"
 
        };
       $scope.lan1 = [];
@@ -34,8 +35,8 @@ angular.module('starter.controllers')
       $scope.vType = {
         value : ''
       }
-
-
+    $scope.org.value =  "Step Up For India";
+    $scope.vType.value = "Coach";
     $http({
         method : "GET",
         url : CONFIG.apiEndpoint+"/getsettingsinfo/",
@@ -74,7 +75,8 @@ angular.module('starter.controllers')
       $scope.newRecord.email = $scope.email.value;
       $scope.newRecord.password = $scope.pass.value;
       $scope.newRecord.phone = CONFIG.contactNo;
-
+      $scope.newRecord.corporate = $scope.org.value;
+      $scope.newRecord.volunteerType = $scope.vType.value;
       console.log("save route $scope.newRecord", $scope.newRecord);
       console.log(", CONFIG.contactNo", CONFIG.contactNo)
       $scope.newRecord.contactNo = CONFIG.contactNo;
@@ -141,7 +143,7 @@ angular.module('starter.controllers')
           }
         })
       } else {
-        $scope.newRecord.picUrl = "img/placeholder_upld_pic.jpg"
+        $scope.newRecord.picUrl = "img/user.png"
       }
     }
  });

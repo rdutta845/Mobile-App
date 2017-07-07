@@ -8,9 +8,9 @@
    <ion-content class="contnet_bg">
      <div class="volunteer_profile">
      	<div class="vol_prof_pic">
-            <img src="img/placeholder_upld_pic.jpg">
+            <img src="{{newRecord.picUrl}}">
      	</div>
-        <a href="#" class="upld_prftxt">
+        <a class="upld_prftxt" ngf-select ng-model="newRecord.picUrl" ng-change = 'uploadPic()'>
             Upload
             Profile Photo
             (Optional)
@@ -48,19 +48,27 @@
 				  </label>
      		</ion-item>
      	</ion-list>
-     	<ion-list class="wrkshop">
+     	<ion-list class="wrkshop" ng-show="workshop.length != 0">
      		<h2>Which workshop have you already Attended</h2>
      		<ion-item class="nobtm_margn">
-     			<div class="subj_1">
-     				<p>Maths</p>
-     				<span>Term 1, Term 2</span>
+     			<div class="subj_1" ng-repeat="work in workshop">
+     				<p>{{work.program}}</p>
+     				<span>Term {{work.term}}</span>
      			</div>
-     			<div class="subj_2">
+     			<!-- <div class="subj_2">
      				<p>English</p>
      				<span>Term 1, Term 2</span>
-     			</div>
+     			</div> -->
      		</ion-item>
      	</ion-list>
+        <ion-list class="wrkshop" ng-show="workshop.length == 0">
+            <h2>Which workshop have you already Attended</h2>
+            <ion-item class="nobtm_margn">
+                <div class="subj_1">
+                    <p>No Workshop</p>
+                </div>
+            </ion-item>
+        </ion-list>
      	<ion-list class="chckbx_lang">
      		<h2>Tick language that you can speak</h2>
      		<ion-item>

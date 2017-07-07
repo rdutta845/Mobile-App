@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
 .controller('LoginController', function(CONFIG, $scope, $location, $window, $http, $rootScope, $auth, $ionicPopup) {
 	//added to initiate select-dropdown
-	 $rootScope.loginClassCSS = true;
 	 var token = '';
 	 $scope.isAdmin = false;
 	 $scope.userName = {

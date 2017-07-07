@@ -9,8 +9,10 @@ angular.module('starter.controllers')
         },
         "email":"",
         "password":"",
-        "organization":"",
-        "languageSpoken" : []
+        "corporate":"Step Up For India",
+        "languages" : [],
+        "volunteerType":"Coach",
+        "picUrl" : "img/user.png"
 
        };
       $scope.lan1 = [];
@@ -33,7 +35,8 @@ angular.module('starter.controllers')
       $scope.vType = {
         value : ''
       }
-
+      $scope.workshop = [];
+      $scope.term = [];
      $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
 
     $http({
@@ -55,7 +58,7 @@ angular.module('starter.controllers')
     // /checkisregister/:mobile
     $http({
         method : "GET",
-        url : CONFIG.apiEndpoint+"/checkisregister/"+CONFIG.contactNo,
+        url : CONFIG.apiEndpoint+"/checkisregister/"+"9231559000",//CONFIG.contactNo,
         //////contact no. hard coded fetched from otp
     }).then(function mySucces(response) {
         console.log("success");
@@ -66,8 +69,13 @@ angular.module('starter.controllers')
             $scope.first.value = $scope.userData.name.firstName;
             $scope.last.value = $scope.userData.name.lastName;
             $scope.vType.value = $scope.userData.volunteerType;
-            $scope.org.value = $scope.userData.organization;
+            $scope.org.value = $scope.userData.corporate;
             $scope.email.value = $scope.userData.email;
+            $scope.workshop = $scope.userData.workshopsAttended;
+
+            if($scope.userData.picUrl != undefined || $scope.userData.picUrl !=''){
+              $scope.newRecord.picUrl = $scope.userData.picUrl;
+            }
           }
         })
     
@@ -130,5 +138,35 @@ angular.module('starter.controllers')
         
 
       }
+      // $scope.selcetedTerm = function($index){
+      //   console.log("ami ekhane",$index)
+      //   $scope.term = [];
+      //   $scope.workshop.forEach(function(data, id){
+      //     if(data.program == $scope.workshop[$index].program){
+      //       $scope.term.push(data.term);
+      //     }
+      //   })
+      // }
+      $scope.uploadPic = function(){
+        if ($scope.newRecord.picUrl) {
+        // First, upload the attachment files:
+        console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
+        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
+
+          if (!err) {
+            console.log("PIC Uploading files okay!!",files)
+            // save the task
+            $scope.newRecord.picUrl = files[0].URL
+            console.log("file[0]", files[0].URL)
+            console.log('pic',  $scope.newRecord.picUrl)
+
+          } else {
+            console.log(err)
+          }
+        })
+      } else {
+        $scope.newRecord.picUrl = "img/user.png"
+      }
+    }
 
  });
