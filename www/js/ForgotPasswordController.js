@@ -8,6 +8,9 @@ angular.module('starter.controllers')
 		$scope.email = {
 			value: ''
 		}
+		$scope.goBack = function(){
+			$location.path('/app/stepuplogin');
+		}
 		$scope.chngPass = function () {
 			if ($scope.email.value == null || $scope.email.value == '') {
 				var alertPopup = $ionicPopup.alert({
