@@ -10,6 +10,7 @@ angular.module('starter.controllers')
   $scope.swapVolId={
    value:""
   };
+  $scope.showAllSession = false;
   $scope.newVolId;
   $scope.editSes = [];
   $scope.users = [];
@@ -128,6 +129,10 @@ angular.module('starter.controllers')
   $scope.applyFilters =  function () {
 
       $scope.allSession = angular.copy($scope.myBackup); // reset to unfiltered list first
+
+      if($scope.filterParams.filterProg && $scope.filterParams.filterTerm && $scope.filterParams.filterClass){
+        $scope.showAllSession = true;
+      }
 
       if ($scope.filterParams.filterProg) {
         var filteredData = [];

@@ -1,15 +1,18 @@
-<ion-view>
+<ion-view view-title="Teaching Schedule">
   <ion-header-bar align-title="center" class="custom_header">
 	<div class="buttons">
 	  <button class="button button-icon ion-navicon button-clear"></button>
 	</div>
-	<h1 class="title">My Teaching Schedule</h1>
-	<button class="button button-icon ion-plus-round button-clear"></button>
+	<!-- <h1 class="title">My Teaching Schedule</h1>
+	<button class="button button-icon ion-plus-round button-clear"></button> -->
    </ion-header-bar>
+   <ion-nav-buttons side="right">
+			<button class="button button-icon ion-plus-round button-clear"></button>
+	</ion-nav-buttons>
    <ion-content class="contnet_bg">
    		<div class="contnt_padding">
    			<h2 class="teacher_schedule_hdng">
-   				Welcome <span>Mr/Ms {{tokenInfo.fullName}}</span>
+   				Welcome <span>{{tokenInfo.fullName}}</span>
 				You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} &
 				Have completed {{sessionsComp}} sessions
    			</h2>
@@ -41,7 +44,7 @@
 				</div>
 			</div>
 			<div class="padding">
-				<ion-list class="teacher_listing_sec">
+				<ion-list class="teacher_listing_sec" ng-show="showAllSession">
 					<ion-item ng-repeat="ses in allSession">
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
