@@ -18,7 +18,7 @@
      </div>
      <div class="volunteer_profile_creation">
      	<ion-list>
-     		<h2>You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} & have completed 50 sessions</h2>
+     		<h2>You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} & have completed {{sessionsComp}} sessions</h2>
      		<ion-item class="item-input item-floating-label">
      			<span class="input-label">First Name</span>
     			<input type="text" placeholder="First Name" ng-model="newRecord.name.firstName"/>

@@ -45,7 +45,9 @@ angular.module('starter.controllers')
         })
       
     }
-
+    $scope.goBack = function(){
+        $location.path('/app/workshop');
+    }
     $scope.chngProg = function(){
         $scope.selectedWorkshops = [];
     	console.log("$scope.selectProgram.value", $scope.selectProgram.value, "$scope.selectTerm.value", $scope.selectTerm.value);
