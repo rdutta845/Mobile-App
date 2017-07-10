@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 .controller('TeacherScheduleController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
 
 	$scope.showSession = [];
+	$scope.sessionsComp = 0;
   $scope.filterParams = {
     filterProg:null,
     filterTerm:null,
@@ -20,7 +21,7 @@ angular.module('starter.controllers')
     url:CONFIG.apiEndpoint+"/allmysessionsinfo",
   }).then(function mySucces(response) {
 		console.log("here");
-		$scope.sessionsComp = response.data.totalCompletedNumber;
+		$scope.sessionsComp = response.data.totalCompletedNumber ? response.data.totalCompletedNumber : 0;
 	})
 	$http({
  			method:'GET',
@@ -29,7 +30,7 @@ angular.module('starter.controllers')
  			console.log("RESULT", response.data.result);
  			$scope.programs = response.data.result;
  		})
-    
+
  		$http({
  			method:'GET',
  			url:CONFIG.apiEndpoint+'/getallstudentclasss'
