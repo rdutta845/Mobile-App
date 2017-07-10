@@ -50,6 +50,7 @@ angular.module('starter.controllers')
               if($scope.newRecord.corporate == undefined){
                 $scope.newRecord.corporate = "Step Up For India";
               }
+              $scope.workshop = $scope.dataRecord.workshopsAttended;
               $scope.newRecord.languages.forEach(function(data, id){
                   for(var i=0 ; i<$scope.lan1.length; i++){
                     if($scope.lan1[i] == data){

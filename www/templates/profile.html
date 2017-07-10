@@ -48,19 +48,27 @@
 				  </label>
      		</ion-item>
      	</ion-list>
-     	<ion-list class="wrkshop">
-     		<h2>Which workshop have you already Attended</h2>
-     		<ion-item class="nobtm_margn">
-     			<div class="subj_1">
-     				<p>Maths</p>
-     				<span>Term 1, Term 2</span>
-     			</div>
-     			<div class="subj_2">
-     				<p>English</p>
-     				<span>Term 1, Term 2</span>
-     			</div>
-     		</ion-item>
-     	</ion-list>
+     	<ion-list class="wrkshop" ng-show="workshop.length != 0">
+            <h2>Which workshop have you already Attended</h2>
+            <ion-item class="nobtm_margn">
+                <div class="subj_1" ng-repeat="work in workshop">
+                    <p>{{work.program}}</p>
+                    <span>Term {{work.term}}</span>
+                </div>
+                <!-- <div class="subj_2">
+                    <p>English</p>
+                    <span>Term 1, Term 2</span>
+                </div> -->
+            </ion-item>
+        </ion-list>
+        <ion-list class="wrkshop" ng-show="workshop.length == 0">
+            <h2>Which workshop have you already Attended</h2>
+            <ion-item class="nobtm_margn">
+                <div class="subj_1">
+                    <p>No Workshop</p>
+                </div>
+            </ion-item>
+        </ion-list>
      	<ion-list class="chckbx_lang">
      		<h2>Tick language that you can speak</h2>
      		<ion-item>

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerRegistrationController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('VolunteerRegistrationController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
 
   console.log("running successfully")
     $scope.newRecord = {

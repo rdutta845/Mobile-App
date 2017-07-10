@@ -9,6 +9,9 @@ angular.module('starter.controllers')
       // Enable swipe to open menu while leaving this page
       $ionicSideMenuDelegate.canDragContent(true)
     });
+    $scope.goBack = function(){
+      $location.path("/app/stepuplogin")
+    }
     $scope.verify = function(){
         if($scope.mobNumber == undefined || $scope.mobNumber.value == ''){
             var alertPopup = $ionicPopup.alert({
