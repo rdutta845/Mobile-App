@@ -15,6 +15,13 @@ angular.module('starter.controllers')
   $scope.users = [];
 	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 	$http({
+    method:"GET",
+    url:CONFIG.apiEndpoint+"/allmysessionsinfo",
+  }).then(function mySucces(response) {
+		console.log("here");
+		$scope.sessionsComp = response.data.totalCompletedNumber;
+	})
+	$http({
  			method:'GET',
  			url:CONFIG.apiEndpoint+'/getallprogramsinfo'
  		}).then(function mySuccess(response){
@@ -215,4 +222,7 @@ angular.module('starter.controllers')
       })
     }
   }
+	$scope.details = function(id) {
+		$location.path("app/session_details2/" + id);
+	}
 })

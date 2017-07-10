@@ -14,5 +14,13 @@ angular.module('starter.controllers')
 
 			}
  		}
+		$http({
+	    method:"GET",
+	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
+	  }).then(function mySucces(response) {
+	    console.log(response);
+			$scope.session = response.data.result;
+	  })
+
 
 	})

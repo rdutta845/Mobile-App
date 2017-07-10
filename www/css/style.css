@@ -498,7 +498,7 @@ h2.teacher_schedule_hdng{
     font-weight: 700;
 }
 span.no_namepad{
-    padding-left: 0; 
+    padding-left: 0;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -592,6 +592,13 @@ font-family: 'Ubuntu', sans-serif;
 }
 .orange_txt{
     color: #ff6600;
+    vertical-align: top;
+}
+.yellow{
+    background: #FFFF00;
+}
+.yellow_txt{
+    color: #FFFF00;
     vertical-align: top;
 }
 .purple{
@@ -938,7 +945,7 @@ font-weight: normal;
 .my_class_schedule .term_program_status.row .col{
     border:none;
 }
-.my_class_schedule{ 
+.my_class_schedule{
     border-bottom: 1px solid #cccccc;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -947,7 +954,7 @@ font-weight: normal;
     float: left;
     font-size: 23px;
     margin: 0 4px 0 0;
-} 
+}
 .class_tchr_box .hdng_classteacher{
     float: left;
 }
@@ -969,7 +976,7 @@ font-weight: normal;
     line-height: 18px;
     font-style: italic;
     color: #252525;
-} 
+}
 .my_classteam_mem .row{
     padding: 0;
 }

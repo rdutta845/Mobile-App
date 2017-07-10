@@ -2,16 +2,16 @@
   <ion-header-bar align-title="center" class="custom_header">
 	<div class="buttons">
 	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">My Teaching Schedule</h1>  
+	</div>
+	<h1 class="title">My Teaching Schedule</h1>
 	<button class="button button-icon ion-plus-round button-clear"></button>
    </ion-header-bar>
    <ion-content class="contnet_bg">
    		<div class="contnt_padding">
    			<h2 class="teacher_schedule_hdng">
    				Welcome <span>Mr/Ms {{tokenInfo.fullName}}</span>
-				You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} & 
-				Have completed 50 sessions
+				You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} &
+				Have completed {{sessionsComp}} sessions
    			</h2>
    			<div class="row main_schedule">
    				<div class="col col-33">
@@ -24,7 +24,7 @@
    				</div>
    				<div class="col col-33">
    					<select class="button" ng-model="filterParams.filterTerm" ng-change="applyFilters()">
-					  
+
 					  <option value="" disabled selected>Term <i class="fa fa-angle-double-down" aria-hidden="true"></i></option>
  						<option value="1">1</option>
  						<option value="2">2</option>
@@ -45,7 +45,7 @@
 	   				<ion-item ng-repeat="ses in allSession">
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num">
-	   							<span>Session {{ses.sessionNo}}</span>
+	   							<span ng-click="details('{{ses._id}}')">Session {{ses.sessionNo}}</span>
 	   						</div>
 	   						<div class="date_nd_tym">
 	   							<span>{{ses.date | date:'EEE dd MMM yy'}}</span>

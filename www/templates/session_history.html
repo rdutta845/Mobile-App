@@ -9,7 +9,7 @@
    		<div class="contnt_padding">
    			<div class="padding">
 	   			<ion-list class="teacher_listing_sec session_details_sec session_history_sec">
-	   				<ion-item ng-repeat="session in sessions">
+	   				<ion-item ng-repeat="session in sessions | orderBy : 'sessionNo'">
 					    <div class="row term_program_status">
 					    	<div class="col col-33">
 					    		<h3 class="history_sessin">Session <strong>{{session.sessionNo}}</strong></h3>

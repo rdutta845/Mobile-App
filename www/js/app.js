@@ -11,7 +11,7 @@ var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 's
 
 
 ngApp.constant("CONFIG", {
-  "apiEndpoint": 'http://localhost:3000/api/v1',  // Note: No trailing slashes!
+  "apiEndpoint": 'https://sufiservice.now.sh/api/v1',  // Note: No trailing slashes!
   "contactNo" : ""
 })
 
@@ -143,7 +143,7 @@ ngApp
     }
   })
   .state('app.session_details2', {
-    url: '/session_details2',
+    url: '/session_details2/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/session_details2.html',

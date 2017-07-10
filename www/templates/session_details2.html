@@ -2,8 +2,8 @@
   <ion-header-bar align-title="center" class="custom_header">
 	<div class="buttons">
 	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">Session Details</h1>  
+	</div>
+	<h1 class="title">Session Details</h1>
 	<button class="button button-icon ion-plus-round button-clear"></button>
    </ion-header-bar>
    <ion-content class="contnet_bg">
@@ -16,8 +16,8 @@
 	   							<span>Schedule</span>
 	   						</div>
 	   						<div class="date_nd_tym">
-	   							<span>Mon 07 May 17</span>
-				    			<span><i class="icon ion-clock"></i> 10.30am</span>
+	   							<span>{{session.date | date : "EEE dd MMM yy" }}</span>
+				    			<span><i class="icon ion-clock"></i> {{session.date | date : "hh.mm a"}}</span>
 	   						</div>
 	   						<a class="arrw_up" ng-click="toggle('schedule')"><i class="icon" ng-class="scheduleShow ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 	   					</div>
@@ -26,7 +26,7 @@
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
 							    		<h3>Class</h3>
-							    		<span>CX2346</span>
+							    		<span>AAAA</span>
 						    		</div>
 						    		<div class="schdule_bx">
 							    		<h3>School Name</h3>
@@ -121,7 +121,7 @@
 	   						</div>
 	   					</div>
 	   				</ion-item>
-	   				
+
 	   			</ion-list>
 	   			<div class="button_sec checkin_btn">
 				  <button class="button">Check In</button>
