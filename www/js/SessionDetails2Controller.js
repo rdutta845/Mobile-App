@@ -1,9 +1,27 @@
 angular.module('starter.controllers')
-.controller('SessionDetails2Controller', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('SessionDetails2Controller', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window , $cordovaGeolocation) {
 
 		$scope.scheduleShow = true;
 		$scope.contentShow = true;
-		$scope.position = $cordovaGeolocation.getCurrentPosition(positionOptions);
+		$scope.currentPosition = {};
+		var posOptions = {enableHighAccuracy: false};
+		$cordovaGeolocation.getCurrentPosition().then(function (position) {
+			$scope.currentPosition.lat = position.coords.latitude;
+			$scope.currentPosition.long = position.coords.longitude;
+		});
+		function distance(lat1, lon1, lat2, lon2, unit) {
+			var radlat1 = Math.PI * lat1/180
+			var radlat2 = Math.PI * lat2/180
+			var theta = lon1-lon2
+			var radtheta = Math.PI * theta/180
+			var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+			dist = Math.acos(dist)
+			dist = dist * 180/Math.PI
+			dist = dist * 60 * 1.1515
+			if (unit=="K") { dist = dist * 1.609344 }
+			if (unit=="N") { dist = dist * 0.8684 }
+			return dist
+		}
 		$scope.toggle = function(str){
 			console.log(str);
 			if(str == 'schedule'){
@@ -42,11 +60,16 @@ angular.module('starter.controllers')
 		$scope.checkin = function (id) { //session._id
 			console.log("id print",id);
 			$scope.date = new Date();
-			console.log($scope.date);
-			console.log(($scope.date).getUTCDate());
 			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
 			if((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24) < 1) {
-				$location.path("app/session_details/" + id);
+				if(distance($scope.currentPosition.lat, $scope.currentPosition.long, 22.587112, 88.430210, 'K') < 0.2) {
+					$location.path("app/session_details/" + id);
+				} else {
+					$ionicPopup.alert({
+			      title: 'Restricted',
+			      template: 'You have not arrived in school!'
+			    });
+				}
 			} else {
 				$ionicPopup.alert({
 		      title: 'Restricted',

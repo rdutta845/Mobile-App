@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 'starter.controllers']);
+var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 'starter.controllers', 'ngCordova']);
 // var ngApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ngCookies',
 // 'satellizer', 'ui.materialize', 'ngFileUpload', 'angularMoment',
 // "angucomplete-alt", 'masonry', 'ui.calendar']);
