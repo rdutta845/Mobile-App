@@ -56,7 +56,8 @@
 	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
 	   										</div>
 	   										<div class="col col-65">
-	   											<span ng-if="volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+                          <span ng-if="volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+	   											<span ng-if="!volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Does not speak local language</span>
 	   										</div>
 	   									</div>
 	   								</div>

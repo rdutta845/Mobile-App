@@ -20,6 +20,7 @@ angular.module('starter.controllers')
 			dist = dist * 60 * 1.1515
 			if (unit=="K") { dist = dist * 1.609344 }
 			if (unit=="N") { dist = dist * 0.8684 }
+			console.log(dist);
 			return dist
 		}
 		$scope.toggle = function(str){
@@ -37,6 +38,7 @@ angular.module('starter.controllers')
 	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
 	  }).then(function mySucces(response) {
 			$scope.session = response.data.result;
+			$scope.schoolLocation = response.data.location;
 			$scope.session._volunteers.forEach(function(volunteer){
         // To get the number of sessions completed by the volunteer.
         $http({
@@ -62,7 +64,7 @@ angular.module('starter.controllers')
 			$scope.date = new Date();
 			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
 			if((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24) < 1) {
-				if(distance($scope.currentPosition.lat, $scope.currentPosition.long, 22.587112, 88.430210, 'K') < 0.2) {
+				if(distance($scope.currentPosition.lat, $scope.currentPosition.long, $scope.schoolLocation.lat, $scope.schoolLocation.lng, 'K') < 0.2) {
 					$location.path("app/session_details/" + id);
 				} else {
 					$ionicPopup.alert({
