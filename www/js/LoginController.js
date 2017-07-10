@@ -41,7 +41,7 @@ angular.module('starter.controllers')
 			return;
 		}
 
-		$auth.login({'loginEmailOrMobile': $scope.userName.value, 'loginPassword': $scope.password.value})
+		$auth.login({'loginEmailOrMobile': $scope.userName.value.toLowerCase(), 'loginPassword': $scope.password.value})
 		.then(function(response) {
 			//console.log(response);
 			console.log("inside login route", response)
