@@ -6,9 +6,9 @@
 	<!-- <h1 class="title">My Teaching Schedule</h1>
 	<button class="button button-icon ion-plus-round button-clear"></button> -->
    </ion-header-bar>
-   <ion-nav-buttons side="right">
+   <!-- <ion-nav-buttons side="right">
 			<button class="button button-icon ion-plus-round button-clear"></button>
-	</ion-nav-buttons>
+	</ion-nav-buttons> -->
    <ion-content class="contnet_bg">
    		<div class="contnt_padding">
    			<h2 class="teacher_schedule_hdng">
@@ -48,15 +48,18 @@
 					<ion-item ng-repeat="ses in allSession">
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
-								<span ng-click="details('{{ses._id}}')">Session {{ses.sessionNo}}</span>
+								<span ng-click="details('{{ses._id}}')" ng-show="editSes[$index]">Session {{ses.sessionNo}}</span>
+								<span ng-hide="editSes[$index]" style="color: grey">Session {{ses.sessionNo}}</span>
 							</div>
 							<div class="date_nd_tym">
-								<span>{{ses.date | date:'EEE dd MMM yy'}}</span>
-								<span><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
+								<span ng-show="editSes[$index]">{{ses.date | date:'EEE dd MMM yy'}}</span>
+								<span ng-show="editSes[$index]"><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
+								<span ng-hide="editSes[$index]" style="color: grey">{{ses.date | date:'EEE dd MMM yy'}}</span>
+								<span ng-hide="editSes[$index]" style="color: grey"><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
 							</div>
 							<div class="edit_action">
 								<span ng-show="editSes[$index]"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
-								<span ng-hide="editSes[$index]">Session Closed</span>
+								<span ng-hide="editSes[$index]" style="color: grey">Session Closed</span>
 							</div>
 							<a class="arrw_up" ng-click="toggleGroup($index)"><i class="icon" ng-class="showSession[$index] ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
 						</div>
