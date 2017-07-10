@@ -1,10 +1,14 @@
 angular.module('starter.controllers')
-.controller('LoginNumberController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('LoginNumberController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
 
 	$scope.mobNumber = {
 		value:''
 	}
-
+  $ionicSideMenuDelegate.canDragContent(false);
+    $scope.$on('$ionicView.leave', function () {
+      // Enable swipe to open menu while leaving this page
+      $ionicSideMenuDelegate.canDragContent(true)
+    });
     $scope.verify = function(){
         if($scope.mobNumber == undefined || $scope.mobNumber.value == ''){
             var alertPopup = $ionicPopup.alert({
