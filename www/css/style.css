@@ -33,13 +33,16 @@ h1,h2,h3,h4,h5,p{
 .nopadding{
     padding: 0 !important;
 }
+.bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before{
+    font-size: 28px;
+}
 .custom_header{
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc3d3d+4,530909+71 */
-background: #dc3d3d; /* Old browsers */
-background: -moz-linear-gradient(left, #dc3d3d 4%, #530909 71%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #dc3d3d 4%,#530909 71%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #dc3d3d 4%,#530909 71%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3d3d', endColorstr='#530909',GradientType=1 ); /* IE6-9 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d83c3c+0,540909+100 */
+background: #d83c3c; /* Old browsers */
+background: -moz-linear-gradient(left, #d83c3c 0%, #540909 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #d83c3c 0%,#540909 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #d83c3c 0%,#540909 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d83c3c', endColorstr='#540909',GradientType=1 ); /* IE6-9 */
 }
 .custom_header .title{
     color:#fff;
@@ -125,6 +128,10 @@ h2 {
 }
 .chckbx_lang .item-checkbox .item-content span{
 	font-size: 13px;
+    font-weight: 600;
+}
+.chckbx_lang .active .item-content span{
+    color: #d33939;
 }
 .chckbx_lang .item-checkbox {
     padding-left: 46px;
@@ -147,13 +154,19 @@ h2 {
 .vol_prof_pic {
     width: 140px;
     height: 140px;
-    background: #ddd;
+    background: rgba(221,221,221,0.7);
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     margin: 20px auto;
     overflow: hidden;
-    border:5px solid #dcdcdc;
+    /*border:5px solid #dcdcdc;*/
+    padding: 5px;
+}
+.vol_prof_pic img{
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
 }
 .wrkshop p {
     font-size: 11px;
@@ -179,6 +192,7 @@ h2 {
 	width: 90%;
 	margin: 0 auto;
 	display: block;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d23939+0,972323+100 */
 background: #d23939; /* Old browsers */
 background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
@@ -366,6 +380,7 @@ h2.teacher_schedule_hdng{
 }
 .edit_action i{
     margin-left: 3px;
+    font-size: 12px;
 }
 .arrw_up {
     color: #1b1b1b;
@@ -384,7 +399,7 @@ h2.teacher_schedule_hdng{
 }
 .schedule_mini i.phone_icn{
     font-size: 28px;
-    margin: 9px 0 0;
+    margin: 5px 0 0;
     float: left;
 }
 .right_cont {
@@ -399,6 +414,7 @@ h2.teacher_schedule_hdng{
 }
 .right_cont .row, .right_cont .row .col{
     padding: 0;
+    margin-top: -3px;
 }
 .right_cont .row .col:first-child{
     margin-right: 63px;
@@ -464,10 +480,11 @@ h2.teacher_schedule_hdng{
 }
 .attnce_list_hdng strong{
     font-size: 12px;
-    line-height: 18px;
+    line-height: 12px;
     display: block;
     overflow: hidden;
     white-space: normal;
+    text-align: center;
 }
 .attnce_list_hdng strong em{
     font-style: normal;
@@ -507,7 +524,7 @@ span.no_namepad{
     justify-content: space-between;
 }
 .button_sec .button{
-    background: #d23939; /* Old browsers */
+background: #d23939; /* Old browsers */
 background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to right, #d23939 0%,#972323 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -562,6 +579,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 .homework-sec span{
     color: #333;
+    font-weight: 600;
 }
 .main_clrbx{
     width: 20px;
@@ -573,6 +591,14 @@ font-family: 'Ubuntu', sans-serif;
     font-size: 15px;
     vertical-align: top;
 }
+.yellow{
+    background: #FFFF00;
+}
+.yellow_txt{
+    color: #FFFF00;
+    vertical-align: top;
+}
+
 .blue{
     background: #0099ff;
 }
@@ -638,7 +664,7 @@ font-family: 'Ubuntu', sans-serif;
 .color_select .button{
 display: inline-block;
     width: 31%;
-    background: #d23939; /* Old browsers */
+background: #d23939; /* Old browsers */
 background: -moz-linear-gradient(left, #d23939 0%, #972323 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left, #d23939 0%,#972323 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to right, #d23939 0%,#972323 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -660,7 +686,7 @@ font-weight: normal;
 }
 .save_attncebtn .button{
     width: 80% !important;
-    margin: 0 auto;
+    margin: 20px auto 10px;
 }
 .menubg{
     background: url(../img/menu_bg.jpg) repeat;
@@ -682,6 +708,8 @@ font-weight: normal;
     border-color: transparent;
     color: #fff;
     padding-left: 11px;
+    font-size: 15px;
+    font-weight: 600;
 }
 .menu_list .item .item-content i{
     margin-right: 10px;
@@ -768,7 +796,7 @@ font-weight: normal;
 }
 .main_login{
     background: url(../img/bg_login.png) no-repeat bottom;
-    background-size: contain;
+    background-size: cover;
 }
 .login_top{
     background: url(../img/logobg.jpg) no-repeat;
@@ -824,6 +852,7 @@ font-weight: normal;
     font-size: 14px;
     font-weight: 700;
     padding: 10px;
+    background: #fff;
 }
 .register_wrkshop_sec .item{
     background: transparent;
@@ -947,7 +976,6 @@ font-weight: normal;
 }
 .my_class_schedule{
     border-bottom: 1px solid #cccccc;
-    margin-bottom: 20px;
     margin-top: 20px;
 }
 .class_tchr_box i{
@@ -984,8 +1012,11 @@ font-weight: normal;
     width: 48%;
     font-weight: normal;
 }
-.session_details_sec .hdnge_listing_sec{
-    border-bottom: none;
+.session_details_sec .hdnge_listing_sec, .nxt_session_clas .hdnge_listing_sec{
+    border-bottom: none !important;
+}
+.my_classes_sec .hdnge_listing_sec{
+    border-bottom:1px solid #cccccc;
 }
 .session_details_sec_hmwrk .hdnge_listing_sec{
     border-bottom:1px solid #cccccc;
@@ -1146,7 +1177,7 @@ a.close{
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 11px;
-    text-align: center;
+    text-align: left;
 }
 .main_popupcont select{
     background: #fff;
@@ -1155,7 +1186,7 @@ a.close{
     padding: 10px;
 }
 .popup_btn{
-    margin: 40px 0 20px;
+    margin: 30px 0 20px;
     width: 100%;
 }
 .main_popupcont h3.mrgbtm{
@@ -1182,25 +1213,29 @@ a.close{
 .add_new_stdnt_inputs .item input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-size: 14px;
   color: #000;
+  font-weight: 600;
 }
 .add_new_stdnt_inputs .item input[type="text"]::-moz-placeholder { /* Firefox 19+ */
   font-size: 14px;
   color: #000;
+  font-weight: 600;
 }
 .add_new_stdnt_inputs .item input[type="text"]::-ms-input-placeholder { /* IE 10+ */
   font-size: 14px;
   color: #000;
+  font-weight: 600;
 }
 .add_new_stdnt_inputs .item input[type="text"]::-moz-placeholder { /* Firefox 18- */
   font-size: 14px;
   color: #000;
+  font-weight: 600;
 }
 .add_new_mainpopup h3{
     text-align: left;
     margin-top: 30px;
 }
-.add_checkout_mainpopup h3{
-    padding: 0 10px;
+.add_checkout_mainpopup h3 {
+    padding: 20px 10px;
 }
 .add_new_stdnt_inputs .item .item-input textarea{
     height: 60px;
@@ -1222,6 +1257,25 @@ a.close{
 .modal-backdrop, .modal-backdrop-bg{
     background-color: rgba(0, 0, 0, 0.5);
 }
+.session_num em{
+    font-size: 15px;
+}
+.popuptechting_edit .session_num {
+    margin-left: -20px;
+}
+.main_popupcont{
+    padding: 10px 30px;
+}
+.faq_mn_cont .session_num{
+    overflow: hidden;
+    width: 100%;
+}
+.faq_mn_cont .session_num span {
+    font-size: 11px;
+    display: block;
+    white-space: normal;
+    line-height: 18px;
+}
 /*----media_query---*/
 @media screen and (min-width: 320px) and (max-width: 359px) {
 .acto_schdle strong {
@@ -1241,7 +1295,7 @@ a.close{
 }
 .adrss_sec .addrss {
     float: left;
-    width: 86%;
+    width: 82%;
     margin-left: 14px;
 }
 .vol_prof_pic {
@@ -1263,7 +1317,7 @@ h2 {
     font-size: 12px;
 }
 .chckbx_lang .item-checkbox .item-content span {
-    font-size: 8px;
+    font-size: 11px;
 }
 .arrw_up {
     margin-top: 0px;
@@ -1297,6 +1351,28 @@ h2 {
 .popupmodal {
     width: 280px;
     height: 420px;
+}
+.main_schedule .button i {
+    margin-left: 8px;
+}
+.session_num{
+    font-size: 9px;
+}
+.date_nd_tym{
+    margin-top: -2px;
+}
+.date_nd_tym span{
+    font-size: 9px;
+}
+.session_attndnce_list strong{
+    font-size: 7px;
+}
+.attnce_list_hdng span {
+    font-size: 14px;
+}
+.my_nxtsessn_datetym {
+    margin-right: -3px;
+    margin-top: 13px;
 }
 }
 @media screen and (min-width: 375px) and (max-width: 1024px) {

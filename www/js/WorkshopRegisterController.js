@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
- .controller('WorkshopRegisterController', function (CONFIG, $scope, $stateParams, $location, $http, $window, $auth) {
+ .controller('WorkshopRegisterController', function (CONFIG, $scope, $stateParams, $location, $http, $window, $auth, $rootScope) {
 
  	$scope.selectProgram = {
  		value:''
@@ -30,14 +30,17 @@ angular.module('starter.controllers')
  	// 	})
  		
     $scope.register = function () {
-        $scope.newRecord._enrolled.push($scope.tokenInfo.id);
+        $scope.newRecord._enrolled.push({_volunteer:$scope.tokenInfo.id});
+        console.log("$scope.newRecord", $scope.newRecord);
       $http({
             method:'PUT',
             url:CONFIG.apiEndpoint+'/editworkshop/'+$scope.selectedWorkshopId,
             data: $scope.newRecord
         }).then(function mySuccess(response){
             $scope.workshops = response.data.result;
+            $rootScope.scheduleWorkshop.push($scope.workshops);
             console.log("workshops", $scope.workshops);
+            console.log("response", response);
             $location.path('/app/workshop');
         })
       
@@ -45,8 +48,8 @@ angular.module('starter.controllers')
 
     $scope.chngProg = function(){
         $scope.selectedWorkshops = [];
-    	console.log("$scope.selectProgram.value", $scope.selectProgram.value);
-        if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined){
+    	console.log("$scope.selectProgram.value", $scope.selectProgram.value, "$scope.selectTerm.value", $scope.selectTerm.value);
+        if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined && $scope.selectProgram.value!='' && $scope.selectTerm.value!=''){
             // $scope.workshops.forEach(function(data, id){
             //     if(data._program!=null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
             //         console.log("data  print", data);
@@ -55,10 +58,10 @@ angular.module('starter.controllers')
             // })
             $http({
                 method:'POST',
-                url:CONFIG.apiEndpoint+'/getAllMyCityWorkshope',
+                url:CONFIG.apiEndpoint+'/getallcityworkshops',
                 data : {term : $scope.selectTerm.value, program : $scope.selectProgram.value}
             }).then(function mySuccess(response){
-                $scope.workshops = response.data.result;
+                $scope.selectedWorkshops = response.data.result;
                 console.log("workshops", $scope.workshops);
             })
         }
@@ -67,18 +70,18 @@ angular.module('starter.controllers')
     $scope.chngTerm = function(){
         $scope.selectedWorkshops = [];
     	console.log("$scope.selectTerm.value", $scope.selectTerm.value);
-        if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined){
+        if($scope.selectProgram.value !=undefined && $scope.selectTerm.value!=undefined && $scope.selectProgram.value!='' && $scope.selectTerm.value!=''){
             // $scope.workshops.forEach(function(data, id){
             //     if(data._program!= null && data._program._id == $scope.selectProgram.value && data.forTerm == $scope.selectTerm.value){
             //         $scope.selectedWorkshops.push(data);
             //     }
             // })
             $http({
-                method:'GET',
-                url:CONFIG.apiEndpoint+'/getAllMyCityWorkshope',
+                method:'POST',
+                url:CONFIG.apiEndpoint+'/getallcityworkshops',
                 data : {term : $scope.selectTerm.value, program : $scope.selectProgram.value}
             }).then(function mySuccess(response){
-                $scope.workshops = response.data.result;
+                $scope.selectedWorkshops = response.data.result;
                 console.log("workshops", $scope.workshops);
             })
         }

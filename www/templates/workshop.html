@@ -1,90 +1,93 @@
-<ion-view>
-  <ion-header-bar align-title="center" class="custom_header">
-	<div class="buttons">
-	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">My Workshop</h1>  
-	<button class="button button-icon ion-plus-round button-clear" ng-click="register()"></button>
-   </ion-header-bar>
-   <ion-content class="contnet_bg">
-   		<div class="contnt_padding wrkshp_schedule">
-	   		<div class="card layout_schedule" ng-repeat="item in scheduleWorkshop">
-	   		  <h2>Scheduled</h2>
-			  <div class="item item-text-wrap">
-			    <div class="row date_tym_sec">
-			    	<div class="col col-66 dat_schdle">
-			    		<span>{{item.date | date:'dd MMM, y' }}</span>
-			    		<span><i class="icon ion-clock"></i> {{item.time}}</span>
-			    	</div>
-			    	<div class="col col-33 acto_schdle" ng-hide="item.isActive">
-			    		<strong>Action</strong>
-			    		<em class="gry_txt">Cancel</em>
-			    	</div>
-			    </div>
-			    <div class="row term_program_status">
-			    	<div class="col col-33">
-			    		<h3>Term</h3>
-			    		<span>{{item.forTerm}}</span>
-			    	</div>
-			    	<div class="col col-33">
-			    		<h3>Program</h3>
-			    		<span>{{item._program.name}}</span>
-			    	</div>
-			    	<div class="col col-33">
-			    		<h3>status</h3>
-			    		<span class="gry_txt">{{item.status}}</span>
-			    	</div>
-			    </div>
-			    <div class="row adrss_sec padding">
-			    	<div class="col col-100">
-			    		<i class="icon ion-ios-location"></i>
-			    		<div class="addrss">
-			    			<h4>Address</h4>
-			    			<span>{{item.location}}</span>
-			    		</div>
-			    	</div>
-			    </div>
-			  </div>
+<ion-view view-title="My Workshop">
+	<!--<ion-header-bar align-title="center" class="custom_header">
+		<div class="buttons">
+			<button class="button button-icon ion-navicon button-clear"></button>
+		</div>
+		<h1 class="title">My Workshop</h1>
+		<button class="button button-icon ion-plus-round button-clear" ng-click="register()"></button>
+	</ion-header-bar>-->
+	<ion-nav-buttons side="right">
+		<button class="button button-icon ion-plus-round button-clear" ng-click="register()"></button>
+	</ion-nav-buttons>
+	<ion-content class="contnet_bg">
+		<div class="contnt_padding wrkshp_schedule">
+			<div class="card layout_schedule" ng-repeat="item in scheduleWorkshop">
+				<h2 ng-show='$index == 0'>Scheduled</h2>
+				<div class="item item-text-wrap">
+					<div class="row date_tym_sec">
+						<div class="col col-66 dat_schdle">
+							<span>{{item.startDate | date:'dd MMM, y' }}</span>
+							<span><i class="icon ion-clock"></i> {{item.startDate | date:'h:mm a'}}</span>
+						</div>
+						<div class="col col-33 acto_schdle" ng-show="item.isCancelled">
+							<strong>Action</strong>
+							<em class="gry_txt">Cancel</em>
+						</div>
+					</div>
+					<div class="row term_program_status">
+						<div class="col col-33">
+							<h3>Term</h3>
+							<span>{{item.forTerm}}</span>
+						</div>
+						<div class="col col-33">
+							<h3>Program</h3>
+							<span>{{item._program.name}}</span>
+						</div>
+						<div class="col col-33">
+							<h3>status</h3>
+							<span class="gry_txt">{{item.status}}</span>
+						</div>
+					</div>
+					<div class="row adrss_sec padding">
+						<div class="col col-100">
+							<i class="icon ion-ios-location"></i>
+							<div class="addrss">
+								<h4>Address</h4>
+								<span>{{item.venue}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="card layout_schedule" ng-repeat="item in pastWorkshop">
-	   		  <h2>Past</h2>
-			  <div class="item item-text-wrap">
-			    <div class="row date_tym_sec">
-			    	<div class="col col-66 dat_schdle">
-			    		<span>{{item.date | date:'dd MMM, y' }}</span>
-			    		<span><i class="icon ion-clock"></i> {{item.time}}</span>
-			    	</div>
-			    	<div class="col col-33 acto_schdle">
-			    		<!-- <strong>Action</strong>
+				<h2 ng-show='$index == 0'>Past</h2>
+				<div class="item item-text-wrap">
+					<div class="row date_tym_sec">
+						<div class="col col-66 dat_schdle">
+							<span>{{item.startDate | date:'dd MMM, y' }}</span>
+							<span><i class="icon ion-clock"></i> {{item.startDate | date:'h:mm a'}}</span>
+						</div>
+						<div class="col col-33 acto_schdle">
+							<!-- <strong>Action</strong>
 			    		<em class="gry_txt">Cancel</em> -->
-			    	</div>
-			    </div>
-			    <div class="row term_program_status">
-			    	<div class="col col-33">
-			    		<h3>Term</h3>
-			    		<span>{{item.forTerm}}</span>
-			    	</div>
-			    	<div class="col col-33">
-			    		<h3>Program</h3>
-			    		<span>{{item._program.name}}</span>
-			    	</div>
-			    	<div class="col col-33">
-			    		<h3>status</h3>
-			    		<span class="gry_txt">{{item.status}}</span>
-			    	</div>
-			    </div>
-			    <div class="row adrss_sec padding">
-			    	<div class="col col-100">
-			    		<i class="icon ion-ios-location"></i>
-			    		<div class="addrss">
-			    			<h4>Address</h4>
-			    			<span>{{item.location}}</span>
-			    		</div>
-			    	</div>
-			    </div>
-			  </div>
+						</div>
+					</div>
+					<div class="row term_program_status">
+						<div class="col col-33">
+							<h3>Term</h3>
+							<span>{{item.forTerm}}</span>
+						</div>
+						<div class="col col-33">
+							<h3>Program</h3>
+							<span>{{item._program.name}}</span>
+						</div>
+						<div class="col col-33">
+							<h3>status</h3>
+							<span class="gry_txt">{{item.status}}</span>
+						</div>
+					</div>
+					<div class="row adrss_sec padding">
+						<div class="col col-100">
+							<i class="icon ion-ios-location"></i>
+							<div class="addrss">
+								<h4>Address</h4>
+								<span>{{item.venue}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			
+
 		</div>
-   </ion-content>
+	</ion-content>
 </ion-view>

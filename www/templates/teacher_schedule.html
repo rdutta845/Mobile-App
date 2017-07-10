@@ -21,9 +21,9 @@
 	   					<option ng-repeat="prog in programs" value="{{prog._id}}">{{prog.name}}</option>
 	   					</select>
 					</select>
-   				</div>
-   				<div class="col col-33">
-   					<select class="button" ng-model="filterParams.filterTerm" ng-change="applyFilters()">
+				</div>
+				<div class="col col-33">
+					<select class="button" ng-model="filterParams.filterTerm" ng-change="applyFilters()">
 
 					  <option value="" disabled selected>Term <i class="fa fa-angle-double-down" aria-hidden="true"></i></option>
  						<option value="1">1</option>
@@ -31,50 +31,50 @@
  						<option value="3">3</option>
  						<option value="4">4</option>
 					</select>
-   				</div>
-   				<div class="col col-33">
-   					<select class="button" ng-model="filterParams.filterClass" ng-change="applyFilters()">
+				</div>
+				<div class="col col-33">
+					<select class="button" ng-model="filterParams.filterClass" ng-change="applyFilters()">
 					  Class <i class="fa fa-angle-double-down" aria-hidden="true"></i>
 					  <option value="" disabled selected>Class</option>
 	   				<option ng-repeat="class in classes" value="{{class.classID}}">{{class.classID}}</option>
 					</select>
-   				</div>
-   			</div>
-   			<div class="padding">
-	   			<ion-list class="teacher_listing_sec">
-	   				<ion-item ng-repeat="ses in allSession">
-	   					<div class="row hdnge_listing_sec">
-	   						<div class="session_num">
-	   							<span ng-click="details('{{ses._id}}')">Session {{ses.sessionNo}}</span>
-	   						</div>
-	   						<div class="date_nd_tym">
-	   							<span>{{ses.date | date:'EEE dd MMM yy'}}</span>
-				    			<span><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
-	   						</div>
-	   						<div class="edit_action">
-	   							<span ng-show="editSes[$index]"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
-	   							<span ng-hide="editSes[$index]">Session Closed</span>
-	   						</div>
-	   						<a class="arrw_up" ng-click="toggleGroup($index)"><i class="icon" ng-class="showSession[$index] ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
-	   					</div>
-	   					<div class="schedule_mini padding" ng-show='showSession[$index]'>
-	   						<h3>Co-Volunteers for the Session</h3>
-	   						<ion-list>
-	   							<ion-item ng-repeat="vol in ses._volunteers">
-	   								<i class="icon ion-iphone phone_icn"></i>
-	   								<div class="right_cont">
-	   									<strong>{{vol.name.full}}</strong>
-	   									<div class="row">
-	   										<div class="col col-33">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
-	   										</div>
-	   										<div class="col col-33">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
-	   										</div>
-	   									</div>
-	   								</div>
-	   							</ion-item>
-	   							<!-- <ion-item>
+				</div>
+			</div>
+			<div class="padding">
+				<ion-list class="teacher_listing_sec">
+					<ion-item ng-repeat="ses in allSession">
+						<div class="row hdnge_listing_sec">
+							<div class="session_num">
+								<span>Session {{ses.sessionNo}}</span>
+							</div>
+							<div class="date_nd_tym">
+								<span>{{ses.date | date:'EEE dd MMM yy'}}</span>
+								<span><i class="icon ion-clock"></i> {{ses.date | date:'h:mm a'}}</span>
+							</div>
+							<div class="edit_action">
+								<span ng-show="editSes[$index]"><a class="arrw_up" ng-click="editSession($index)">Edit<i class="icon ion-edit"></i></a></span>
+								<span ng-hide="editSes[$index]">Session Closed</span>
+							</div>
+							<a class="arrw_up" ng-click="toggleGroup($index)"><i class="icon" ng-class="showSession[$index] ? 'ion-arrow-down-c' : 'ion-arrow-up-c'"></i></a>
+						</div>
+						<div class="schedule_mini padding" ng-show='showSession[$index]'>
+							<h3>Co-Volunteers for the Session</h3>
+							<ion-list>
+								<ion-item ng-repeat="vol in ses._volunteers">
+									<i class="icon ion-iphone phone_icn"></i>
+									<div class="right_cont">
+										<strong>{{vol.name.full}}</strong>
+										<div class="row">
+											<div class="col col-33">
+												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
+											</div>
+											<div class="col col-33">
+												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+											</div>
+										</div>
+									</div>
+								</ion-item>
+								<!-- <ion-item>
 	   								<i class="icon ion-iphone phone_icn"></i>
 	   								<div class="right_cont">
 	   									<strong>Ashutosh MIshra</strong>
@@ -88,10 +88,10 @@
 	   									</div>
 	   								</div>
 	   							</ion-item> -->
-	   						</ion-list>
-	   					</div>
-	   				</ion-item>
-	   				<!-- <ion-item>
+							</ion-list>
+						</div>
+					</ion-item>
+					<!-- <ion-item>
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num">
 	   							<span>Session 01</span>
@@ -139,7 +139,7 @@
 	   						</ion-list>
 	   					</div>
 	   				</ion-item> -->
-	   				<!-- <ion-item>
+					<!-- <ion-item>
 	   					<div class="row hdnge_listing_sec">
 	   						<div class="session_num">
 	   							<span>Session 01</span>
@@ -188,7 +188,7 @@
 	   					</div>
 	   				</ion-item>
 	   			</ion-list> -->
-   			</div>
+			</div>
 		</div>
-   </ion-content>
+	</ion-content>
 </ion-view>

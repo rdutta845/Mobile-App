@@ -1,24 +1,24 @@
-<ion-view>
-  <ion-header-bar align-title="center" class="custom_header">
-	<div class="buttons">
-	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">Number Validation</h1>  
-   </ion-header-bar>
-   <ion-content class="contnet_bg">
-   		<div class="contnt_padding">
-   			<div class="form_sec number_verfy">
-   				<ion-list class="login_form">
-   				  <span>Number Validation</span>
-		          <label class="item-input-wrapper user_sec">
+<ion-view view-title="Number Validation" hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="custom_header">
+		<!--<div class="buttons">
+			<button class="button button-icon ion-navicon button-clear"></button>
+		</div>-->
+		<h1 class="title">Number Validation</h1>
+	</ion-header-bar>
+	<ion-content class="contnet_bg">
+		<div class="contnt_padding">
+			<div class="form_sec number_verfy">
+				<ion-list class="login_form">
+					<span>Number Validation</span>
+					<label class="item-input-wrapper user_sec">
 		            <i class="fa fa-mobile" aria-hidden="true"></i>
-		            <input type="text" placeholder="Please Enter Mobile Number" ng-model="mobNumber.value">
+		            <input type="Number" placeholder="Please Enter Mobile Number" ng-model="mobNumber.value">
 		          </label>
-		          <div class="btn_box">
-		            <button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="verify()">Verify</button>
-		          </div>
-		      </ion-list>
+					<div class="btn_box">
+						<button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="verify()">Verify</button>
+					</div>
+				</ion-list>
 			</div>
-   		</div>
-   </ion-content>
+		</div>
+	</ion-content>
 </ion-view>

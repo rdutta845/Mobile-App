@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
-.controller('WorkshopController', function(CONFIG, $scope, $stateParams, $location, $http) {
+.controller('WorkshopController', function(CONFIG, $scope, $stateParams, $location, $http, $rootScope) {
 
     $scope.userWorkshop=[];
-    $scope.scheduleWorkshop = [];
+    $rootScope.scheduleWorkshop = [];
     $scope.pastWorkshop = [];
     var curDate = new Date();
     $http({
@@ -17,12 +17,12 @@ angular.module('starter.controllers')
           }
           console.log("current Date", curDate);
           $scope.userWorkshop.forEach(function(data, id){
-            var comDate = new Date(data.date);
+            var comDate = new Date(data.startDate);
             console.log("comDate", comDate);
             if(curDate > comDate){
               $scope.pastWorkshop.push(data);
             }else if(curDate <= comDate){
-              $scope.scheduleWorkshop.push(data);
+              $rootScope.scheduleWorkshop.push(data);
             }
 
           })

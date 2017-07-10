@@ -1,56 +1,55 @@
-<ion-view>
-  <ion-header-bar align-title="center" class="custom_header">
-	<div class="buttons">
-	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">Register for Workshop</h1>  
-   </ion-header-bar>
-   <ion-content class="contnet_bg">
-   		<div class="contnt_padding">
-   			<div class="padding">
-	   			<ion-list class="register_wrkshop_sec">
-	   				<h3>
-	   					Consult your organization lead to choose the 
-						correct Term you are going to be teaching
-	   				</h3>
-	   				<ion-item>
-	   					<select ng-model="selectProgram.value" ng-change="chngProg()">
+<ion-view view-title="Register for Workshop">
+	<!--<ion-header-bar align-title="center" class="custom_header">
+		<div class="buttons">
+			<button class="button button-icon ion-navicon button-clear"></button>
+		</div>
+		<h1 class="title">Register for Workshop</h1>
+	</ion-header-bar>-->
+	<ion-content class="contnet_bg">
+		<div class="contnt_padding">
+			<div class="padding">
+				<ion-list class="register_wrkshop_sec">
+					<h3>
+						Consult your organization lead to choose the correct Term you are going to be teaching
+					</h3>
+					<ion-item>
+						<select ng-model="selectProgram.value" ng-change="chngProg()">
 	   						<option value="" disabled selected>Program</option>
 	   						<option ng-repeat="prog in programs" value="{{prog._id}}">{{prog.name}}</option>
 	   					</select>
-	   				</ion-item>
-	   				<ion-item>
-	   					<select ng-model="selectTerm.value" ng-change="chngTerm()">
+					</ion-item>
+					<ion-item>
+						<select ng-model="selectTerm.value" ng-change="chngTerm()">
 	   						<option value="" disabled selected>Term</option>
 	   						<option value="1">1</option>
 	   						<option value="2">2</option>
 	   						<option value="3">3</option>
 	   						<option value="4">4</option>
 	   					</select>
-	   				</ion-item>
-	   				<strong>Select from option</strong>
-	   				<div class="select_option-sec" ng-hide="selectedWorkshops.length == 0">
-	   					<ion-list>
-	   					<!-- <ion-item class="item-thumbnail-left" ng-show="selectedWorkshops.length == 0">
+					</ion-item>
+					<strong>Select from option</strong>
+					<div class="select_option-sec" ng-hide="selectedWorkshops.length == 0">
+						<ion-list>
+							<!-- <ion-item class="item-thumbnail-left" ng-show="selectedWorkshops.length == 0">
 	   						<center>Select Program And Term</center>
 	   					</ion-item> -->
-						  <ion-radio ng-model="choice" ng-value="'A'" ng-repeat="item in selectedWorkshops" ng-click="clickedFun($index)">
-						  	<!-- June, 1, 2017 at 1 pm – XYZ School, BTM Logout -->
-						  	{{item.date | date:"MMM, d, yyyy"}} at {{item.time}} - {{item.location}}
-						  </ion-radio>
-						  <!-- <ion-radio ng-model="choice" ng-value="'B'">
+							<ion-radio ng-model="choice" ng-value="'A'" ng-repeat="item in selectedWorkshops" ng-click="clickedFun($index)">
+								<!-- June, 1, 2017 at 1 pm – XYZ School, BTM Logout -->
+								{{item.startDate | date:"MMM, d, yyyy"}} at {{item.startDate | date:'h:mm a'}} - {{item.venue}}
+							</ion-radio>
+							<!-- <ion-radio ng-model="choice" ng-value="'B'">
 						  	June, 11, 2017 at 10 pm – XYZ School BTM Logout
 						  </ion-radio>
 						  <ion-radio ng-model="choice" ng-value="'c'">
 						  	June, 21, 2017 at 4pm – XYZ School, BTM Logout
 						  </ion-radio> -->
 						</ion-list>
-	   				</div>
-	   			</ion-list>
-	   			<div class="button_sec checkin_btn regst_btn">
-				  <button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="register()">Register</button>
+					</div>
+				</ion-list>
+				<div class="button_sec checkin_btn regst_btn">
+					<button class="button button-large icon-right ion-arrow-right-c nxt_btn" ng-click="register()">Register</button>
 				</div>
-   			</div>
+			</div>
 		</div>
-   </ion-content>
+	</ion-content>
 </ion-view>

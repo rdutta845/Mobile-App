@@ -1,34 +1,34 @@
-<ion-view>
-  <ion-header-bar align-title="center" class="custom_header">
-	<div class="buttons">
-	  <button class="button button-icon ion-chevron-left button-clear" ng-click="goBack()"></button>
-	</div>
-	<h1 class="title">Student Report</h1>
-   </ion-header-bar>
-   <ion-content class="contnet_bg">
-   		<div class="contnt_padding">
-   			<ion-list class="teacher_listing_sec session_details_sec session_history_sec student_report_sec">
-	   			<ion-item>
-		   			<div class="row hdnge_listing_sec student_report_hdng">
+ <ion-view view-title="Student Report">
+	<!--<ion-header-bar align-title="center" class="custom_header">
+		<div class="buttons">
+			<button class="button button-icon ion-chevron-left button-clear"></button>
+		</div>
+		<h1 class="title">Student Report</h1>
+	</ion-header-bar>-->
+	<ion-content class="contnet_bg">
+		<div class="contnt_padding">
+			<ion-list class="teacher_listing_sec session_details_sec session_history_sec student_report_sec">
+				<ion-item>
+					<div class="row hdnge_listing_sec student_report_hdng">
 						<div class="session_num">
 							<strong>Name</strong>
 						</div>
 						<div class="date_nd_tym">
 							<strong>Attendance</strong>
-		    				<em>({{totalAttendance}})</em>
+							<em>({{totalAttendance}})</em>
 						</div>
 						<div class="aser_sec">
 							<strong>ASER</strong>
-		    				<em>(base)</em>
+							<em>(base)</em>
 						</div>
 						<div class="aser_sec">
 							<strong>ASER</strong>
-		    				<em>(mid)</em>
+							<em>(mid)</em>
 						</div>
 					</div>
 				</ion-item>
 				<ion-item ng-repeat="student in students">
-		   			<div class="row hdnge_listing_sec student_report_hdng">
+					<div class="row hdnge_listing_sec student_report_hdng">
 						<div class="session_num">
 							<strong>{{student.name.firstName}} {{student.name.lastName}}</strong>
 							<em class="joindts">Join Date:{{student.addedOn | date}}</em>
@@ -50,5 +50,5 @@
 				</ion-item>
 			</ion-list>
 		</div>
-   </ion-content>
+	</ion-content>
 </ion-view>

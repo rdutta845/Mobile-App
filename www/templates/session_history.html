@@ -1,56 +1,56 @@
-<ion-view>
-  <ion-header-bar align-title="center" class="custom_header">
+<ion-view view-title="Session History">
+	<!--<ion-header-bar align-title="center" class="custom_header">
 	<div class="buttons">
 	  <button class="button button-icon ion-chevron-left button-clear" ng-click="goBack()"></button>
 	</div>
 	<h1 class="title">Session History</h1>
-   </ion-header-bar>
-   <ion-content class="contnet_bg">
-   		<div class="contnt_padding">
-   			<div class="padding">
-	   			<ion-list class="teacher_listing_sec session_details_sec session_history_sec">
-	   				<ion-item ng-repeat="session in sessions | orderBy : 'sessionNo'">
-					    <div class="row term_program_status">
-					    	<div class="col col-33">
-					    		<h3 class="history_sessin">Session <strong>{{session.sessionNo}}</strong></h3>
-					    	</div>
-					    	<div class="col col-33">
-					    		<h3><strong>{{session.date | date : "dd"}}</strong>{{session.date | date : "MMM yy"}}</h3>
-					    		<span><i class="icon ion-clock"></i> {{session.date | date : "hh.mm a"}}</span>
-					    	</div>
-					    	<div class="col col-33">
-					    		<h3>Homework Color</h3>
-					    		<div class="color_box_sec">
-   									<div class="main_clrbx {{session.teamColor | lowercase}}"></div>
-   									<strong>{{session.teamColor}}</strong>
-   								</div>
-					    	</div>
-					    </div>
-					    <div class="row brdr_btm">
-					    	<div class="col col-100 remark_sec">
-					    		<h3>{{session.status}}</h3>
-                    <!-- changed a bit of html to display remarks as properly indented -->
-					    		<span ng-repeat="comment in session.comments"><div style="width: 65px;"><strong ng-show="$first">Remarks - </strong></div>{{comment}}</span>
-					    	</div>
-					    </div>
-					    <div class="schedule_mini padding history_membersession">
-	   						<h3>Volunteers for the Session</h3>
-	   						<ion-list>
-	   							<ion-item ng-repeat="volunteer in session._volunteers">
-	   								<i class="icon ion-iphone phone_icn"></i>
-	   								<div class="right_cont">
-	   									<strong>{{volunteer.name.full}}</strong>
-	   									<div class="row">
-	   										<div class="col col-33">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
-	   										</div>
-	   										<div class="col col-33" ng-if="volunteer.knowslocal">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
-	   										</div>
-	   									</div>
-	   								</div>
-	   							</ion-item>
-	   							<!-- <ion-item>
+   </ion-header-bar>-->
+	<ion-content class="contnet_bg">
+		<div class="contnt_padding">
+			<div class="padding">
+				<ion-list class="teacher_listing_sec session_details_sec session_history_sec">
+					<ion-item ng-repeat="session in sessions">
+						<div class="row term_program_status">
+							<div class="col col-33">
+								<h3 class="history_sessin">Session <strong>{{session.sessionNo}}</strong></h3>
+							</div>
+							<div class="col col-33">
+								<h3><strong>{{session.date | date : "dd"}}</strong>{{session.date | date : "MMM yy"}}</h3>
+								<span><i class="icon ion-clock"></i> {{session.date | date : "hh.mm a"}}</span>
+							</div>
+							<div class="col col-33">
+								<h3>Homework Color</h3>
+								<div class="color_box_sec">
+									<div class="main_clrbx {{session.teamColor | lowercase}}"></div>
+									<strong>{{session.teamColor}}</strong>
+								</div>
+							</div>
+						</div>
+						<div class="row brdr_btm">
+							<div class="col col-100 remark_sec">
+								<h3>{{session.status}}</h3>
+								<!-- changed a bit of html to display remarks as properly indented -->
+								<span ng-repeat="comment in session.comments"><div style="width: 65px;"><strong ng-show="$first">Remarks - </strong></div>{{comment}}</span>
+							</div>
+						</div>
+						<div class="schedule_mini padding history_membersession">
+							<h3>Volunteers for the Session</h3>
+							<ion-list>
+								<ion-item ng-repeat="volunteer in session._volunteers">
+									<i class="icon ion-iphone phone_icn"></i>
+									<div class="right_cont">
+										<strong>{{volunteer.name.full}}</strong>
+										<div class="row">
+											<div class="col col-33">
+												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
+											</div>
+											<div class="col col-33" ng-if="volunteer.knowslocal">
+												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+											</div>
+										</div>
+									</div>
+								</ion-item>
+								<!-- <ion-item>
 	   								<i class="icon ion-iphone phone_icn"></i>
 	   								<div class="right_cont">
 	   									<strong>Ashutosh MIshra</strong>
@@ -64,10 +64,10 @@
 	   									</div>
 	   								</div>
 	   							</ion-item> -->
-	   						</ion-list>
-	   					</div>
-	   				</ion-item>
-	   				<!-- <ion-item>
+							</ion-list>
+						</div>
+					</ion-item>
+					<!-- <ion-item>
 					    <div class="row term_program_status">
 					    	<div class="col col-33">
 					    		<h3 class="history_sessin">Session <strong>18</strong></h3>
@@ -120,8 +120,8 @@
 	   						</ion-list>
 	   					</div>
 	   				</ion-item> -->
-	   			</ion-list>
-   			</div>
+				</ion-list>
+			</div>
 		</div>
-   </ion-content>
+	</ion-content>
 </ion-view>

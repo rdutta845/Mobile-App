@@ -6,6 +6,16 @@ angular.module('starter.controllers')
 	}
 
     $scope.verify = function(){
+        if($scope.mobNumber == undefined || $scope.mobNumber.value == ''){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Error',
+                template: "Please Enter Your mobile number"
+              });
+              alertPopup.then(function(res) {
+                console.log("Please Enter Your mobile number");
+              });
+            $location.path('/app/login_number_validation');  
+        }
         CONFIG.contactNo = $scope.mobNumber.value;
         $http({
           method:"GET",
@@ -20,7 +30,16 @@ angular.module('starter.controllers')
                 console.log("Pre registered");
                 $location.path('/app/volunteer_registration');
 
-            }
+            }else if(response.data.error == true && response.data.isRegistered == true){
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Error',
+                    template: response.data.message
+                  });
+                  alertPopup.then(function(res) {
+                    console.log('Already Registered');
+                  });
+                $location.path('/app/stepuplogin');
+             }
 
         })
     	console.log("verify");
