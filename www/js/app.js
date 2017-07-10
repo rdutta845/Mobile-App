@@ -134,7 +134,7 @@ ngApp
     }
   })
   .state('app.session_details', {
-    url: '/session_details',
+    url: '/session_details/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/session_details.html',

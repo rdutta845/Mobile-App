@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 		$scope.scheduleShow = true;
 		$scope.contentShow = true;
-
+		$scope.position = $cordovaGeolocation.getCurrentPosition(positionOptions);
 		$scope.toggle = function(str){
 			console.log(str);
 			if(str == 'schedule'){
@@ -39,6 +39,21 @@ angular.module('starter.controllers')
 			console.log(response);
 
 	  })
+		$scope.checkin = function (id) { //session._id
+			console.log("id print",id);
+			$scope.date = new Date();
+			console.log($scope.date);
+			console.log(($scope.date).getUTCDate());
+			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
+			if((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24) < 1) {
+				$location.path("app/session_details/" + id);
+			} else {
+				$ionicPopup.alert({
+		      title: 'Restricted',
+		      template: 'You can Check IN only on sessions day'
+		    });
+			}
+		}
 
 
 	})
