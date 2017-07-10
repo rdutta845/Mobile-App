@@ -38,7 +38,11 @@ angular.module('starter.controllers')
       $scope.workshop = [];
       $scope.term = [];
      $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
-
+     $ionicSideMenuDelegate.canDragContent(false);
+      $scope.$on('$ionicView.leave', function () {
+      // Enable swipe to open menu while leaving this page
+      $ionicSideMenuDelegate.canDragContent(true)
+    });
     $http({
         method : "GET",
         url : CONFIG.apiEndpoint+"/getsettingsinfo/",

@@ -35,6 +35,11 @@ angular.module('starter.controllers')
       $scope.vType = {
         value : ''
       }
+    $ionicSideMenuDelegate.canDragContent(false);
+      $scope.$on('$ionicView.leave', function () {
+      // Enable swipe to open menu while leaving this page
+      $ionicSideMenuDelegate.canDragContent(true)
+    });
     $scope.org.value =  "Step Up For India";
     $scope.vType.value = "Coach";
     $http({

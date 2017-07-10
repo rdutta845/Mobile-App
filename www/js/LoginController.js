@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('LoginController', function(CONFIG, $scope, $location, $window, $http, $rootScope, $auth, $ionicPopup) {
+.controller('LoginController', function(CONFIG, $scope, $ionicSideMenuDelegate, $location, $window, $http, $rootScope, $auth, $ionicPopup) {
 	//added to initiate select-dropdown
 	 var token = '';
 	 $scope.isAdmin = false;
@@ -11,7 +11,11 @@ angular.module('starter.controllers')
 	 }
 	//alert("In Login Controller");
 
-  
+  $ionicSideMenuDelegate.canDragContent(false);
+    $scope.$on('$ionicView.leave', function () {
+      // Enable swipe to open menu while leaving this page
+      $ionicSideMenuDelegate.canDragContent(true)
+    });
 
 	$scope.submit = function(){
 		// alert("username is : "+$scope.userName);
@@ -87,13 +91,13 @@ angular.module('starter.controllers')
  		 $location.path('app/forgot_password');
 	}
 	$scope.signUp = function(){
-		var alertPopup = $ionicPopup.alert({
-      title: 'Sign Up',
-      template: "Welcome to Step Up !!  Registration Page"
-    });
-    alertPopup.then(function(res) {
-      console.log('Registration');
-    });
+		// var alertPopup = $ionicPopup.alert({
+  //     title: 'Sign Up',
+  //     template: "Welcome to Step Up !!  Registration Page"
+  //   });
+  //   alertPopup.then(function(res) {
+  //     console.log('Registration');
+  //   });
 		$location.path('/app/login_number_validation');
 	}
 
