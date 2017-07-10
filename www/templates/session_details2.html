@@ -26,42 +26,42 @@
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
 							    		<h3>Class</h3>
-							    		<span>AAAA</span>
+							    		<span>{{session._studentClass.classID}}</span>
 						    		</div>
 						    		<div class="schdule_bx">
 							    		<h3>School Name</h3>
-							    		<span>St.Jame's School(Sector II)</span>
+							    		<span>{{session._school.name}}</span>
 						    		</div>
 						    	</div>
 						    	<div class="col col-50">
 						    		<div class="schdule_bx">
 							    		<h3>Grade</h3>
-							    		<span>4B</span>
+							    		<span>{{session._studentClass.grade}}{{session._studentClass.section}}</span>
 						    		</div>
 						    		<div class="schdule_bx">
-							    		<h3>Section</h3>
-							    		<span>19</span>
+							    		<h3>Session</h3>
+							    		<span>{{session.sessionNo}}</span>
 						    		</div>
 						    	</div>
 						    </div>
 						    <div class="schedule_mini session_schedulebx padding">
 	   						<h3>Co-Volunteers for the Session</h3>
 	   						<ion-list>
-	   							<ion-item>
+	   							<ion-item ng-repeat="volunteer in session._volunteers">
 	   								<i class="icon ion-iphone phone_icn"></i>
 	   								<div class="right_cont">
-	   									<strong>Abhimanyu Nayak</strong>
+	   									<strong>{{volunteer.name.full}}</strong>
 	   									<div class="row">
 	   										<div class="col col-25">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
+	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
 	   										</div>
 	   										<div class="col col-65">
-	   											<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+	   											<span ng-if="volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
 	   										</div>
 	   									</div>
 	   								</div>
 	   							</ion-item>
-	   							<ion-item>
+	   							<!-- <ion-item>
 	   								<i class="icon ion-iphone phone_icn"></i>
 	   								<div class="right_cont">
 	   									<strong>Ashutosh MIshra</strong>
@@ -74,7 +74,7 @@
 	   										</div>
 	   									</div>
 	   								</div>
-	   							</ion-item>
+	   							</ion-item> -->
 	   						</ion-list>
 	   					</div>
 	   					</div>
@@ -124,7 +124,7 @@
 
 	   			</ion-list>
 	   			<div class="button_sec checkin_btn">
-				  <button class="button">Check In</button>
+				  <button class="button">Check IN</button>
 				</div>
    			</div>
 		</div>

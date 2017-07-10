@@ -48,7 +48,7 @@
 					<ion-item ng-repeat="ses in allSession">
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
-								<span>Session {{ses.sessionNo}}</span>
+								<span ng-click="details('{{ses._id}}')">Session {{ses.sessionNo}}</span>
 							</div>
 							<div class="date_nd_tym">
 								<span>{{ses.date | date:'EEE dd MMM yy'}}</span>
