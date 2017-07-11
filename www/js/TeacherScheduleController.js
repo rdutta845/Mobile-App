@@ -127,6 +127,17 @@ angular.module('starter.controllers')
    }
   }
 
+  $scope.langChecking = function(ses, vol, id){
+    $scope.local = false;
+    vol.languages.forEach(function(lang){
+      if(lang.toLowerCase() == ses._school.languageOfInstruction.toLowerCase()){
+        // console.log("yes")
+        $scope.local = true;
+      }
+    })
+    return $scope.local;
+  }
+
   $scope.applyFilters =  function () {
 
       $scope.allSession = angular.copy($scope.myBackup); // reset to unfiltered list first

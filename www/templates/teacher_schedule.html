@@ -70,12 +70,13 @@
 									<i class="icon ion-iphone phone_icn"></i>
 									<div class="right_cont">
 										<strong>{{vol.name.full}}</strong>
-										<div class="row">
+										<div class="row" ng-init="local=langChecking(ses, vol, id)">
 											<div class="col col-33">
 												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
 											</div>
 											<div class="col col-33">
-												<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+												<span  ng-show="local"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+												<span  ng-hide="local"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Does Not Speaks local language</span>
 											</div>
 										</div>
 									</div>
