@@ -141,7 +141,13 @@ angular.module('starter.controllers')
   $scope.applyFilters =  function () {
 
       $scope.allSession = angular.copy($scope.myBackup); // reset to unfiltered list first
+      if($scope.filterParams.filterProg && $scope.filterParams.filterTerm && $scope.filterParams.filterClass && $scope.showAllSession){
+        $scope.showAllSession = false;
+        $scope.filterParams.filterProg = null;
+        $scope.filterParams.filterTerm = null;
+        $scope.filterParams.filterClass = null;
 
+      }
       if($scope.filterParams.filterProg && $scope.filterParams.filterTerm && $scope.filterParams.filterClass){
         $scope.showAllSession = true;
       }
