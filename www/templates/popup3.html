@@ -9,14 +9,18 @@
 			<ion-list class="teacher_listing_sec popuptechting_edit add_new_stdnt_inputs">
 				<ion-item>
 					<label class="item item-input">
-					    <input type="text" placeholder="Student Name">
+					    <input ng-model="FullName.value" type="text" placeholder="Student Name">
 					 </label>
 					 <label class="item item-input">
-					    <input type="text" placeholder="Mother Tongue">
+					    <input ng-model="NewStudent.motherTongue" type="text" placeholder="Mother Tongue">
+					 </label>
+					 <h3>Baseline ASER Score</h3>
+					 <label class="item item-input">
+					    <input ng-model="NewStudent.ASERScores[0]" type="text" placeholder="">
 					 </label>
 				</ion-item>
 			</ion-list>
-			<h3>Baseline ASER Score</h3>
+			<!-- <h3>Baseline ASER Score</h3>
 			<ion-list class="teacher_listing_sec popuptechting_edit add_new_stdnt_inputs">
 				<ion-item>
 					<label class="item item-input">
@@ -24,7 +28,7 @@
 					    </textarea>
 					 </label>
 				</ion-item>
-			</ion-list>
+			</ion-list> -->
 			<button class="button button-large nxt_btn popup_btn" ng-click="saveStudent()">Save</button>
 		</div>
 	</ion-content>
