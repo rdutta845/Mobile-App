@@ -2,8 +2,8 @@
 	<!--<ion-header-bar align-title="center" class="custom_header">
 	<div class="buttons">
 	  <button class="button button-icon ion-navicon button-clear"></button>
-	</div>    
-	<h1 class="title">Session Details</h1>  
+	</div>
+	<h1 class="title">Session Details</h1>
 	<button class="button button-icon ion-plus-round button-clear"></button>
    </ion-header-bar>-->
 	<ion-content class="contnet_bg">
@@ -13,13 +13,71 @@
 					<ion-item>
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
-								<span>Session 01</span>
+								<span>Schedule</span>
 							</div>
 							<div class="date_nd_tym">
-								<span>Mon 07 May 17</span>
-								<span><i class="icon ion-clock"></i> 10.30am</span>
+								<span>{{session.date | date : "EEE dd MMM yy" }}</span>
+								<span><i class="icon ion-clock"></i> {{session.date | date : "hh.mm a"}}</span>
 							</div>
-							<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+							<a class="arrw_up" ng-click="toggle('session')"><i class="icon" ng-class="sessionShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
+						</div>
+						<div class="session_details_schedule" ng-show="sessionShow">
+							<div class="row term_program_status">
+								<div class="col col-50">
+									<div class="schdule_bx">
+										<h3>Class</h3>
+										<span>{{session._studentClass.classID}}</span>
+									</div>
+									<div class="schdule_bx">
+										<h3>School Name</h3>
+										<span>{{session._school.name}}</span>
+									</div>
+								</div>
+								<div class="col col-50">
+									<div class="schdule_bx">
+										<h3>Grade</h3>
+										<span>{{session._studentClass.grade}}{{session._studentClass.section}}</span>
+									</div>
+									<div class="schdule_bx">
+										<h3>Session</h3>
+										<span>{{session.sessionNo}}</span>
+									</div>
+								</div>
+							</div>
+							<div class="schedule_mini session_schedulebx padding">
+								<h3>Co-Volunteers for the Session</h3>
+								<ion-list>
+									<ion-item  ng-repeat="volunteer in session._volunteers">
+										<i class="icon ion-iphone phone_icn"></i>
+										<div class="right_cont">
+											<strong>{{volunteer.name.full}}</strong>
+											<div class="row">
+												<div class="col col-25">
+													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
+												</div>
+												<div class="col col-65">
+													<span ng-if="volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+	   											<span ng-if="!volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Does not speak local language</span>
+	   										</div>
+											</div>
+										</div>
+									</ion-item>
+									<!-- <ion-item>
+										<i class="icon ion-iphone phone_icn"></i>
+										<div class="right_cont">
+											<strong>Ashutosh MIshra</strong>
+											<div class="row">
+												<div class="col col-25">
+													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
+												</div>
+												<div class="col col-65">
+													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Does not Speaks local language</span>
+												</div>
+											</div>
+										</div>
+									</ion-item> -->
+								</ion-list>
+							</div>
 						</div>
 					</ion-item>
 					<ion-item>
@@ -27,7 +85,41 @@
 							<div class="session_num content_nummargn">
 								<span>Content</span>
 							</div>
-							<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+							<a class="arrw_up" ng-click="toggle('content')"><i class="icon" ng-class="contentShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
+						</div>
+						<div class="content_session" ng-show="contentShow">
+							<div class="row">
+								<div class="col col-50">
+									<div class="cont_wrap_bx">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+										<span>Perl module.pdf</span>
+										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+								<div class="col col-50">
+									<div class="cont_wrap_bx">
+										<i class="fa fa-video-camera" aria-hidden="true"></i>
+										<span>Movie Business.mp4</span>
+										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col col-50">
+									<div class="cont_wrap_bx">
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+										<span>Perl module.pdf</span>
+										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+								<div class="col col-50">
+									<div class="cont_wrap_bx">
+										<i class="fa fa-video-camera" aria-hidden="true"></i>
+										<span>Movie Business.mp4</span>
+										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
 						</div>
 					</ion-item>
 					<ion-item>
@@ -35,69 +127,27 @@
 							<div class="session_num content_nummargn">
 								<span>Homework</span>
 							</div>
-							<a href="#" class="arrw_up"><i class="icon ion-arrow-down-c"></i></a>
+							<a class="arrw_up" ng-click="toggle('homework')"><i class="icon" ng-class="homeworkShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
 						</div>
-						<div class="homework-sec">
-							<div class="row bdr_btm">
+						<div class="homework-sec" ng-show="homeworkShow">
+							<div class="row bdr_btm" ng-repeat="session in last5sessions | orderBy : 'sessionNo'" ng-if="$index < 5">
 								<div class="col col-50">
-									<span>Session 18</span>
+									<span>Session {{session.sessionNo}}</span>
 								</div>
 								<div class="col col-50">
 									<div class="color_box_sec">
-										<div class="main_clrbx blue"></div>
-										<strong class="blue_txt">Blue</strong>
-									</div>
-								</div>
-							</div>
-							<div class="row bdr_btm">
-								<div class="col col-50">
-									<span>Session 19</span>
-								</div>
-								<div class="col col-50">
-									<div class="color_box_sec">
-										<div class="main_clrbx green"></div>
-										<strong class="green_txt">Green</strong>
-									</div>
-								</div>
-							</div>
-							<div class="row bdr_btm">
-								<div class="col col-50">
-									<span>Session 20</span>
-								</div>
-								<div class="col col-50">
-									<div class="color_box_sec">
-										<div class="main_clrbx orange"></div>
-										<strong class="orange_txt">Green</strong>
-									</div>
-								</div>
-							</div>
-							<div class="row bdr_btm">
-								<div class="col col-50">
-									<span>Session 22</span>
-								</div>
-								<div class="col col-50">
-									<div class="color_box_sec">
-										<div class="main_clrbx purple"></div>
-										<strong class="purple_txt">Purple</strong>
-									</div>
-								</div>
-							</div>
-							<div class="row bdr_btm">
-								<div class="col col-50">
-									<span>Session 24</span>
-								</div>
-								<div class="col col-50">
-									<div class="color_box_sec">
-										<div class="main_clrbx red"></div>
-										<strong class="red_txt">Red</strong>
+										<div class="main_clrbx {{session.teamColor | lowercase}}"></div>
+										<strong class="{{session.teamColor | lowercase}}_txt">{{session.teamColor}}</strong>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="color_select">
 							<select>
-	   							<option>color</option>
-	   							<option>color</option>
+	   							<option>Red</option>
+									<option>Yellow</option>
+									<option>Green</option>
+	   							<option>Blue</option>
 	   						</select>
 							<button class="button">Save</button>
 						</div>
@@ -105,23 +155,23 @@
 					<ion-item>
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
-								<span>Attandance</span>
+								<span>Attendance</span>
 							</div>
 							<div class="add_studnt">
 								<a class="button button-outline icon-left ion-plus button-assertive">Add new student</a>
 							</div>
-							<a href="#" class="arrw_up"><i class="icon ion-arrow-up-c"></i></a>
+							<a class="arrw_up" ng-click="toggle('attendance')"><i class="icon" ng-class="attendanceShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
 						</div>
-						<div class="attendance_record session_attndnce_list">
+						<div class="attendance_record session_attndnce_list" ng-show="attendanceShow">
 							<div class="row attnce_list_hdng">
 								<div class="col col-33">
 									<strong>Name</strong>
 								</div>
 								<div class="col col-20">
-									<strong>Attandance</strong>
+									<strong>Attendance</strong>
 								</div>
 								<div class="col col-20">
-									<strong>Base Behaviour</strong>
+									<strong>Bad Behaviour</strong>
 								</div>
 								<div class="col col-15 ">
 									<strong>ASER <em>(mid)</em></strong>
@@ -130,58 +180,22 @@
 									<strong>Marks <em>(current)</em></strong>
 								</div>
 							</div>
-							<div class="row attnce_list_hdng">
+							<div class="row attnce_list_hdng" ng-repeat="student in students">
 								<div class="col col-33">
-									<span class="no_namepad">Rosita</span>
-									<em>Join Dates: 5 may 17 </em>
+									<span class="no_namepad">{{student.name.firstName}} {{student.name.lastName}}</span>
+									<em>Join Dates: {{student.addedOn | date : "dd MMM yy"}} </em>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
+									<ion-checkbox ng-model="student.attendance">a</ion-checkbox>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
+									<ion-checkbox ng-model="student.badBehavoiur">b</ion-checkbox>
 								</div>
 								<div class="col col-15">
-									<span>24</span>
+									<span>{{student.ASERScores[1] ? student.ASERScores[1] : '- - '}}</span>
 								</div>
 								<div class="col col-20">
-									<span class="end_record">24</span>
-								</div>
-							</div>
-							<div class="row attnce_list_hdng">
-								<div class="col col-33">
-									<span class="no_namepad">Rosita</span>
-									<em>Join Dates: 5 may 17 </em>
-								</div>
-								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
-								</div>
-								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
-								</div>
-								<div class="col col-15">
-									<span>24</span>
-								</div>
-								<div class="col col-20">
-									<span class="end_record">24</span>
-								</div>
-							</div>
-							<div class="row attnce_list_hdng">
-								<div class="col col-33">
-									<span class="no_namepad">Rosita</span>
-									<em>Join Dates: 5 may 17 </em>
-								</div>
-								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
-								</div>
-								<div class="col col-20">
-									<ion-checkbox ng-model="filter.red">fdgdf</ion-checkbox>
-								</div>
-								<div class="col col-15">
-									<span>24</span>
-								</div>
-								<div class="col col-20">
-									<span class="end_record">24</span>
+									<span class="end_record">00</span>
 								</div>
 							</div>
 							<div class="row button_sec save_attncebtn">

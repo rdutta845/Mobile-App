@@ -156,7 +156,8 @@ ngApp
     url: '/session_details3/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/session_details3.html'
+        templateUrl: 'templates/session_details3.html',
+        controller:'SessionDetails3Controller'
       }
     }
   })
