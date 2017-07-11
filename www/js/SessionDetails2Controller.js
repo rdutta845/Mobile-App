@@ -5,10 +5,7 @@ angular.module('starter.controllers')
 		$scope.contentShow = true;
 		$scope.currentPosition = {};
 		var posOptions = {enableHighAccuracy: false};
-		$cordovaGeolocation.getCurrentPosition().then(function (position) {
-			$scope.currentPosition.lat = position.coords.latitude;
-			$scope.currentPosition.long = position.coords.longitude;
-		});
+
 		function distance(lat1, lon1, lat2, lon2, unit) {
 			var radlat1 = Math.PI * lat1/180
 			var radlat2 = Math.PI * lat2/180
@@ -39,6 +36,7 @@ angular.module('starter.controllers')
 	  }).then(function mySucces(response) {
 			$scope.session = response.data.result;
 			$scope.schoolLocation = response.data.location;
+			$scope.checkInURL = response.data.result.isTestSession ? "app/session_details3/" : "app/session_details/";
 			$scope.session._volunteers.forEach(function(volunteer){
         // To get the number of sessions completed by the volunteer.
         $http({
@@ -63,9 +61,16 @@ angular.module('starter.controllers')
 			console.log("id print",id);
 			$scope.date = new Date();
 			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
-			if((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24) < 1) {
+			if((new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) < 1) {
+				// NOTE: for testing purposes only. remove the next line when in production.
+				$location.path($scope.checkInURL + id);
+				console.log($scope.checkInURL + id);
+				$cordovaGeolocation.getCurrentPosition().then(function (position) {
+					$scope.currentPosition.lat = position.coords.latitude;
+					$scope.currentPosition.long = position.coords.longitude;
+				});
 				if(distance($scope.currentPosition.lat, $scope.currentPosition.long, $scope.schoolLocation.lat, $scope.schoolLocation.lng, 'K') < 0.2) {
-					$location.path("app/session_details/" + id);
+					$location.path($scope.checkInURL + id);
 				} else {
 					$ionicPopup.alert({
 			      title: 'Restricted',

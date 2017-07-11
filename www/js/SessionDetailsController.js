@@ -4,6 +4,43 @@ angular.module('starter.controllers')
 		$scope.sessionShow = true;
 		$scope.contentShow = false;
 		$scope.attendanceShow = false;
+		$http({
+	    method:"GET",
+	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
+	  }).then(function mySucces(response) {
+			$scope.session = response.data.result;
+			$scope.schoolLocation = response.data.location;
+			$scope.session._volunteers.forEach(function(volunteer){
+        // To get the number of sessions completed by the volunteer.
+        $http({
+          method:"GET",
+          url:CONFIG.apiEndpoint+"/numberofsessioncomplete/"+volunteer.id + "/"
+            + $scope.session._studentClass.id + "/" + $scope.session._studentClass.currentTerm,
+        }).then(function success(response) {
+          volunteer.sessionsComp = response.data.numberofsessioncompleted;
+        })
+        // To see if the volunteer knows the local language of the school.
+        volunteer.languages.forEach(function(lang){
+          volunteer.knowslocal = false;
+          if(lang.toLowerCase() == $scope.session._school.languageOfInstruction.toLowerCase()){
+            volunteer.knowslocal = true;
+          }
+        })
+      })
+
+			// To populate student name and marks
+			$http({
+		    method:"GET",
+		    url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
+		  }).then(function mySucces(response) {
+		    $scope.students = response.data.result._students;
+		    console.log(response.data);
+		  })
+
+			console.log(response);
+
+	  })
+
 
 		$scope.toggle = function(str){
 			if(str == 'session'){
@@ -13,7 +50,7 @@ angular.module('starter.controllers')
 					$scope.contentShow = !$scope.contentShow;
 
 			}else if(str == 'attendance'){
-					$scope.attendanceShow = !$scope.attendanceShow;	
+					$scope.attendanceShow = !$scope.attendanceShow;
 
 			}
  		}
@@ -38,7 +75,7 @@ angular.module('starter.controllers')
     }).then(function(modal) {
       $scope.modal3 = modal;
     });
- 
+
   $scope.closePopup = function(mymod){
     if(mymod==1) $scope.modal1.hide();
     else if(mymod==2) $scope.modal2.hide();
@@ -51,7 +88,7 @@ angular.module('starter.controllers')
  		}
 
  		$scope.redo = function(){
-			$scope.modal5.show();	    
+			$scope.modal5.show();
  		}
  		$scope.confirmCheckOut= function(){
  			console.log("confirm checkOut");
@@ -59,7 +96,7 @@ angular.module('starter.controllers')
  		}
  		$scope.confirmRedo = function(){
  			console.log("confirm redo");
- 			$scope.modal5.hide();		
+ 			$scope.modal5.hide();
  		}
     $scope.addStudent = function(){
       console.log("ADD Student");
@@ -67,7 +104,7 @@ angular.module('starter.controllers')
     }
     $scope.saveStudent = function(){
       console.log("save student");
-      $scope.modal3.hide();   
+      $scope.modal3.hide();
 
     }
 	})

@@ -16,8 +16,8 @@
 								<span>Schedule</span>
 							</div>
 							<div class="date_nd_tym">
-								<span>Mon 07 May 17</span>
-								<span><i class="icon ion-clock"></i> 10.30am</span>
+								<span>{{session.date | date : "EEE dd MMM yy" }}</span>
+								<span><i class="icon ion-clock"></i> {{session.date | date : "hh.mm a"}}</span>
 							</div>
 							<a class="arrw_up" ng-click="toggle('session')"><i class="icon" ng-class="sessionShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
 						</div>
@@ -26,42 +26,43 @@
 								<div class="col col-50">
 									<div class="schdule_bx">
 										<h3>Class</h3>
-										<span>CX2346</span>
+										<span>{{session._studentClass.classID}}</span>
 									</div>
 									<div class="schdule_bx">
 										<h3>School Name</h3>
-										<span>St.Jame's School(Sector II)</span>
+										<span>{{session._school.name}}</span>
 									</div>
 								</div>
 								<div class="col col-50">
 									<div class="schdule_bx">
 										<h3>Grade</h3>
-										<span>4B</span>
+										<span>{{session._studentClass.grade}}{{session._studentClass.section}}</span>
 									</div>
 									<div class="schdule_bx">
 										<h3>Section</h3>
-										<span>19</span>
+										<span>{{session.sessionNo}}</span>
 									</div>
 								</div>
 							</div>
 							<div class="schedule_mini session_schedulebx padding">
 								<h3>Co-Volunteers for the Session</h3>
 								<ion-list>
-									<ion-item>
+									<ion-item  ng-repeat="volunteer in session._volunteers">
 										<i class="icon ion-iphone phone_icn"></i>
 										<div class="right_cont">
-											<strong>Abhimanyu Nayak</strong>
+											<strong>{{volunteer.name.full}}</strong>
 											<div class="row">
 												<div class="col col-25">
-													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed 50 sessions</span>
+													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Completed {{volunteer.sessionsComp}} sessions</span>
 												</div>
 												<div class="col col-65">
-													<span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
-												</div>
+													<span ng-if="volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Speaks local language</span>
+	   											<span ng-if="!volunteer.knowslocal"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>Does not speak local language</span>
+	   										</div>
 											</div>
 										</div>
 									</ion-item>
-									<ion-item>
+									<!-- <ion-item>
 										<i class="icon ion-iphone phone_icn"></i>
 										<div class="right_cont">
 											<strong>Ashutosh MIshra</strong>
@@ -74,7 +75,7 @@
 												</div>
 											</div>
 										</div>
-									</ion-item>
+									</ion-item> -->
 								</ion-list>
 							</div>
 						</div>
@@ -124,7 +125,7 @@
 					<ion-item>
 						<div class="row hdnge_listing_sec">
 							<div class="session_num">
-								<span>Attandance</span>
+								<span>Attendance</span>
 							</div>
 							<div class="add_studnt" ng-show="attendanceShow">
 								<a class="button button-outline icon-left ion-plus button-assertive" ng-click="addStudent()">Add new student</a>
@@ -146,22 +147,22 @@
 									<strong>End</strong>
 								</div>
 							</div>
-							<div class="row attnce_list_hdng">
+							<div class="row attnce_list_hdng" ng-repeat="student in students">
 								<div class="col col-40">
-									<span class="no_namepad">Rosita</span>
-									<em>Join Dates: 5 may 17 </em>
+									<span class="no_namepad">{{student.name.firstName}} {{student.name.lastName}}</span>
+									<em>Join Dates: {{student.addedOn | date : "dd MMM yy"}} </em>
 								</div>
 								<div class="col col-20">
-									<span>22</span>
+									<span>{{student.ASERScores[0]}}</span>
 								</div>
 								<div class="col col-20 ">
-									<span>24</span>
+									<span>{{student.ASERScores[1]}}</span>
 								</div>
 								<div class="col col-25">
 									<input class="end_record" type="text" value="24">
 								</div>
 							</div>
-							<div class="row attnce_list_hdng">
+							<!-- <div class="row attnce_list_hdng">
 								<div class="col col-40">
 									<span class="no_namepad">Ram</span>
 									<em>Join Dates: 5 may 17 </em>
@@ -175,8 +176,8 @@
 								<div class="col col-25">
 									<input class="end_record" type="text" value="28">
 								</div>
-							</div>
-							<div class="row attnce_list_hdng">
+							</div> -->
+							<!-- <div class="row attnce_list_hdng">
 								<div class="col col-40">
 									<span class="no_namepad">Nikhil Kumar Singh</span>
 									<em>Join Dates: 5 may 17 </em>
@@ -190,7 +191,7 @@
 								<div class="col col-25">
 									<input class="end_record" type="text" value="30">
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</ion-item>
 				</ion-list>
