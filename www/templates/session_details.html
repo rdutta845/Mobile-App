@@ -39,7 +39,7 @@
 										<span>{{session._studentClass.grade}}{{session._studentClass.section}}</span>
 									</div>
 									<div class="schdule_bx">
-										<h3>Section</h3>
+										<h3>Session</h3>
 										<span>{{session.sessionNo}}</span>
 									</div>
 								</div>
@@ -140,10 +140,10 @@
 								<div class="col col-20">
 									<strong>Base</strong>
 								</div>
-								<div class="col col-20 ">
+								<div class="col col-20 " ng-if="ASERtype > 0">
 									<strong>Mid</strong>
 								</div>
-								<div class="col col-25">
+								<div class="col col-25" ng-if="ASERtype > 1">
 									<strong>End</strong>
 								</div>
 							</div>
@@ -153,13 +153,15 @@
 									<em>Join Dates: {{student.addedOn | date : "dd MMM yy"}} </em>
 								</div>
 								<div class="col col-20">
-									<span>{{student.ASERScores[0]}}</span>
+									<span ng-if="ASERtype !== 0">{{student.ASERScores[0]}}</span>
+									<input ng-if="ASERtype == 0" class="end_record" type="number" ng-model="score[$index].ASERScores[0]" value="{{student.ASERScores[2]}}">
 								</div>
-								<div class="col col-20 ">
-									<span>{{student.ASERScores[1]}}</span>
+								<div class="col col-20 " ng-if="ASERtype > 0">
+									<span ng-if="ASERtype !== 1">{{student.ASERScores[1]}}</span>
+									<input ng-if="ASERtype == 1" class="end_record" type="number" ng-model="score[$index].ASERScores[1]" value="{{student.ASERScores[2]}}">
 								</div>
-								<div class="col col-25">
-									<input class="end_record" type="text" value="24">
+								<div class="col col-25" ng-if="ASERtype > 1">
+									<input ng-if="ASERtype == 2" class="end_record" type="number" ng-model="score[$index].ASERScores[2]" value="{{student.ASERScores[2]}}">
 								</div>
 							</div>
 							<!-- <div class="row attnce_list_hdng">
