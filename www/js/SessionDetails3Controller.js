@@ -1,9 +1,12 @@
 angular.module('starter.controllers')
-.controller('SessionDetailsController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
+.controller('SessionDetails3Controller', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
 
-		$scope.sessionShow = true;
+		$scope.sessionShow = false;
 		$scope.contentShow = false;
-		$scope.attendanceShow = false;
+		$scope.attendanceShow = true;
+		$scope.homeworkShow = false;
+
+		$scope.last5sessions = [];
 		$http({
 	    method:"GET",
 	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
@@ -36,6 +39,20 @@ angular.module('starter.controllers')
 		    $scope.students = response.data.result._students;
 		    console.log(response.data);
 		  })
+			// To get session and its color
+			$http({
+				method:"GET",
+				url:CONFIG.apiEndpoint+"/getclasssessionsinfo/"+$scope.session._studentClass.id + "/" + $scope.session._studentClass.currentTerm,
+			}).then(function mySucces(response) {
+				console.log(response.data.result);
+				response.data.result.forEach(function (value,id) {
+					if(value.sessionNo < $scope.session.sessionNo) {
+						$scope.last5sessions.push(value);
+					}
+				})
+				console.log($scope.last5sessions);
+			})
+
 
 			console.log(response);
 
@@ -46,14 +63,70 @@ angular.module('starter.controllers')
 			if(str == 'session'){
 					$scope.sessionShow = !$scope.sessionShow;
 
-			}else if(str == 'content'){
+			} else if(str == 'content'){
 					$scope.contentShow = !$scope.contentShow;
 
-			}else if(str == 'attendance'){
+			} else if(str == 'attendance'){
 					$scope.attendanceShow = !$scope.attendanceShow;
 
+			} else if(str == 'homework'){
+					$scope.homeworkShow = !$scope.homeworkShow;
+
 			}
+
  		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  		$ionicModal.fromTemplateUrl('templates/popup4.html', {
       scope: $scope,
