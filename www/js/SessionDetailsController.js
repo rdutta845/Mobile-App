@@ -94,8 +94,10 @@ angular.module('starter.controllers')
  			console.log("confirm checkOut");
  			$scope.modal4.hide();
  		}
- 		$scope.confirmRedo = function(){
+		$scope.confirmRedo = function(){
  			console.log("confirm redo");
+			$scope.redoContent = { comments : $scope.comment.value};
+			console.log($scope.redoContent);
  			$scope.modal5.hide();
  		}
     $scope.addStudent = function(){
