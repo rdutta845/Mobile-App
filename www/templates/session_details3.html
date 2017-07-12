@@ -143,13 +143,13 @@
 							</div>
 						</div>
 						<div class="color_select">
-							<select>
+							<select ng-model="homework.color">
 	   							<option>Red</option>
 									<option>Yellow</option>
 									<option>Green</option>
 	   							<option>Blue</option>
 	   						</select>
-							<button class="button">Save</button>
+							<button class="button" ng-click="saveColor()">Save</button>
 						</div>
 					</ion-item>
 					<ion-item>
@@ -158,7 +158,7 @@
 								<span>Attendance</span>
 							</div>
 							<div class="add_studnt">
-								<a class="button button-outline icon-left ion-plus button-assertive">Add new student</a>
+								<a class="button button-outline icon-left ion-plus button-assertive" ng-click="addStudent()">Add new student</a>
 							</div>
 							<a class="arrw_up" ng-click="toggle('attendance')"><i class="icon" ng-class="attendanceShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
 						</div>
@@ -186,27 +186,27 @@
 									<em>Join Dates: {{student.addedOn | date : "dd MMM yy"}} </em>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="student.attendance">a</ion-checkbox>
+									<ion-checkbox ng-model="student.attendance" ng-checked="student.attendance">a</ion-checkbox>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="student.badBehavoiur">b</ion-checkbox>
+									<ion-checkbox ng-model="student.badBehavoiur" ng-checked="student.badBehavoiur">b</ion-checkbox>
 								</div>
 								<div class="col col-15">
 									<span>{{student.ASERScores[1] ? student.ASERScores[1] : '- - '}}</span>
 								</div>
 								<div class="col col-20">
-									<span class="end_record">00</span>
+									<input class="end_record" type="number" ng-model="student.marks" value="{{student.marks}}">
 								</div>
 							</div>
 							<div class="row button_sec save_attncebtn">
-								<button class="button">Save</button>
+								<button class="button" ng-click="saveAttendance()">Save</button>
 							</div>
 						</div>
 					</ion-item>
 				</ion-list>
 				<div class="button_sec">
-					<button class="button">Check OUT</button>
-					<button class="button">Mark as REDO</button>
+					<button class="button" ng-click="checkOut()">Check OUT</button>
+					<button class="button" ng-click="redo()">Mark as REDO</button>
 				</div>
 			</div>
 		</div>
