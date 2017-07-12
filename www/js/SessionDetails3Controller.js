@@ -5,6 +5,7 @@ angular.module('starter.controllers')
 		$scope.contentShow = false;
 		$scope.attendanceShow = true;
 		$scope.homeworkShow = false;
+		$scope.homework = {};
 
 		$scope.last5sessions = [];
 		$http({
@@ -31,14 +32,16 @@ angular.module('starter.controllers')
         })
       })
 
-			// To populate student name and marks
-			$http({
-		    method:"GET",
-		    url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
-		  }).then(function mySucces(response) {
-		    $scope.students = response.data.result._students;
-		    console.log(response.data);
-		  })
+			// Variables for Add new student
+			$scope.FullName = {value : ""};
+			$scope.NewStudent = {
+				name : {},
+				motherTongue : "",
+				ASERScores : [""],
+				_studentClass : $scope.session._studentClass.id
+			};
+
+			populateStudents();
 			// To get session and its color
 			$http({
 				method:"GET",
@@ -57,6 +60,21 @@ angular.module('starter.controllers')
 			console.log(response);
 
 	  })
+
+		// To populate student name and marks
+		function populateStudents() {
+			$http({
+				method:"GET",
+				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
+			}).then(function mySucces(response) {
+				$scope.students = response.data.result._students;
+				$scope.score = [];
+				$scope.students.forEach(function (value, id) {
+					$scope.score.push({ _id : value._id , ASERScores : value.ASERScores});
+				})
+				console.log(response.data);
+			})
+		}
 
 
 		$scope.toggle = function(str){
@@ -78,57 +96,31 @@ angular.module('starter.controllers')
 
 
 
+		$scope.saveColor = function(){
+			console.log($scope.homework);
+			// Hit a endpoint to save this
+ 		}
 
+		$scope.saveAttendance = function(){
+			$scope.studentsAttended = [];
+			$scope.students.forEach(function (value, id) {
+				if(value.attendance || value.badBehavoiur || (value.marks >= 0)) {
+					$scope.studentsAttended.push(value);
+				}
+			})
+			console.log($scope.studentsAttended);
 
+			// Hit a endpoint to save this
+ 		}
 
+		$ionicModal.fromTemplateUrl('templates/popup3.html', {
+      scope: $scope,
+      animation: 'scale'
+    }).then(function(modal) {
+      $scope.modal3 = modal;
+    });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 		$ionicModal.fromTemplateUrl('templates/popup4.html', {
+		$ionicModal.fromTemplateUrl('templates/popup4.html', {
       scope: $scope,
       animation: 'scale'
     }).then(function(modal) {
@@ -142,42 +134,67 @@ angular.module('starter.controllers')
       $scope.modal5 = modal;
     });
 
-    $ionicModal.fromTemplateUrl('templates/popup3.html', {
-      scope: $scope,
-      animation: 'scale'
-    }).then(function(modal) {
-      $scope.modal3 = modal;
-    });
+	  $scope.closePopup = function(mymod){
+	    if(mymod==1) $scope.modal1.hide();
+	    else if(mymod==2) $scope.modal2.hide();
+	    else if(mymod==3) $scope.modal3.hide();
+	    else if(mymod==4) $scope.modal4.hide();
+	    else if(mymod==5) $scope.modal5.hide();
+	  }
 
-  $scope.closePopup = function(mymod){
-    if(mymod==1) $scope.modal1.hide();
-    else if(mymod==2) $scope.modal2.hide();
-    else if(mymod==3) $scope.modal3.hide();
-    else if(mymod==4) $scope.modal4.hide();
-    else if(mymod==5) $scope.modal5.hide();
-  }
- 		$scope.checkOut = function(){
+		$scope.addStudent = function(){
+      console.log("ADD Student");
+      $scope.modal3.show();
+    }
+    $scope.saveStudent = function(){
+			$scope.NewStudent.name = {
+				firstName : $scope.FullName.value.substr(0,$scope.FullName.value.indexOf(' ')),
+				lastName : $scope.FullName.value.substr($scope.FullName.value.indexOf(' ') + 1)
+			}
+			console.log($scope.NewStudent);
+			$http({
+				method:"POST",
+				data: $scope.NewStudent,
+				url:CONFIG.apiEndpoint+"/addstudent",
+			}).then(function mySucces(response) {
+				console.log(response);
+				populateStudents();
+
+			})
+      console.log("save student");
+      $scope.modal3.hide();
+
+    }
+
+		$scope.checkOut = function(){
+			console.log($scope.score);
  			$scope.modal4.show();
  		}
 
- 		$scope.redo = function(){
+		$scope.redo = function(){
 			$scope.modal5.show();
  		}
+
+		$scope.comment = {value : ""};
  		$scope.confirmCheckOut= function(){
+			$scope.checkOUTcontent = { _students : $scope.score, comments : $scope.comment.value}
+			console.log($scope.checkOUTcontent);
+			// $http({
+			// 	method:"POST",
+			// 	data: $scope.NewStudent,
+			// 	url:CONFIG.apiEndpoint+"/addstudent",
+			// }).then(function mySucces(response) {
+			// 	console.log(response);
+			// 	populateStudents();
+			//
+			// })
  			console.log("confirm checkOut");
  			$scope.modal4.hide();
  		}
  		$scope.confirmRedo = function(){
  			console.log("confirm redo");
+			$scope.redoContent = { comments : $scope.comment.value};
+			console.log($scope.redoContent);
  			$scope.modal5.hide();
  		}
-    $scope.addStudent = function(){
-      console.log("ADD Student");
-      $scope.modal3.show();
-    }
-    $scope.saveStudent = function(){
-      console.log("save student");
-      $scope.modal3.hide();
-
-    }
-	})
+})
