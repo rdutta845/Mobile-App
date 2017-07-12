@@ -53,6 +53,7 @@ angular.module('starter.controllers')
 				_studentClass : $scope.session._studentClass.id
 			};
 
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$http({
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
@@ -69,6 +70,9 @@ angular.module('starter.controllers')
 				});
 				console.log(response.data);
 			})
+=======
+			populateStudents();
+>>>>>>> session_details templating done
 			// To get session and its color
 			$http({
 				method:"GET",
@@ -95,6 +99,13 @@ angular.module('starter.controllers')
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
 				$scope.students = response.data.result._students;
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
+=======
+				$scope.score = [];
+				$scope.students.forEach(function (value, id) {
+					$scope.score.push({ _id : value._id , ASERScores : value.ASERScores});
+				})
+>>>>>>> session_details templating done
 				console.log(response.data);
 			})
 		}
@@ -138,6 +149,7 @@ angular.module('starter.controllers')
 		  });
  		}
 
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 		$scope.saveAttendance = function(){
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
@@ -182,6 +194,25 @@ angular.module('starter.controllers')
 		  });
  		}
 
+=======
+		$scope.saveColor = function(){
+			console.log($scope.homework);
+			// Hit a endpoint to save this
+ 		}
+
+		$scope.saveAttendance = function(){
+			$scope.studentsAttended = [];
+			$scope.students.forEach(function (value, id) {
+				if(value.attendance || value.badBehavoiur || (value.marks >= 0)) {
+					$scope.studentsAttended.push(value);
+				}
+			})
+			console.log($scope.studentsAttended);
+
+			// Hit a endpoint to save this
+ 		}
+
+>>>>>>> session_details templating done
 		$ionicModal.fromTemplateUrl('templates/popup3.html', {
       scope: $scope,
       animation: 'scale'
@@ -236,17 +267,25 @@ angular.module('starter.controllers')
     }
 
 		$scope.checkOut = function(){
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.saveAttendance();
+=======
+			console.log($scope.score);
+>>>>>>> session_details templating done
  			$scope.modal4.show();
  		}
 
 		$scope.redo = function(){
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.saveAttendance();
+=======
+>>>>>>> session_details templating done
 			$scope.modal5.show();
  		}
 
 		$scope.comment = {value : ""};
  		$scope.confirmCheckOut= function(){
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.checkOUTcontent = {
 				comments : $scope.comment.value,
 				status : "Completed"
@@ -270,11 +309,25 @@ angular.module('starter.controllers')
 		      template: response.data.msg
 		    },);
 		  });
+=======
+			$scope.checkOUTcontent = { _students : $scope.score, comments : $scope.comment.value}
+			console.log($scope.checkOUTcontent);
+			// $http({
+			// 	method:"POST",
+			// 	data: $scope.NewStudent,
+			// 	url:CONFIG.apiEndpoint+"/addstudent",
+			// }).then(function mySucces(response) {
+			// 	console.log(response);
+			// 	populateStudents();
+			//
+			// })
+>>>>>>> session_details templating done
  			console.log("confirm checkOut");
  			$scope.modal4.hide();
  		}
  		$scope.confirmRedo = function(){
  			console.log("confirm redo");
+<<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.redoContent = {
 				comments : $scope.comment.value,
 				status : "Redo"
@@ -298,6 +351,10 @@ angular.module('starter.controllers')
 		      template: response.data.msg
 		    },);
 		  });
+=======
+			$scope.redoContent = { comments : $scope.comment.value};
+			console.log($scope.redoContent);
+>>>>>>> session_details templating done
  			$scope.modal5.hide();
  		}
 })
