@@ -141,16 +141,17 @@
 									</div>
 								</div>
 							</div>
+							<div class="color_select">
+								<select ng-model="homework.teamColor">
+										<option>Red</option>
+										<option>Yellow</option>
+										<option>Green</option>
+										<option>Blue</option>
+									</select>
+								<button class="button" ng-click="saveColor()">Save</button>
+							</div>
 						</div>
-						<div class="color_select">
-							<select ng-model="homework.color">
-	   							<option>Red</option>
-									<option>Yellow</option>
-									<option>Green</option>
-	   							<option>Blue</option>
-	   						</select>
-							<button class="button" ng-click="saveColor()">Save</button>
-						</div>
+
 					</ion-item>
 					<ion-item>
 						<div class="row hdnge_listing_sec">
@@ -189,13 +190,13 @@
 									<ion-checkbox ng-model="student.attendance" ng-checked="student.attendance">a</ion-checkbox>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="student.badBehavoiur" ng-checked="student.badBehavoiur">b</ion-checkbox>
+									<ion-checkbox ng-model="student.isBadBehaviour" ng-checked="student.isBadBehaviour">b</ion-checkbox>
 								</div>
 								<div class="col col-15">
 									<span>{{student.ASERScores[1] ? student.ASERScores[1] : '- - '}}</span>
 								</div>
 								<div class="col col-20">
-									<input class="end_record" type="number" ng-model="student.marks" value="{{student.marks}}">
+									<input class="end_record" type="number" ng-model="student.testScore" value="{{student.testScore}}">
 								</div>
 							</div>
 							<div class="row button_sec save_attncebtn">

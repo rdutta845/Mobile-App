@@ -90,14 +90,59 @@ angular.module('starter.controllers')
  		$scope.redo = function(){
 			$scope.modal5.show();
  		}
- 		$scope.confirmCheckOut= function(){
+		$scope.comment = {value : ""};
+		$scope.confirmCheckOut= function(){
+			$scope.checkOUTcontent = {
+				comments : $scope.comment.value,
+				status : "Completed"
+			}
+			console.log($scope.checkOUTcontent);
+			$http({
+				method: "POST",
+				data: $scope.studentsAttended,
+				url: CONFIG.apiEndpoint+"/checkoutsession/" + $scope.session._id,
+			}).then(function mySucces(response) {
+				console.log(response);
+				$ionicPopup.alert({
+		      title: 'Success',
+		      template: "Successfully checked out."
+		    },);
+				$location.path("/app/teacher_schedule");
+			}, function errorCallback(response) {
+				console.log(response);
+				$ionicPopup.alert({
+		      title: 'Error',
+		      template: response.data.msg
+		    },);
+		  });
  			console.log("confirm checkOut");
  			$scope.modal4.hide();
  		}
 		$scope.confirmRedo = function(){
  			console.log("confirm redo");
-			$scope.redoContent = { comments : $scope.comment.value};
+			$scope.redoContent = {
+				comments : $scope.comment.value,
+				status : "Redo"
+			};
 			console.log($scope.redoContent);
+			$http({
+				method: "POST",
+				data: $scope.studentsAttended,
+				url: CONFIG.apiEndpoint+"/checkoutsession/" + $scope.session._id,
+			}).then(function mySucces(response) {
+				console.log(response);
+				$ionicPopup.alert({
+		      title: 'Success',
+		      template: "Successfully marked as Redo."
+		    },);
+				$location.path("/app/teacher_schedule");
+			}, function errorCallback(response) {
+				console.log(response);
+				$ionicPopup.alert({
+		      title: 'Error',
+		      template: response.data.msg
+		    },);
+		  });
  			$scope.modal5.hide();
  		}
     $scope.addStudent = function(){
@@ -107,6 +152,36 @@ angular.module('starter.controllers')
     $scope.saveStudent = function(){
       console.log("save student");
       $scope.modal3.hide();
-
     }
+		$scope.saveAttendance = function(){
+			console.log($scope.students);
+			$scope.studentsAttended = { _attendence : [] };
+			$scope.students.forEach(function (value, id) {
+				console.log(value.ASERScores);
+				if(value.ASERScores[$scope.ASERtype]) {
+					$scope.studentsAttended._attendence.push({
+						_student : value._id,
+						ASERScore : value.ASERScores[$scope.ASERtype],
+					});
+				}
+			})
+			console.log($scope.studentsAttended);
+			$http({
+				method: "POST",
+				data: $scope.studentsAttended,
+				url: CONFIG.apiEndpoint+"/savesessionscore/" + $scope.session._id,
+			}).then(function mySucces(response) {
+				console.log(response);
+				$ionicPopup.alert({
+					title: 'Success',
+					template: "Attendance and marks updated."
+				},);
+			}, function errorCallback(response) {
+				console.log(response);
+				$ionicPopup.alert({
+					title: 'Error',
+					template: "Update couldnt take place, try again."
+				},);
+			});
+		}
 	})
