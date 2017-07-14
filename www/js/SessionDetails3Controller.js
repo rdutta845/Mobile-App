@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('SessionDetails3Controller', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicModal) {
+.controller('SessionDetails3Controller', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $ionicPlatform, $location, $auth, $window, $ionicModal, $cordovaToast) {
 
 		$scope.sessionShow = false;
 		$scope.contentShow = false;
@@ -8,6 +8,13 @@ angular.module('starter.controllers')
 		$scope.homework = {};
 
 		$scope.last5sessions = [];
+		$ionicPlatform.ready(function() {
+			$cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
+			      // success
+			    }, function (error) {
+			      // error
+			    });
+    });
 
 
 		$http({
