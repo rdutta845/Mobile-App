@@ -8,6 +8,7 @@ angular.module('starter.controllers')
 		$scope.homework = {};
 
 		$scope.last5sessions = [];
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 		$ionicPlatform.ready(function() {
 			$cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
 			      // success
@@ -15,6 +16,8 @@ angular.module('starter.controllers')
 			      // error
 			    });
     });
+=======
+>>>>>>> session_details overwrite and append functionality
 
 
 		$http({
@@ -53,7 +56,10 @@ angular.module('starter.controllers')
 				_studentClass : $scope.session._studentClass.id
 			};
 
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 <<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
+=======
+>>>>>>> session_details overwrite and append functionality
 			$http({
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
@@ -70,9 +76,12 @@ angular.module('starter.controllers')
 				});
 				console.log(response.data);
 			})
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 =======
 			populateStudents();
 >>>>>>> session_details templating done
+=======
+>>>>>>> session_details overwrite and append functionality
 			// To get session and its color
 			$http({
 				method:"GET",
@@ -99,6 +108,7 @@ angular.module('starter.controllers')
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
 				$scope.students = response.data.result._students;
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 <<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 =======
 				$scope.score = [];
@@ -106,6 +116,8 @@ angular.module('starter.controllers')
 					$scope.score.push({ _id : value._id , ASERScores : value.ASERScores});
 				})
 >>>>>>> session_details templating done
+=======
+>>>>>>> session_details overwrite and append functionality
 				console.log(response.data);
 			})
 		}
@@ -129,6 +141,7 @@ angular.module('starter.controllers')
  		}
 
 
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 		$scope.saveColor = function(){
 			console.log($scope.homework, $scope.session._id);
 			$http({
@@ -195,6 +208,8 @@ angular.module('starter.controllers')
  		}
 
 =======
+=======
+>>>>>>> session_details overwrite and append functionality
 		$scope.saveColor = function(){
 			console.log($scope.homework, $scope.session._id);
 			$http({
@@ -218,11 +233,12 @@ angular.module('starter.controllers')
 		$scope.saveAttendance = function(){
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				console.log(value.testScore);
-				if(value.attendance || value.isBadBehaviour || (value.testScore >= 0)) {
+				console.log(value.testScore, value.isAttend);
+				if((value.isAttend != undefined) || (value.isBadBehaviour != undefined) || (value.testScore != undefined)) {
 					$scope.studentsAttended._attendence.push({
+						isAttend : (value.isAttend || value.isBadBehaviour || (value.testScore >= 0)),
 						_student : value._id,
-						ASERScore : value.testScore,
+						testScore : value.testScore,
 						isBadBehaviour : value.isBadBehaviour
 					});
 				}
@@ -238,6 +254,17 @@ angular.module('starter.controllers')
 		      title: 'Success',
 		      template: "Attendance and marks updated."
 		    },);
+				console.log($scope.students);
+				response.data.savedSassion._attendence.forEach(function (value, id) {
+					var selected = $scope.students.filter(function (obj) {
+						return obj._id == value._student;
+					})[0];
+					selected.isAttend = value.isAttend;
+					selected.testScore = value.testScore;
+					selected.isBadBehaviour = value.isBadBehaviour;
+
+				});
+				console.log($scope.students);
 			}, function errorCallback(response) {
 				console.log(response);
 				$ionicPopup.alert({
@@ -302,19 +329,27 @@ angular.module('starter.controllers')
     }
 
 		$scope.checkOut = function(){
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 <<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.saveAttendance();
 =======
 			console.log($scope.score);
 >>>>>>> session_details templating done
+=======
+			$scope.saveAttendance();
+>>>>>>> session_details overwrite and append functionality
  			$scope.modal4.show();
  		}
 
 		$scope.redo = function(){
+<<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
 <<<<<<< 1f4cac3a011317b3d53464fbfbf5270df7713f34
 			$scope.saveAttendance();
 =======
 >>>>>>> session_details templating done
+=======
+			$scope.saveAttendance();
+>>>>>>> session_details overwrite and append functionality
 			$scope.modal5.show();
  		}
 

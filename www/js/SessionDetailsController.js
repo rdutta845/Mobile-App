@@ -84,10 +84,13 @@ angular.module('starter.controllers')
     else if(mymod==5) $scope.modal5.hide();
   }
  		$scope.checkOut = function(){
+			console.log($scope.score);
+			$scope.saveAttendance();
  			$scope.modal4.show();
  		}
 
  		$scope.redo = function(){
+			$scope.saveAttendance();
 			$scope.modal5.show();
  		}
 		$scope.comment = {value : ""};
@@ -157,14 +160,15 @@ angular.module('starter.controllers')
 			console.log($scope.students);
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				console.log(value.ASERScores);
-				if(value.ASERScores[$scope.ASERtype]) {
+				console.log(value.ASERScores[$scope.ASERtype], value.ASERScores.length);
+				if(value.ASERScores != undefined && value.ASERScores.length > $scope.ASERtype) {
 					$scope.studentsAttended._attendence.push({
+						isAttend : value.ASERScores[$scope.ASERtype] ? true : false,
 						_student : value._id,
 						ASERScore : value.ASERScores[$scope.ASERtype],
 					});
 				}
-			})
+			});
 			console.log($scope.studentsAttended);
 			$http({
 				method: "POST",
@@ -176,6 +180,15 @@ angular.module('starter.controllers')
 					title: 'Success',
 					template: "Attendance and marks updated."
 				},);
+				console.log($scope.students);
+				response.data.savedSassion._attendence.forEach(function (value, id) {
+					var selected = $scope.students.filter(function (obj) {
+						return obj._id == value._student;
+					})[0];
+					selected.isAttend = value.isAttend;
+					selected.ASERScore = value.ASERScore;
+				});
+				console.log($scope.students);
 			}, function errorCallback(response) {
 				console.log(response);
 				$ionicPopup.alert({

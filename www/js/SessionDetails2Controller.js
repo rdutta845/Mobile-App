@@ -4,7 +4,7 @@ angular.module('starter.controllers')
 		$scope.scheduleShow = true;
 		$scope.contentShow = true;
 		$scope.currentPosition = {};
-		var posOptions = {enableHighAccuracy: false};
+		$scope.UserIsVolunteer = false;
 
 		function distance(lat1, lon1, lat2, lon2, unit) {
 			var radlat1 = Math.PI * lat1/180
@@ -36,8 +36,10 @@ angular.module('starter.controllers')
 	  }).then(function mySucces(response) {
 			$scope.session = response.data.result;
 			$scope.schoolLocation = response.data.location;
-			$scope.checkInURL = response.data.result.isTestSession ? "app/session_details3/" : "app/session_details/";
 			$scope.session._volunteers.forEach(function(volunteer){
+				if(volunteer.id == $auth.getPayload().id) {
+					$scope.UserIsVolunteer = true;
+				}
         // To get the number of sessions completed by the volunteer.
         $http({
           method:"GET",
@@ -54,29 +56,45 @@ angular.module('starter.controllers')
           }
         })
       })
+			$scope.checkInURL = (response.data.result.sessionType == "Regular" || response.data.result.sessionType == "Test") ? "app/session_details3/" : "app/session_details/";
 			console.log(response);
 
 	  })
 		$scope.checkin = function (id) { //session._id
 			console.log("id print",id);
 			$scope.date = new Date();
+
 			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
-			if((new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) < 1) {
+			if((new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) < 1 && (new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) > -1) {
 				// NOTE: for testing purposes only. remove the next line when in production.
-				$location.path($scope.checkInURL + id);
+				// $location.path($scope.checkInURL + id);
 				console.log($scope.checkInURL + id);
 				$cordovaGeolocation.getCurrentPosition().then(function (position) {
+					console.log(position);
 					$scope.currentPosition.lat = position.coords.latitude;
 					$scope.currentPosition.long = position.coords.longitude;
-				});
-				if(distance($scope.currentPosition.lat, $scope.currentPosition.long, $scope.schoolLocation.lat, $scope.schoolLocation.lng, 'K') < 0.2) {
-					$location.path($scope.checkInURL + id);
-				} else {
+					if(distance($scope.currentPosition.lat, $scope.currentPosition.long, $scope.schoolLocation.lat, $scope.schoolLocation.lng, 'K') < 0.2) {
+						$http({
+							method:"GET",
+							url:CONFIG.apiEndpoint+"/checkinsession/" + $stateParams.id + "/"
+		            + $scope.session._studentClass.id,
+						}).then(function mySucces(response) {
+							console.log(response);
+							// FINALLY CHECK IN
+							$location.path($scope.checkInURL + id);
+						})
+					} else {
+						$ionicPopup.alert({
+				      title: 'Restricted',
+				      template: 'You have not arrived in school!'
+				    });
+					}
+				}, function (response) {
 					$ionicPopup.alert({
-			      title: 'Restricted',
-			      template: 'You have not arrived in school!'
+			      title: 'Location Error',
+			      template: 'Turn on your GPS and then try again.'
 			    });
-				}
+				}, { enableHighAccuracy: true });
 			} else {
 				$ionicPopup.alert({
 		      title: 'Restricted',
