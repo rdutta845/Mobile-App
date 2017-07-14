@@ -34,6 +34,17 @@ angular.module('starter.controllers')
 		    url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 		  }).then(function mySucces(response) {
 		    $scope.students = response.data.result._students;
+				$scope.session._attendence.forEach(function (value, id) {
+					var selected = $scope.students.filter(function (obj) {
+						return obj._id == value._student;
+					})[0];
+					if(value.isAttend) {
+						selected.isAttend = value.isAttend;
+					}
+					if(value.ASERScore) {
+						selected.ASERScore = value.ASERScore;
+					}
+				});
 		    console.log(response.data);
 		  })
 
@@ -185,8 +196,12 @@ angular.module('starter.controllers')
 					var selected = $scope.students.filter(function (obj) {
 						return obj._id == value._student;
 					})[0];
-					selected.isAttend = value.isAttend;
-					selected.ASERScore = value.ASERScore;
+					if(value.isAttend) {
+						selected.isAttend = value.isAttend;
+					}
+					if(value.ASERScore) {
+						selected.ASERScore = value.ASERScore;
+					}
 				});
 				console.log($scope.students);
 			}, function errorCallback(response) {
