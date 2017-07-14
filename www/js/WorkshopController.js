@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('WorkshopController', function(CONFIG, $scope, $stateParams, $location, $http, $rootScope) {
+.controller('WorkshopController', function(CONFIG, $scope, $stateParams, $location, $http, $rootScope, $auth) {
 
     $scope.userWorkshop=[];
     $rootScope.scheduleWorkshop = [];
@@ -26,6 +26,8 @@ angular.module('starter.controllers')
             }
 
           })
+          var token = $auth.getPayload(response.data.token);
+          $rootScope.picUrl = token.picUrl;
 
         })
     $scope.register = function () {

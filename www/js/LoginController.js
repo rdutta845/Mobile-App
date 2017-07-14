@@ -67,13 +67,13 @@ angular.module('starter.controllers')
 				// alert(response.data.result);
 			}else{
 				//console.log(response);
-				$rootScope.loginClassCSS = false;
 				//console.log(response.data.token);
 				$scope.myToken = $auth.getPayload(response.data.token);
 				token = $scope.myToken;
 				// console.log($scope.myToken.id);
 				console.log('You have successfully signed in!');
 				$window.sessionStorage.token = response.data.token;
+				$rootScope.picUrl = token.picUrl;
 				$location.path('/app/workshop');
 				$window.location.reload();
 			}

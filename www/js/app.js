@@ -11,7 +11,7 @@ var ngApp = angular.module('starter', ['ionic', 'satellizer', 'ngFileUpload', 's
 
 
 ngApp.constant("CONFIG", {
-  "apiEndpoint": 'http://139.59.77.254:3000/api/v1',  // Note: No trailing slashes!
+  "apiEndpoint": 'http://localhost:3000/api/v1',//'http://139.59.77.254:3000/api/v1',  // Note: No trailing slashes!
   "contactNo" : ""
 })
 
@@ -38,31 +38,31 @@ ngApp
 })
 
 // An injectable service useful for Uploading Files to AWS, proxied through our backend
-ngApp.service("UploadService", function(CONFIG, $http) {
-    this.uploadFiles = function(filesToUpload, cb) {
-        var fd = new FormData()
-        filesToUpload.forEach(function(file, idx) {
-          fd.append('file-'+idx, file)
-        })
-        $http({
-          method : "POST",
-          headers: { 'Content-Type': undefined },
-          transformRequest: angular.identity,
-          url : CONFIG.apiEndpoint+'/uploadFile/addFiles',
-          data: fd
-        })
-        .success(function (data, status, headers, config) {
-          if (!data.error) {
-            return cb(null, data.files)
-          } else {
-            return cb("Error Uploading Files!!", null)
-          }
-        })
-        .error(function (data, status, headers, config) {
-          return cb("Network Error!!", null);
-        })
-    }
-});
+// ngApp.service("UploadService", function(CONFIG, $http) {
+//     this.uploadFiles = function(filesToUpload, cb) {
+//         var fd = new FormData()
+//         filesToUpload.forEach(function(file, idx) {
+//           fd.append('file-'+idx, file)
+//         })
+//         $http({
+//           method : "POST",
+//           headers: { 'Content-Type': undefined },
+//           transformRequest: angular.identity,
+//           url : CONFIG.apiEndpoint+'/uploadFile/addFiles',
+//           data: fd
+//         })
+//         .success(function (data, status, headers, config) {
+//           if (!data.error) {
+//             return cb(null, data.files)
+//           } else {
+//             return cb("Error Uploading Files!!", null)
+//           }
+//         })
+//         .error(function (data, status, headers, config) {
+//           return cb("Network Error!!", null);
+//         })
+//     }
+// });
 
 ngApp
 .config(function($stateProvider, $urlRouterProvider) {

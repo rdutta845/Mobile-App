@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ProfileController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('ProfileController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -12,19 +12,22 @@ angular.module('starter.controllers')
         "corporate":"Step Up For India",
         "languages" : [],
         "volunteerType" : "",
-        "picUrl":"img/user.png"
+        // "picUrl":"img/user.png",
+        "mediafile":"",
+        "workshopsAttended":[]
        };
+
+       $scope.picUrl = "img/user.png";
        $scope.lan1 = [];
        $scope.lan2 = [];
        $scope.lanEven = [];
        $scope.lanOdd = [];
+       $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 
      $http({
         method : "GET",
         url : CONFIG.apiEndpoint+"/getsettingsinfo/",
     }).then(function mySucces(response) {
-        console.log("success", $scope.tokenInfo);
-        console.log("RESPONSE", response.data.settings);
         $scope.settings = response.data.settings;
         $scope.languages = $scope.settings.languages;
         $scope.languages.forEach(function(data, index){
@@ -40,12 +43,15 @@ angular.module('starter.controllers')
               method : "GET",
               url : CONFIG.apiEndpoint+"/getuserinfo/"
           }).then(function mySucces(response) {
-              console.log("success", $scope.tokenInfo);
-              console.log("RESPONSE", response.data.result);
               $scope.dataRecord = response.data.result;
               $scope.newRecord = $scope.dataRecord;
+              console.log("$scope.newRecord", $scope.newRecord);
               if($scope.newRecord.picUrl == undefined){
-                $scope.newRecord.picUrl = "img/user.png";
+                $scope.picUrl = "img/user.png";
+                $rootScope.picUrl = "img/user.png";
+              }else{
+                $scope.picUrl = $scope.newRecord.picUrl;
+                $rootScope.picUrl = $scope.newRecord.picUrl;
               }
               if($scope.newRecord.corporate == undefined){
                 $scope.newRecord.corporate = "Step Up For India";
@@ -62,17 +68,30 @@ angular.module('starter.controllers')
                       $scope.lanOdd[i] = true;
                     }
                   }
-                  
+
               })
           });
         })
     });
 
     $scope.save = function(){
+      console.log("jaor por", $scope.newRecord);
+      var userData = JSON.stringify($scope.newRecord);
+      var formData = new FormData();
+      // for(fid in $scope.newRecord){
+      //   formData.append(fid, $scope.newRecord[fid])
+      // }
+      formData.append("userData", userData);
+      formData.append("mediafile", $scope.newRecord.mediafile);
        $http({
           method : "PUT",
           url : CONFIG.apiEndpoint+"/edituser",
-          data:$scope.newRecord
+          transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
+          headers: {'Content-Type': undefined},//reference https://stackoverflow.com/a/35722271
+          // headers: {
+          //       'Content-Type': 'multipart/form-data'
+          //   },
+          data:formData
           })
           .then(function (response) {
             console.log("response object",response.data);
@@ -92,12 +111,29 @@ angular.module('starter.controllers')
                 template: '<b>Your data successfully saved<b>'
               });
               alertPopup.then(function(res) {
+
                 console.log('Your data successfully saved');
               });
+              $scope.picUrl = response.data.result.picUrl;
+              $rootScope.picUrl = response.data.result.picUrl;
             }
-            
+
           });
       }
+
+      // $scope.previewPhoto = function(event) {
+      //   console.log(event)
+      //   var files = event.target.files;
+      //   var file = files[files.length-1]
+      //   var reader = new FileReader();
+      //   reader.onload = function(e){
+      //     $scope.$apply(function(){
+      //       $scope.picUrl = e.target.result;
+      //     })
+      //   }
+      //      reader.readAsDataURL(file)
+      //  }
+
       $scope.language = function(str, $index){
         console.log("str", str, "$index", $index);
         var isPresent = false;
@@ -112,25 +148,12 @@ angular.module('starter.controllers')
         }
       }
       $scope.uploadPic = function(){
-        if ($scope.newRecord.picUrl) {
-        // First, upload the attachment files:
-        console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
-        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
-
-          if (!err) {
-            console.log("PIC Uploading files okay!!",files)
-            // save the task
-            $scope.newRecord.picUrl = files[0].URL
-            console.log("file[0]", files[0].URL)
-            console.log('pic',  $scope.newRecord.picUrl)
-
-          } else {
-            console.log(err)
-          }
-        })
-      } else {
-        $scope.newRecord.picUrl = "img/user.png"
+        if ($scope.newRecord.mediafile) {
+          console.dir($scope.newRecord.mediafile)
+          $scope.save()
+        } else {
+          $scope.picUrl = "img/user.png"
+        }
       }
-    }
-  
+
 })
