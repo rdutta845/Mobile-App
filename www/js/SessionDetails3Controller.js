@@ -8,12 +8,17 @@ angular.module('starter.controllers')
 		$scope.homework = {};
 
 		$scope.last5sessions = [];
+
+
 		$http({
 	    method:"GET",
 	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
 	  }).then(function mySucces(response) {
+			console.log(response);
 			$scope.session = response.data.result;
+			$scope.showMarks = ($scope.session.sessionType == "Regular") ? false : true;
 			$scope.schoolLocation = response.data.location;
+
 			$scope.session._volunteers.forEach(function(volunteer){
         // To get the number of sessions completed by the volunteer.
         $http({
@@ -41,7 +46,22 @@ angular.module('starter.controllers')
 				_studentClass : $scope.session._studentClass.id
 			};
 
-			populateStudents();
+			$http({
+				method:"GET",
+				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
+			}).then(function mySucces(response) {
+				$scope.students = response.data.result._students;
+				$scope.session._attendence.forEach(function (value, id) {
+					var selected = $scope.students.filter(function (obj) {
+						return obj._id == value._student;
+					})[0];
+					selected.isAttend = value.isAttend;
+					selected.testScore = value.testScore;
+					selected.isBadBehaviour = value.isBadBehaviour;
+
+				});
+				console.log(response.data);
+			})
 			// To get session and its color
 			$http({
 				method:"GET",
@@ -68,10 +88,6 @@ angular.module('starter.controllers')
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
 				$scope.students = response.data.result._students;
-				$scope.score = [];
-				$scope.students.forEach(function (value, id) {
-					$scope.score.push({ _id : value._id , ASERScores : value.ASERScores});
-				})
 				console.log(response.data);
 			})
 		}
@@ -93,7 +109,6 @@ angular.module('starter.controllers')
 			}
 
  		}
-
 
 
 		$scope.saveColor = function(){
@@ -119,11 +134,12 @@ angular.module('starter.controllers')
 		$scope.saveAttendance = function(){
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				console.log(value.testScore);
-				if(value.attendance || value.isBadBehaviour || (value.testScore >= 0)) {
+				console.log(value.testScore, value.isAttend);
+				if((value.isAttend != undefined) || (value.isBadBehaviour != undefined) || (value.testScore != undefined)) {
 					$scope.studentsAttended._attendence.push({
+						isAttend : (value.isAttend || value.isBadBehaviour || (value.testScore >= 0)),
 						_student : value._id,
-						ASERScore : value.testScore,
+						testScore : value.testScore,
 						isBadBehaviour : value.isBadBehaviour
 					});
 				}
@@ -139,6 +155,17 @@ angular.module('starter.controllers')
 		      title: 'Success',
 		      template: "Attendance and marks updated."
 		    },);
+				console.log($scope.students);
+				response.data.savedSassion._attendence.forEach(function (value, id) {
+					var selected = $scope.students.filter(function (obj) {
+						return obj._id == value._student;
+					})[0];
+					selected.isAttend = value.isAttend;
+					selected.testScore = value.testScore;
+					selected.isBadBehaviour = value.isBadBehaviour;
+
+				});
+				console.log($scope.students);
 			}, function errorCallback(response) {
 				console.log(response);
 				$ionicPopup.alert({
@@ -202,11 +229,12 @@ angular.module('starter.controllers')
     }
 
 		$scope.checkOut = function(){
-			console.log($scope.score);
+			$scope.saveAttendance();
  			$scope.modal4.show();
  		}
 
 		$scope.redo = function(){
+			$scope.saveAttendance();
 			$scope.modal5.show();
  		}
 

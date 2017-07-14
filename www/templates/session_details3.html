@@ -177,7 +177,7 @@
 								<div class="col col-15 ">
 									<strong>ASER <em>(mid)</em></strong>
 								</div>
-								<div class="col col-20">
+								<div class="col col-20" ng-if="showMarks">
 									<strong>Marks <em>(current)</em></strong>
 								</div>
 							</div>
@@ -187,7 +187,7 @@
 									<em>Join Dates: {{student.addedOn | date : "dd MMM yy"}} </em>
 								</div>
 								<div class="col col-20">
-									<ion-checkbox ng-model="student.attendance" ng-checked="student.attendance">a</ion-checkbox>
+									<ion-checkbox ng-model="student.isAttend" ng-checked="student.isAttend">a</ion-checkbox>
 								</div>
 								<div class="col col-20">
 									<ion-checkbox ng-model="student.isBadBehaviour" ng-checked="student.isBadBehaviour">b</ion-checkbox>
@@ -195,7 +195,7 @@
 								<div class="col col-15">
 									<span>{{student.ASERScores[1] ? student.ASERScores[1] : '- - '}}</span>
 								</div>
-								<div class="col col-20">
+								<div class="col col-20" ng-if="showMarks">
 									<input class="end_record" type="number" ng-model="student.testScore" value="{{student.testScore}}">
 								</div>
 							</div>
