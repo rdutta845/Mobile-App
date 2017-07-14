@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerRegistrationController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('VolunteerRegistrationController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -12,9 +12,10 @@ angular.module('starter.controllers')
         "corporate":"Step Up For India",
         "languages" : [],
         "volunteerType":"Coach",
-        "picUrl" : "img/user.png"
-
+        // "picUrl" : "img/user.png"
+        "mediafile":""
        };
+      $scope.picUrl = "img/user.png";
       $scope.lan1 = [];
       $scope.lan2 = [];
       $scope.first = {
@@ -37,7 +38,7 @@ angular.module('starter.controllers')
       }
       $scope.workshop = [];
       $scope.term = [];
-     $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token); 
+     $scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
      $ionicSideMenuDelegate.canDragContent(false);
       $scope.$on('$ionicView.leave', function () {
       // Enable swipe to open menu while leaving this page
@@ -79,10 +80,11 @@ angular.module('starter.controllers')
 
             if($scope.userData.picUrl != undefined || $scope.userData.picUrl !=''){
               $scope.newRecord.picUrl = $scope.userData.picUrl;
+              $rootScope.picUrl = $scope.userData.picUrl;
             }
           }
         })
-    
+
 
     $scope.namePrint = function(){
       console.log("firstName", $scope.first.value)
@@ -118,14 +120,21 @@ angular.module('starter.controllers')
       $scope.newRecord.password = $scope.pass.value;
       $scope.organization = $scope.org.value;
       $scope.newRecord.organization = $scope.org.value;
-      
+
       console.log("save route $scope.newRecord", $scope.newRecord)
+      var userData = JSON.stringify($scope.newRecord);
+      var formData = new FormData();
+      // for(fid in $scope.newRecord){
+      //   formData.append(fid, $scope.newRecord[fid])
+      // }
+      formData.append("userData", userData);
+      formData.append("mediafile", $scope.newRecord.mediafile);
 
        $http({
           method : "PUT",
           url : CONFIG.apiEndpoint+"/edituser",
           // url : CONFIG.apiEndpoint+"/adduser",
-          data:$scope.newRecord
+          data:formData
           })
           .then(function (response) {
             console.log("response object",response.data);
@@ -150,7 +159,7 @@ angular.module('starter.controllers')
               $location.path('/app/stepuplogin');
             }
           });
-        
+
 
       }
       // $scope.selcetedTerm = function($index){
@@ -163,22 +172,9 @@ angular.module('starter.controllers')
       //   })
       // }
       $scope.uploadPic = function(){
-        if ($scope.newRecord.picUrl) {
+        if ($scope.newRecord.mediafile) {
         // First, upload the attachment files:
         console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
-        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
-
-          if (!err) {
-            console.log("PIC Uploading files okay!!",files)
-            // save the task
-            $scope.newRecord.picUrl = files[0].URL
-            console.log("file[0]", files[0].URL)
-            console.log('pic',  $scope.newRecord.picUrl)
-
-          } else {
-            console.log(err)
-          }
-        })
       } else {
         $scope.newRecord.picUrl = "img/user.png"
       }

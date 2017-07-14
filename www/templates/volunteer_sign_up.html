@@ -8,9 +8,9 @@
 	<ion-content class="contnet_bg">
 		<div class="volunteer_profile">
 			<div class="vol_prof_pic">
-				<img src="{{newRecord.picUrl}}">
+				<img src="{{picUrl}}" ng-model="picUrl">
 			</div>
-			<a class="upld_prftxt" ngf-select ng-model="newRecord.picUrl" ng-change='uploadPic()'>
+			<a class="upld_prftxt" ngf-select ng-model="newRecord.mediafile" ng-change='uploadPic()'>
             Upload
             Profile Photo
             (Optional)
