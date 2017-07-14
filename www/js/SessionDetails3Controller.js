@@ -268,7 +268,7 @@ angular.module('starter.controllers')
 			console.log($scope.checkOUTcontent);
 			$http({
 				method: "POST",
-				data: $scope.studentsAttended,
+				data: $scope.checkOUTcontent,
 				url: CONFIG.apiEndpoint+"/checkoutsession/" + $scope.session._id,
 			}).then(function mySucces(response) {
 				console.log(response);
