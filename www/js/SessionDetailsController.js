@@ -54,7 +54,9 @@ angular.module('starter.controllers')
 		    method:"GET",
 		    url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 		  }).then(function mySucces(response) {
+				console.log(response);
 		    $scope.students = response.data.result._students;
+				console.log($scope.session._attendence);
 				$scope.session._attendence.forEach(function (value, id) {
 					var selected = $scope.students.filter(function (obj) {
 						return obj._id == value._student;
@@ -221,12 +223,12 @@ angular.module('starter.controllers')
 			console.log($scope.students);
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				console.log(value.ASERScores[$scope.ASERtype], value.ASERScores.length);
-				if(value.ASERScores != undefined && value.ASERScores.length > $scope.ASERtype) {
+				console.log(value.ASERScores[$scope.ASERtype], value.ASERScore,value.ASERScore != undefined);
+				if(value.ASERScore >= 0) {
 					$scope.studentsAttended._attendence.push({
-						isAttend : value.ASERScores[$scope.ASERtype] ? true : false,
+						isAttend : value.ASERScore ? true : false,
 						_student : value._id,
-						ASERScore : value.ASERScores[$scope.ASERtype],
+						ASERScore : value.ASERScore,
 					});
 				}
 			});

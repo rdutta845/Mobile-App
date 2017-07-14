@@ -65,6 +65,7 @@ angular.module('starter.controllers')
 			$scope.date = new Date();
 
 			console.log((new Date($scope.session.date) - $scope.date)/ (1000 * 3600 * 24));
+			// Check date interval
 			if((new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) < 1 && (new Date($scope.session.date) - $scope.date)/(1000 * 3600 * 24) > -1) {
 				// NOTE: for testing purposes only. remove the next line when in production.
 				// $location.path($scope.checkInURL + id);

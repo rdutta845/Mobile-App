@@ -57,6 +57,7 @@ angular.module('starter.controllers')
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
+				console.log(response);
 				$scope.students = response.data.result._students;
 				$scope.session._attendence.forEach(function (value, id) {
 					var selected = $scope.students.filter(function (obj) {
@@ -147,10 +148,11 @@ angular.module('starter.controllers')
 		$scope.saveAttendance = function(){
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				console.log(value.testScore, value.isAttend);
+				// console.log(value.testScore, (value.testScore != undefined));
 				if((value.isAttend != undefined) || (value.isBadBehaviour != undefined) || (value.testScore != undefined)) {
+					console.log(value.isAttend,value.isBadBehaviour,(value.testScore >= 0),value.testScore);
 					$scope.studentsAttended._attendence.push({
-						isAttend : (value.isAttend || value.isBadBehaviour || (value.testScore >= 0)),
+						isAttend : (value.isAttend || value.isBadBehaviour || (value.testScore)),
 						_student : value._id,
 						testScore : value.testScore,
 						isBadBehaviour : value.isBadBehaviour
