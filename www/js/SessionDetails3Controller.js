@@ -8,7 +8,10 @@ angular.module('starter.controllers')
 		$scope.homework = {};
 
 		$scope.last5sessions = [];
+<<<<<<< 206175f966877ab2c64ac3c8608a8ce44884557f
 <<<<<<< 73059e29142fedb1e5f15e66ccb06cf345312524
+=======
+>>>>>>> session details changes
 		$ionicPlatform.ready(function() {
 			$cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
 			      // success
@@ -16,8 +19,11 @@ angular.module('starter.controllers')
 			      // error
 			    });
     });
+<<<<<<< 206175f966877ab2c64ac3c8608a8ce44884557f
 =======
 >>>>>>> session_details overwrite and append functionality
+=======
+>>>>>>> session details changes
 
 
 		$http({
