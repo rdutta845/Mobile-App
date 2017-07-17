@@ -6,7 +6,7 @@ angular.module('starter.controllers')
 		$scope.attendanceShow = true;
 		$scope.homeworkShow = false;
 		$scope.homework = {};
-
+		$scope.conts = [];
 		$scope.last5sessions = [];
 		// $ionicPlatform.ready(function() {
 		// 	$cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
@@ -15,7 +15,7 @@ angular.module('starter.controllers')
 		// 	      // error
 		// 	    });
     // });
-
+    
 
 		$http({
 	    method:"GET",
@@ -26,6 +26,8 @@ angular.module('starter.controllers')
 			$scope.showMarks = ($scope.session.sessionType == "Regular") ? false : true;
 			$scope.schoolLocation = response.data.location;
 
+			$scope.conts = $scope.session._contents;
+			console.log("$scope.showContent", $scope.showContent)
 			$scope.session._volunteers.forEach(function(volunteer){
         // To get the number of sessions completed by the volunteer.
         $http({
@@ -57,7 +59,7 @@ angular.module('starter.controllers')
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				$scope.students = response.data.result._students;
 				$scope.session._attendence.forEach(function (value, id) {
 					var selected = $scope.students.filter(function (obj) {
@@ -74,35 +76,39 @@ angular.module('starter.controllers')
 					}
 
 				});
-				console.log(response.data);
+				// console.log(response.data);
 			})
 			// To get session and its color
 			$http({
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getclasssessionsinfo/"+$scope.session._studentClass.id + "/" + $scope.session._studentClass.currentTerm,
 			}).then(function mySucces(response) {
-				console.log(response.data.result);
+				// console.log(response.data.result);
 				response.data.result.forEach(function (value,id) {
 					if(value.sessionNo < $scope.session.sessionNo) {
 						$scope.last5sessions.push(value);
 					}
 				})
-				console.log($scope.last5sessions);
+				// console.log($scope.last5sessions);
 			})
 
 
-			console.log(response);
+			// console.log(response);
 
 	  })
 
 		// To populate student name and marks
+		$scope.goBack = function() {
+			var addr = "/app/session_details2/"+$stateParams.id;
+    	$location.path(addr);
+  	};
 		function populateStudents() {
 			$http({
 				method:"GET",
 				url:CONFIG.apiEndpoint+"/getstudentclassinfo/"+$scope.session._studentClass.id,
 			}).then(function mySucces(response) {
 				$scope.students = response.data.result._students;
-				console.log(response.data);
+				// console.log(response.data);
 			})
 		}
 
@@ -126,13 +132,13 @@ angular.module('starter.controllers')
 
 
 		$scope.saveColor = function(){
-			console.log($scope.homework, $scope.session._id);
+			// console.log($scope.homework, $scope.session._id);
 			$http({
 				method:"PUT",
 				data: $scope.homework,
 				url:CONFIG.apiEndpoint+"/editsession/" + $scope.session._id,
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Team color changed."
@@ -148,9 +154,9 @@ angular.module('starter.controllers')
 		$scope.saveAttendance = function(){
 			$scope.studentsAttended = { _attendence : [] };
 			$scope.students.forEach(function (value, id) {
-				// console.log(value.testScore, (value.testScore != undefined));
+				console.log(value.testScore, (value.testScore != undefined));
 				if((value.isAttend != undefined) || (value.isBadBehaviour != undefined) || (value.testScore != undefined)) {
-					console.log(value.isAttend,value.isBadBehaviour,(value.testScore >= 0),value.testScore);
+					// console.log(value.isAttend,value.isBadBehaviour,(value.testScore >= 0),value.testScore);
 					$scope.studentsAttended._attendence.push({
 						isAttend : (value.isAttend || value.isBadBehaviour || (value.testScore)),
 						_student : value._id,
@@ -159,18 +165,18 @@ angular.module('starter.controllers')
 					});
 				}
 			})
-			console.log($scope.studentsAttended);
+			// console.log($scope.studentsAttended);
 			$http({
 				method: "POST",
 				data: $scope.studentsAttended,
 				url: CONFIG.apiEndpoint+"/savesessionscore/" + $scope.session._id,
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Attendance and marks updated."
 		    });
-				console.log($scope.students);
+				// console.log($scope.students);
 				response.data.savedSassion._attendence.forEach(function (value, id) {
 					var selected = $scope.students.filter(function (obj) {
 						return obj._id == value._student;
@@ -186,9 +192,9 @@ angular.module('starter.controllers')
 					}
 
 				});
-				console.log($scope.students);
+				// console.log($scope.students);
 			}, function errorCallback(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Error',
 		      template: "Update couldnt take place, try again."
@@ -226,7 +232,7 @@ angular.module('starter.controllers')
 	  }
 
 		$scope.addStudent = function(){
-      console.log("ADD Student");
+      // console.log("ADD Student");
       $scope.modal3.show();
     }
     $scope.saveStudent = function(){
@@ -234,17 +240,17 @@ angular.module('starter.controllers')
 				firstName : $scope.FullName.value.substr(0,$scope.FullName.value.indexOf(' ')),
 				lastName : $scope.FullName.value.substr($scope.FullName.value.indexOf(' ') + 1)
 			}
-			console.log($scope.NewStudent);
+			// console.log($scope.NewStudent);
 			$http({
 				method:"POST",
 				data: $scope.NewStudent,
 				url:CONFIG.apiEndpoint+"/addstudent",
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				populateStudents();
 
 			})
-      console.log("save student");
+      // console.log("save student");
       $scope.modal3.hide();
 
     }
@@ -265,48 +271,48 @@ angular.module('starter.controllers')
 				comments : $scope.comment.value,
 				status : "Completed"
 			}
-			console.log($scope.checkOUTcontent);
+			// console.log($scope.checkOUTcontent);
 			$http({
 				method: "POST",
 				data: $scope.checkOUTcontent,
 				url: CONFIG.apiEndpoint+"/checkoutsession/" + $scope.session._id,
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Successfully checked out."
 		    });
 				$location.path("/app/teacher_schedule");
 			}, function errorCallback(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Error',
 		      template: response.data.msg
 		    });
 		  });
- 			console.log("confirm checkOut");
+ 			// console.log("confirm checkOut");
  			$scope.modal4.hide();
  		}
  		$scope.confirmRedo = function(){
- 			console.log("confirm redo");
+ 			// console.log("confirm redo");
 			$scope.redoContent = {
 				comments : $scope.comment.value,
 				status : "Redo"
 			};
-			console.log($scope.redoContent);
+			// console.log($scope.redoContent);
 			$http({
 				method: "POST",
 				data: $scope.studentsAttended,
 				url: CONFIG.apiEndpoint+"/checkoutsession/" + $scope.session._id,
 			}).then(function mySucces(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Successfully marked as Redo."
 		    });
 				$location.path("/app/teacher_schedule");
 			}, function errorCallback(response) {
-				console.log(response);
+				// console.log(response);
 				$ionicPopup.alert({
 		      title: 'Error',
 		      template: response.data.msg
@@ -314,4 +320,5 @@ angular.module('starter.controllers')
 		  });
  			$scope.modal5.hide();
  		}
+
 })

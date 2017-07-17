@@ -20,6 +20,9 @@ angular.module('starter.controllers')
 			console.log(dist);
 			return dist
 		}
+		$scope.goBack = function() {
+    	$location.path("/app/teacher_schedule");
+  	};
 		$scope.toggle = function(str){
 			console.log(str);
 			if(str == 'schedule'){
