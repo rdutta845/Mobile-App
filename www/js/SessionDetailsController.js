@@ -158,14 +158,14 @@ angular.module('starter.controllers')
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Successfully checked out."
-		    },);
+		    });
 				$location.path("/app/teacher_schedule");
 			}, function errorCallback(response) {
 				console.log(response);
 				$ionicPopup.alert({
 		      title: 'Error',
 		      template: response.data.msg
-		    },);
+		    });
 		  });
  			console.log("confirm checkOut");
  			$scope.modal4.hide();
@@ -186,14 +186,14 @@ angular.module('starter.controllers')
 				$ionicPopup.alert({
 		      title: 'Success',
 		      template: "Successfully marked as Redo."
-		    },);
+		    });
 				$location.path("/app/teacher_schedule");
 			}, function errorCallback(response) {
 				console.log(response);
 				$ionicPopup.alert({
 		      title: 'Error',
 		      template: response.data.msg
-		    },);
+		    });
 		  });
  			$scope.modal5.hide();
  		}
@@ -242,7 +242,7 @@ angular.module('starter.controllers')
 				$ionicPopup.alert({
 					title: 'Success',
 					template: "Attendance and marks updated."
-				},);
+				});
 				console.log($scope.students);
 				response.data.savedSassion._attendence.forEach(function (value, id) {
 					var selected = $scope.students.filter(function (obj) {
@@ -261,7 +261,7 @@ angular.module('starter.controllers')
 				$ionicPopup.alert({
 					title: 'Error',
 					template: "Update couldnt take place, try again."
-				},);
+				});
 			});
 		}
 	})
