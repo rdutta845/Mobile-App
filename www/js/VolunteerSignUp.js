@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerSignUp', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, UploadService) {
+.controller('VolunteerSignUp', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $ionicSideMenuDelegate) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -12,9 +12,11 @@ angular.module('starter.controllers')
         "corporate":"Step Up For India",
         "volunteerType":"Coach",
         "languages" : [],
-        "picUrl" : "img/user.png"
+        // "picUrl" : "img/user.png",
+        "mediafile":""
 
        };
+       $scope.picUrl = "img/user.png",
       $scope.lan1 = [];
       $scope.lan2 = [];
       $scope.first = {
@@ -96,13 +98,21 @@ angular.module('starter.controllers')
       console.log("save route $scope.newRecord", $scope.newRecord);
       console.log(", CONFIG.contactNo", CONFIG.contactNo)
       $scope.newRecord.contactNo = CONFIG.contactNo;
-      console.log("save route $scope.newRecord", $scope.newRecord)
-
+      console.log("save route $scope.newRecord", $scope.newRecord);
+      var userData = JSON.stringify($scope.newRecord);
+      var formData = new FormData();
+      // for(fid in $scope.newRecord){
+      //   formData.append(fid, $scope.newRecord[fid])
+      // }
+      formData.append("userData", userData);
+      formData.append("mediafile", $scope.newRecord.mediafile);
        $http({
           method : "POST",
           url : CONFIG.apiEndpoint+"/adduser",
           // url : CONFIG.apiEndpoint+"/adduser",
-          data:$scope.newRecord
+          transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
+          headers: {'Content-Type': undefined},//reference https://stackoverflow.com/a/35722271
+          data:formData
           })
           .then(function (response) {
             console.log("response object",response.data);
@@ -142,24 +152,10 @@ angular.module('starter.controllers')
       //      reader.readAsDataURL(file)
       //  }
       $scope.uploadPic = function(){
-        if ($scope.newRecord.picUrl) {
-        // First, upload the attachment files:
-        console.log("inside if $scope.newRecord.picUrl",$scope.newRecord.picUrl);
-        UploadService.uploadFiles([$scope.newRecord.picUrl], function(err, files) {
-
-          if (!err) {
-            console.log("PIC Uploading files okay!!",files)
-            // save the task
-            $scope.newRecord.picUrl = files[0].URL
-            console.log("file[0]", files[0].URL)
-            console.log('pic',  $scope.newRecord.picUrl)
-
-          } else {
-            console.log(err)
-          }
-        })
-      } else {
-        $scope.newRecord.picUrl = "img/user.png"
+        if ($scope.newRecord.mediafile) {
+          console.dir($scope.newRecord.mediafile)
+        } else {
+          $scope.picUrl = "img/user.png"
+        }
       }
-    }
  });

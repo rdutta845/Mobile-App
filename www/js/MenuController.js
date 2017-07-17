@@ -1,12 +1,15 @@
 angular.module('starter.controllers')
-.controller('MenuController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window) {
+.controller('MenuController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope) {
 
 	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 	console.log($scope.tokenInfo);
 
+	// if($scope.tokenInfo!=undefined && $scope.tokenInfo.picUrl == undefined){
+	//
+	// 	$rootScope.picUrl = "img/user.png";
+	// }
 	if($scope.tokenInfo!=undefined && $scope.tokenInfo.picUrl == undefined){
-
-		$scope.tokenInfo.picUrl = "img/user.png";
+		$rootScope.picUrl = $scope.tokenInfo.picUrl;
 	}
 	$scope.logout = function(){
 		// $location.path('/app/steuplogin');
