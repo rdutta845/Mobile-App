@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('ProfileController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope) {
+.controller('ProfileController', function(CONFIG, $scope, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope, ImageUploadFactory, $cordovaCamera, $ionicActionSheet) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -12,8 +12,8 @@ angular.module('starter.controllers')
         "corporate":"Step Up For India",
         "languages" : [],
         "volunteerType" : "",
-        // "picUrl":"img/user.png",
-        "mediafile":"",
+        "picUrl":"img/user.png",
+        // "mediafile":"",
         "workshopsAttended":[]
        };
 
@@ -76,7 +76,7 @@ angular.module('starter.controllers')
 
     $scope.save = function(){
       console.log("jaor por", $scope.newRecord);
-      var userData = JSON.stringify($scope.newRecord);
+      var userData = $scope.newRecord;
       var formData = new FormData();
       // for(fid in $scope.newRecord){
       //   formData.append(fid, $scope.newRecord[fid])
@@ -86,12 +86,12 @@ angular.module('starter.controllers')
        $http({
           method : "PUT",
           url : CONFIG.apiEndpoint+"/edituser",
-          transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
-          headers: {'Content-Type': undefined},//reference https://stackoverflow.com/a/35722271
+          // transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
+          // headers: {'Content-Type': undefined},//reference https://stackoverflow.com/a/35722271
           // headers: {
           //       'Content-Type': 'multipart/form-data'
           //   },
-          data:formData
+          data:userData
           })
           .then(function (response) {
             console.log("response object",response.data);
@@ -208,7 +208,8 @@ angular.module('starter.controllers')
             if (result) {
               urlSmall = result.secure_url || '';
               $scope.picUrl = urlSmall;
-              $scope.newRecord = urlSmall;
+              $scope.newRecord.picUrl = urlSmall;
+              $rootScope.picUrl = urlSmall;
               // $ionicLoading.hide();
             }
 

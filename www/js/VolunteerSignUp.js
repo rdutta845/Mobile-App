@@ -99,20 +99,20 @@ angular.module('starter.controllers')
       console.log(", CONFIG.contactNo", CONFIG.contactNo)
       $scope.newRecord.contactNo = CONFIG.contactNo;
       console.log("save route $scope.newRecord", $scope.newRecord);
-      var userData = JSON.stringify($scope.newRecord);
-      var formData = new FormData();
+      var userData = $scope.newRecord;
+      // var formData = new FormData();
       // for(fid in $scope.newRecord){
       //   formData.append(fid, $scope.newRecord[fid])
       // }
-      formData.append("userData", userData);
-      formData.append("mediafile", $scope.newRecord.mediafile);
+      // formData.append("userData", userData);
+      // formData.append("mediafile", $scope.newRecord.mediafile);
       $http({
         method: "POST",
         url: CONFIG.apiEndpoint + "/adduser",
         // url : CONFIG.apiEndpoint+"/adduser",
-        transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
-        headers: { 'Content-Type': undefined },//reference https://stackoverflow.com/a/35722271
-        data: formData
+        // transformRequest: angular.identity,//reference https://stackoverflow.com/a/35722271
+        // headers: { 'Content-Type': undefined },//reference https://stackoverflow.com/a/35722271
+        data: userData
       })
         .then(function (response) {
           console.log("response object", response.data);
@@ -201,7 +201,9 @@ angular.module('starter.controllers')
           if (result) {
             urlSmall = result.secure_url || '';
             $scope.picUrl = urlSmall;
-            $scope.newRecord = urlSmall;
+            $scope.newRecord.picUrl = urlSmall;
+            $rootScope.picUrl = urlSmall;
+
             // $ionicLoading.hide();
           }
 

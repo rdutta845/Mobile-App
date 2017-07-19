@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VolunteerRegistrationController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope) {
+.controller('VolunteerRegistrationController', function(CONFIG, $scope, $ionicSideMenuDelegate, $stateParams, $ionicPopup, $http, $location, $auth, $window, $rootScope, ImageUploadFactory, $cordovaCamera, $ionicActionSheet) {
 
   console.log("running successfully")
     $scope.newRecord = {
@@ -122,7 +122,7 @@ angular.module('starter.controllers')
       $scope.newRecord.organization = $scope.org.value;
 
       console.log("save route $scope.newRecord", $scope.newRecord)
-      var userData = JSON.stringify($scope.newRecord);
+      var userData = $scope.newRecord;
       var formData = new FormData();
       // for(fid in $scope.newRecord){
       //   formData.append(fid, $scope.newRecord[fid])
@@ -134,7 +134,7 @@ angular.module('starter.controllers')
           method : "PUT",
           url : CONFIG.apiEndpoint+"/edituser",
           // url : CONFIG.apiEndpoint+"/adduser",
-          data:formData
+          data:userData
           })
           .then(function (response) {
             console.log("response object",response.data);
@@ -232,7 +232,9 @@ angular.module('starter.controllers')
             if (result) {
               urlSmall = result.secure_url || '';
               $scope.picUrl = urlSmall;
-              $scope.newRecord = urlSmall;
+              $scope.newRecord.picUrl = urlSmall;
+              $rootScope.picUrl = urlSmall;
+              
               // $ionicLoading.hide();
             }
 
