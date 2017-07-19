@@ -88,7 +88,25 @@
 							<a class="arrw_up" ng-click="toggle('content')"><i class="icon" ng-class="contentShow ? 'ion-arrow-up-c' : 'ion-arrow-down-c'"></i></a>
 						</div>
 						<div class="content_session" ng-show="contentShow">
-							<div class="row">
+							<div class="row" ng-repeat="cont in session._contents" ng-if="$even">
+								<div class="col col-50" ng-show='{{conts[$index]!=undefined}}'>
+									<div class="cont_wrap_bx">
+										<i class="fa fa-file-pdf-o" aria-hidden="true" ng-show="conts[$index].contentType == 'application/pdf'"></i>
+										<i class="fa fa-video-camera" aria-hidden="true" ng-hide="conts[$index].contentType == 'application/pdf'"></i>
+										<span>{{conts[$index].title}}</span>
+										<a href="{{conts[$index].attachmentUrl}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+								<div class="col col-50" ng-show='{{conts[$index+1]!=undefined}}'>
+									<div class="cont_wrap_bx">
+										<i class="fa fa-file-pdf-o" aria-hidden="true" ng-show="conts[$index+1].contentType == 'application/pdf'"></i>
+										<i class="fa fa-video-camera" aria-hidden="true" ng-hide="conts[$index+1].contentType == 'application/pdf'"></i>
+										<span>{{conts[$index+1].title}}</span>
+										<a href="{{conts[$index+1].attachmentUrl}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="row">
 								<div class="col col-50">
 									<div class="cont_wrap_bx">
 										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
@@ -103,23 +121,7 @@
 										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col col-50">
-									<div class="cont_wrap_bx">
-										<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-										<span>Perl module.pdf</span>
-										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-									</div>
-								</div>
-								<div class="col col-50">
-									<div class="cont_wrap_bx">
-										<i class="fa fa-video-camera" aria-hidden="true"></i>
-										<span>Movie Business.mp4</span>
-										<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-									</div>
-								</div>
-							</div>
+							</div> -->
 						</div>
 					</ion-item>
 					<ion-item>

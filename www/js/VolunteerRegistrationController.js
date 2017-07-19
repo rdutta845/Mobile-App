@@ -12,8 +12,8 @@ angular.module('starter.controllers')
         "corporate":"Step Up For India",
         "languages" : [],
         "volunteerType":"Coach",
-        // "picUrl" : "img/user.png"
-        "mediafile":""
+        "picUrl" : "img/user.png"
+        // "mediafile":""
        };
       $scope.picUrl = "img/user.png";
       $scope.lan1 = [];
@@ -171,6 +171,83 @@ angular.module('starter.controllers')
       //     }
       //   })
       // }
+      $scope.showPictureOptions = function () {
+
+        // Show the action sheet
+        var showActionSheet = $ionicActionSheet.show({
+          buttons: [
+            { text: '<i class="icon ion-camera"></i> Camera' },
+            { text: '<i class="icon ion-ios-albums"></i> Gallery' }
+          ],
+
+          //  destructiveText: 'Delete',
+          titleText: 'Choose your option',
+          cancelText: 'Cancel',
+
+          cancel: function () {
+            // add cancel code...
+          },
+
+          buttonClicked: function (index) {
+            if (index === 0) {
+              // Camera
+              $scope.openCamera(Camera.PictureSourceType.CAMERA);
+            }
+
+            if (index === 1) {
+              // Gallery
+              $scope.openCamera(Camera.PictureSourceType.PHOTOLIBRARY);
+            }
+            return true;
+          },
+
+          destructiveButtonClicked: function () {
+            // add delete code..
+          }
+        });
+      }
+      $scope.openCamera = function (camOption) {
+        // Method to open camera to take a pic
+        var options = {
+          destinationType: Camera.DestinationType.FILE_URI,
+          sourceType: camOption,
+          allowEdit: true
+        };
+
+        $cordovaCamera.getPicture(options).then(function (imageURI) {
+          $scope.uploadToCloudinary(imageURI);
+
+        }, function (err) {
+          // error
+        });
+      }
+      $scope.uploadToCloudinary = function (imageURI) {
+        // $ionicLoading.show();
+        ImageUploadFactory.uploadImage(imageURI).then(
+          function (result) {
+
+            var url = result.secure_url || '';
+            var urlSmall;
+            console.log('url:' + url);
+            if (result) {
+              urlSmall = result.secure_url || '';
+              $scope.picUrl = urlSmall;
+              $scope.newRecord = urlSmall;
+              // $ionicLoading.hide();
+            }
+
+            // Do something with the results here.
+            // $ionicLoading.hide();
+            $cordovaCamera.cleanup();
+
+          },
+          function (err) {
+            // Do something with the error here
+            // $ionicLoading.hide();
+            $cordovaCamera.cleanup();
+
+          });
+      }
       $scope.uploadPic = function(){
         if ($scope.newRecord.mediafile) {
         // First, upload the attachment files:

@@ -5,6 +5,8 @@ angular.module('starter.controllers')
 		$scope.contentShow = true;
 		$scope.currentPosition = {};
 		$scope.UserIsVolunteer = false;
+		$scope.conts = [];
+
 
 		function distance(lat1, lon1, lat2, lon2, unit) {
 			var radlat1 = Math.PI * lat1/180
@@ -39,6 +41,8 @@ angular.module('starter.controllers')
 	  }).then(function mySucces(response) {
 			$scope.session = response.data.result;
 			$scope.schoolLocation = response.data.location;
+			$scope.conts = $scope.session._contents;
+			
 			$scope.session._volunteers.forEach(function(volunteer){
 				if(volunteer.id == $auth.getPayload().id) {
 					$scope.UserIsVolunteer = true;

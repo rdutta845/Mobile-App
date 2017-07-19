@@ -12,8 +12,8 @@ angular.module('starter.controllers')
       "corporate": "Step Up For India",
       "volunteerType": "Coach",
       "languages": [],
-      // "picUrl" : "img/user.png",
-      "mediafile": ""
+      "picUrl" : "img/user.png",
+      // "mediafile": ""
 
     };
     $scope.picUrl = "img/user.png",
@@ -201,6 +201,7 @@ angular.module('starter.controllers')
           if (result) {
             urlSmall = result.secure_url || '';
             $scope.picUrl = urlSmall;
+            $scope.newRecord = urlSmall;
             // $ionicLoading.hide();
           }
 

@@ -5,12 +5,16 @@ angular.module('starter.controllers')
 		$scope.contentShow = false;
 		$scope.attendanceShow = true; //NOTE: Set to false in production
 		$scope.ASERtype = 1;
+		$scope.conts = [];
+
 		$http({
 	    method:"GET",
 	    url:CONFIG.apiEndpoint+"/getsessioninfo/" + $stateParams.id,
 	  }).then(function mySucces(response) {
 			$scope.session = response.data.result;
 			$scope.schoolLocation = response.data.location;
+			$scope.conts = $scope.session._contents;
+			
 			// Set ASER type
 			switch ($scope.session.sessionType) {
 				case "ASER1":
