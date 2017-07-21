@@ -75,7 +75,7 @@ angular.module('starter.controllers')
 				$window.sessionStorage.token = response.data.token;
 				$rootScope.picUrl = token.picUrl;
 				$location.path('/app/workshop');
-				$window.location.reload();
+				// $window.location.reload(); // Never ever use this in Ionic apps :)
 			}
 		})
 		.catch(function(error) {
