@@ -45,6 +45,7 @@ angular.module('starter.controllers')
           }).then(function mySucces(response) {
               $scope.dataRecord = response.data.result;
               $scope.newRecord = $scope.dataRecord;
+
               console.log("$scope.newRecord", $scope.newRecord);
               if($scope.newRecord.picUrl == undefined){
                 $scope.picUrl = "img/user.png";
@@ -83,6 +84,7 @@ angular.module('starter.controllers')
       // }
       formData.append("userData", userData);
       formData.append("mediafile", $scope.newRecord.mediafile);
+      $rootScope.name = $scope.newRecord.name.firstName+' '+$scope.newRecord.name.lastName;
        $http({
           method : "PUT",
           url : CONFIG.apiEndpoint+"/edituser",

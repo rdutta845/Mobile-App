@@ -3,13 +3,15 @@ angular.module('starter.controllers')
 
 	$scope.tokenInfo = $auth.getPayload($window.sessionStorage.token);
 	console.log($scope.tokenInfo);
-
 	// if($scope.tokenInfo!=undefined && $scope.tokenInfo.picUrl == undefined){
 	//
 	// 	$rootScope.picUrl = "img/user.png";
 	// }
 	if($scope.tokenInfo!=undefined && $scope.tokenInfo.picUrl == undefined){
 		$rootScope.picUrl = $scope.tokenInfo.picUrl;
+	}
+	if($scope.tokenInfo!=undefined && $scope.tokenInfo.fullName != undefined){
+		$rootScope.name = $scope.tokenInfo.fullName;
 	}
 	$scope.logout = function(){
 		// $location.path('/app/steuplogin');

@@ -27,7 +27,8 @@
           </div>
           <div class="prf_txt">
             <h2>Welcome</h2>
-            <strong>{{tokenInfo.fullName}}</strong>
+            <!-- <strong>{{tokenInfo.fullName}}</strong> -->
+            <strong>{{name}}</strong>
           </div>
         </div>
         <span>You joined in {{tokenInfo.dateOfJoining | date:'yyyy'}} & have completed &nbsp{{sessionsComp}} sessions</span>
@@ -59,7 +60,7 @@
         <ion-item menu-close href="#/app/steuplogin" ng-click="logout()">
           <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
         </ion-item>
-        <ion-item menu-close href="#/app/session_details2">
+        <!-- <ion-item menu-close href="#/app/session_details2">
           session_details2
         </ion-item>
         <ion-item menu-close href="#/app/session_details3">
@@ -94,7 +95,7 @@
         </ion-item>
         <ion-item menu-close href="#/app/student_report">
           student_report
-        </ion-item>
+        </ion-item> -->
       </ion-list>
     </ion-content>
     <div class="row menufooter padding">
