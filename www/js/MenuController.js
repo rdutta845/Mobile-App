@@ -25,7 +25,7 @@ angular.module('starter.controllers')
 		    url:CONFIG.apiEndpoint+"/allmysessionsinfo",
 		  }).then(function mySucces(response) {
 				console.log("here");
-				$scope.sessionsComp = response.data.totalCompletedNumber ? response.data.totalCompletedNumber : 0;
+				$rootScope.sessionsComp = response.data.totalCompletedNumber ? response.data.totalCompletedNumber : 0;
 			})
 	  }
 })
